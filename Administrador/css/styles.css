@@ -1,0 +1,53 @@
+header {
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    height: 15%;
+    top: 0%;
+    left: 0;
+
+    font-size: 120%;
+    img {
+        max-height: 100%;
+    }
+    background-color: cadetblue;
+
+    img {
+        position: fixed;
+        left: 0;
+        max-width: 200px;
+        top: 0;
+    }
+}
+
+#sidebar {
+    width: 20%;
+    align-self: left;
+    height: 100%;
+    position: fixed;
+    top: 15%;
+    left: 0;
+    background-color: #acac01;
+    color: aqua;
+}
+
+main {
+    position: fixed;
+    left: 25%;
+    top: 30%;
+    text-align: center;
+
+    td {
+        max-width: 250px;
+        border: 5px #000 solid;
+        img {
+            max-width: 250px;
+        }
+    }
+    table {
+        align-items: center;
+        align-self: center;
+    }
+
+}
