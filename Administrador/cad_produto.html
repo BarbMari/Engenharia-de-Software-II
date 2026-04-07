@@ -15,22 +15,73 @@
       <div id="user"></div>
     </header>
 
-    <div id="sidebar">
-      <div class="container-sidebar">
-        <ul>
-          <li><a href="./index.html">Início</a></li>
-          <li><a href="./cad_funcionario.html">Cadastro de Funcionários</a></li>
-          <li><a href="./cad_produto.html">Cadastro de Produtos</a></li>
-          <li><a href="./rel_produto.html">Relatório do Estoque</a></li>
-          <li><a href="./rel_venda.html">Relatório de Vendas</a></li>
-          <li><a href="./rel_pedido.html">Relatório dos Pedidos</a></li>
-          <li>
-            <a href="./rel_funcionario.html">Relatório dos Funcionários</a>
-          </li>
-        </ul>
-      </div>
+        <div class="container-sidebar">
+            <ul>
+                <li><a href="./index.html">Início</a></li>
+                <li><a href="./cad_funcionario.html">Funcionários</a></li>
+                <li><a href="./cad_produto.html" class="active">Produtos</a></li>
+                <li><a href="./rel_produto.html">Estoque</a></li>
+                <li><a href="./rel_venda.html">Vendas</a></li>
+                <li><a href="./rel_pedido.html">Pedidos</a></li>
+                <li><a href="./rel_funcionario.html">Relatório</a></li>
+            </ul>
+        </div>
     </div>
 
-    <main></main>
-  </body>
+    <!-- CONTEÚDO -->
+    <div class="main">
+        <div class="container">
+            <div class="form-section">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Produto</label>
+                        <input type="text" id="produto" placeholder="Nome">
+                    </div>
+                    <div class="form-group">
+                        <label>Quantidade</label>
+                        <input type="number" id="quantidade" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Unidade</label>
+                        <select id="unidade">
+                            <option value="">Selecione</option>
+                            <option value="kg">KG</option>
+                            <option value="un">Unidade</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Custo Unitário</label>
+                        <input type="number" id="custoUnidade" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Custo Total</label>
+                        <input type="number" id="custoTotal" readonly>
+                    </div>
+                </div>
+                <button class="btn adicionar" onclick="adicionar()">Adicionar</button>
+            </div>
+
+            <div class="table-section">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Qtd</th>
+                            <th>Un</th>
+                            <th>Custo Uni</th>
+                            <th>Custo Tot</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista">
+                        <tr><td colspan="6" class="empty">Sem produtos</td></tr>
+                    </tbody>
+                </table>
+                <div class="total" id="total">Total: R$ 0,00</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
