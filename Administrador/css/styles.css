@@ -17,7 +17,7 @@ header {
     img {
         max-height: 100%;
     }
-    background-color: cadetblue;
+    background-color: #afcfb4;
 
     img {
         position: fixed;
@@ -34,7 +34,7 @@ header {
     position: fixed;
     top: 15%;
     left: 0;
-    background-color: #acac01;
+    background-color: #ccc;
     color: aqua;
 }
 
