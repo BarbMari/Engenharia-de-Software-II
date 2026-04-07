@@ -39,6 +39,14 @@ header {
   }
 }
 
+.container-sidebar {
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 10px;
+    width: auto;
+    height: 83%;
+}
+
 #sidebar {
   width: 20%;
   align-self: left;
@@ -46,12 +54,12 @@ header {
   position: fixed;
   top: 15%;
   left: 0;
-  background-color: #ccc;
+  background-color: #c3c3c3;
 }
 
 #sidebar ul {
   list-style: none;
-  padding: 0;
+  padding: 5px;
   margin: 0;
 }
 
@@ -66,6 +74,9 @@ header {
 
 #sidebar a:hover {
     background-color: #adadad;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px 15px;
 }
 
 
