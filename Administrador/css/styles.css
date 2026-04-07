@@ -1,88 +1,103 @@
 /* Geral */
 * {
-    padding: 0;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }
 
-h1, h2, h3 {
-    color: #333;
+h1,
+h2,
+h3 {
+  color: #333;
 }
 p {
-    color: #70747a;
+  color: #70747a;
 }
 
 /* Barra de navegação */
 header {
-    align-items: center;
-    text-align: center;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  height: 15%;
+  top: 0%;
+  left: 0;
+
+  font-size: 120%;
+  img {
+    max-height: 100%;
+  }
+  background-color: #afcfb4;
+
+  img {
     position: fixed;
-    width: 100%;
-    height: 15%;
-    top: 0%;
     left: 0;
-
-    font-size: 120%;
-    img {
-        max-height: 100%;
-    }
-    background-color: #afcfb4;
-
-    img {
-        position: fixed;
-        left: 0;
-        max-width: 200px;
-        top: 0;
-    }
+    max-width: 200px;
+    top: 0;
+  }
 }
 
 #sidebar {
-    width: 20%;
-    align-self: left;
-    height: 100%;
-    position: fixed;
-    top: 15%;
-    left: 0;
-    background-color: #ccc;
-    color: aqua;
+  width: 20%;
+  align-self: left;
+  height: 100%;
+  position: fixed;
+  top: 15%;
+  left: 0;
+  background-color: #ccc;
 }
 
-#sidebar a {
-    color: #000;
-    text-decoration: none;
+#sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
+
+#sidebar li a {
+  display: block;          
+  padding: 15px 40px;      
+  text-align: left;      
+  text-decoration: none;   
+  color: #333;
+  transition: 0.3s;       
+}
+
+#sidebar a:hover {
+    background-color: #adadad;
+}
+
 
 /* Corpo Principal */
 main {
-    position: fixed;
-    left: 40%;
-    width: 40%;
-    top: 30%;
+  position: fixed;
+  left: 40%;
+  width: 40%;
+  top: 30%;
+  text-align: center;
+
+  #tableHeader {
+    width: 100%;
+    align-items: center;
     text-align: center;
-
-    #tableHeader {
-        width: 100%;
-        align-items: center;
-        text-align: center;
-        a {
-            width: 100%;
-            text-align: center;
-        }
-        img {
-            max-width: 250px;
-        }
+    a {
+      width: 100%;
+      text-align: center;
     }
-    td {
-        max-width: 250px;
-        border: 5px #000 solid;
-        img {
-            max-width: 250px;
-        }
+    img {
+      max-width: 250px;
     }
-    table {
-        align-items: center;
-        align-self: center;
+  }
+  td {
+    max-width: 250px;
+    border: 5px #000 solid;
+    img {
+      max-width: 250px;
     }
-
+  }
+  table {
+    align-items: center;
+    align-self: center;
+  }
 }
