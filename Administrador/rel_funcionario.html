@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
@@ -9,22 +9,26 @@
   </head>
   <body>
     <header>
-        <h1>NanoSabores</h1>
-        <img src="../Imagens/reallogofinal.jpg">
+      <h1>NanoSabores</h1>
+      <img src="../Imagens/reallogofinal.jpg" />
 
-        <div id="user"></div>
+      <div id="user"></div>
     </header>
 
     <div id="sidebar">
-      <ul>
-        <li><a href="./index.html">Início</a></li>
-        <li><a href="./cad_funcionario.html">Cad. Funcionários</a></li>
-        <li><a href="./cad_produto.html">Cad. Produtos</a></li>
-        <li><a href="./rel_produto.html">Rel. Estoque</a></li>
-        <li><a href="./rel_venda.html">Rel. Vendas</a></li>
-        <li><a href="./rel_pedido.html">Rel. Pedidos</a></li>
-        <li><a href="./rel_funcionario.html">Rel. Funcionários</a></li>
-      </ul>
+      <div class="container-sidebar">
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="./cad_funcionario.html">Cadastro de Funcionários</a></li>
+          <li><a href="./cad_produto.html">Cadastro de Produtos</a></li>
+          <li><a href="./rel_produto.html">Relatório do Estoque</a></li>
+          <li><a href="./rel_venda.html">Relatório de Vendas</a></li>
+          <li><a href="./rel_pedido.html">Relatório dos Pedidos</a></li>
+          <li>
+            <a href="./rel_funcionario.html">Relatório dos Funcionários</a>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <main>
@@ -77,7 +81,9 @@
         </tbody>
       </table>
 
-      <button class="button-cadFunc"><a href="./cad_funcionario.html">Adicionar Cadastro</a></button>
+      <button class="button-cadFunc">
+        <a href="./cad_funcionario.html">Adicionar Cadastro</a>
+      </button>
     </main>
   </body>
 </html>
