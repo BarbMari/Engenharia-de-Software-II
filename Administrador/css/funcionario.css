@@ -23,14 +23,22 @@ header {
   z-index: 100;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
 header h1 {
   color: #2c5530;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  margin: 0;
 }
 
 header img {
   height: 50px;
+  margin-right: 15px;
   border-radius: 8px;
+  display: block;
 }
 
 #user {
@@ -48,7 +56,7 @@ header img {
   font-weight: bold;
   font-size: 0.8rem;
   text-transform: uppercase;
-  border-left: 4px solid #AFCFB4;
+  border-left: 4px solid #afcfb4;
   margin: 1rem 0 0.5rem 0;
 }
 
