@@ -41,6 +41,17 @@ header img {
   font-weight: bold;
 }
 
+/* CATEGORIAS */
+.categoria {
+  padding: 0.8rem 2rem;
+  color: #999;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  border-left: 4px solid #AFCFB4;
+  margin: 1rem 0 0.5rem 0;
+}
+
 /* SIDEBAR */
 #sidebar {
   position: fixed;
