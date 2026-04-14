@@ -11,6 +11,7 @@ h2,
 h3 {
   color: #333;
 }
+
 p {
   color: #70747a;
 }
@@ -24,27 +25,27 @@ header {
   height: 15%;
   top: 0%;
   left: 0;
-
   font-size: 120%;
-  img {
-    max-height: 100%;
-  }
   background-color: #afcfb4;
+}
 
-  img {
-    position: fixed;
-    left: 0;
-    max-width: 200px;
-    top: 0;
-  }
+header img {
+  max-height: 100%;
+}
+
+header img {
+  position: fixed;
+  left: 0;
+  max-width: 200px;
+  top: 0;
 }
 
 .container-sidebar {
-    background-color: #fff;
-    border-radius: 10px;
-    margin: 10px;
-    width: auto;
-    height: 83%;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 10px;
+  width: auto;
+  height: 83%;
 }
 
 #sidebar {
@@ -64,21 +65,20 @@ header {
 }
 
 #sidebar li a {
-  display: block;          
-  padding: 15px 40px;      
-  text-align: left;      
-  text-decoration: none;   
+  display: block;
+  padding: 15px 40px;
+  text-align: left;
+  text-decoration: none;
   color: #333;
-  transition: 0.3s;       
+  transition: 0.3s;
 }
 
 #sidebar a:hover {
-    background-color: #adadad;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px 15px;
+  background-color: #adadad;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px 15px;
 }
-
 
 /* Corpo Principal */
 main {
@@ -87,28 +87,37 @@ main {
   width: 40%;
   top: 30%;
   text-align: center;
+}
 
-  #tableHeader {
-    width: 100%;
-    align-items: center;
-    text-align: center;
-    a {
-      width: 100%;
-      text-align: center;
-    }
-    img {
-      max-width: 250px;
-    }
-  }
-  td {
-    max-width: 250px;
-    border: 5px #000 solid;
-    img {
-      max-width: 250px;
-    }
-  }
-  table {
-    align-items: center;
-    align-self: center;
-  }
+main #tableHeader {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+main #tableHeader a {
+  width: 100%;
+  text-align: center;
+}
+
+main #tableHeader img {
+  max-width: 250px;
+}
+
+main td {
+  max-width: 250px;
+  border: 5px #000 solid;
+}
+
+main td img {
+  max-width: 250px;
+}
+
+main table {
+  align-items: center;
+  align-self: center;
+}
+
+form {
+  text-align: left;
 }
