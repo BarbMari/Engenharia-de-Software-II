@@ -44,7 +44,7 @@
 }
 
 body {
-    background-image: url(/assets/fundo_cardapio.jpg);
+    background-image: url(../assets/fundo_cardapio.jpg);
 }
 
 .principal {
