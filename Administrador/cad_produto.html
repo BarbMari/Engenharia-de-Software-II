@@ -3,88 +3,128 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <link rel="icon" href="../Imagens/reallogofinal.png" type="image/png" />
-    <title>Administração</title>
+    <link rel="stylesheet" href="./css/produto.css" />
+    <link rel="icon" href="../Imagens/reallogofinal.png" type="image/png">
+    <title>Cadastro de Produtos</title>
   </head>
   <body>
     <header>
       <h1>NanoSabores</h1>
-      <img src="../Imagens/reallogofinal.png" />
-
-      <div id="user"></div>
+      <img src="../Imagens/reallogofinal.png" alt="Logo" />
+      <div id="user">Admin</div>
     </header>
 
-        <div class="container-sidebar">
-            <ul>
-                <li><a href="./index.html">Início</a></li>
-                <li><a href="./cad_funcionario.html">Funcionários</a></li>
-                <li><a href="./cad_produto.html" class="active">Produtos</a></li>
-                <li><a href="./rel_produto.html">Estoque</a></li>
-                <li><a href="./rel_venda.html">Vendas</a></li>
-                <li><a href="./rel_pedido.html">Pedidos</a></li>
-                <li><a href="./rel_funcionario.html">Relatório</a></li>
-            </ul>
-        </div>
+    <div id="sidebar">
+      <div class="container-sidebar">
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          
+          <li class="categoria">Cadastros</li>
+          <li><a href="./cad_funcionario.html">Funcionários</a></li>
+          <li><a href="./cad_produto.html" class="active">Produtos</a></li>
+          
+          <li class="categoria">Relatórios</li>
+          <li><a href="./rel_produto.html">Estoque</a></li>
+          <li><a href="./rel_venda.html">Vendas</a></li>
+          <li><a href="./rel_pedido.html">Pedidos</a></li>
+          <li><a href="./rel_funcionario.html">Funcionários</a></li>
+        </ul>
+      </div>
     </div>
 
-    <!-- CONTEÚDO -->
-    <div class="main">
-        <div id="containerMain">
+    <main>
+      <div id="containerMain">
+        <h2>Cadastro de Produtos</h2>
+        <p class="subtitulo">Insumos da pizzaria e bebidas</p>
 
-            <div class="container">
-                <div class="form-section">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Produto</label>
-                            <input type="text" id="produto" placeholder="Nome">
-                        </div>
-                        <div class="form-group">
-                            <label>Quantidade</label>
-                            <input type="number" id="quantidade" min="0">
-                        </div>
-                    <div class="form-group">
-                        <label>Unidade</label>
-                        <select id="unidade">
-                            <option value="">Selecione</option>
-                            <option value="kg">KG</option>
-                            <option value="un">Unidade</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Custo Unitário</label>
-                        <input type="number" id="custoUnidade" step="0.01">
-                    </div>
-                    <div class="form-group">
-                        <label>Custo Total</label>
-                        <input type="number" id="custoTotal" readonly>
-                    </div>
-                </div>
-                <button class="btn adicionar" onclick="adicionar()">Adicionar</button>
+        <!-- FORMULÁRIO -->
+        <form id="formProduto" action="salvar_produto.php" method="POST">
+          <div class="row">
+            <div class="campo">
+              <label>Nome do Produto:</label>
+              <input type="text" id="nomeProduto" name="nomeProduto" 
+                     placeholder="Ex: Queijo Muçarela, Coca-Cola" required />
             </div>
-
-            <div class="table-section">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Produto</th>
-                            <th>Qtd</th>
-                            <th>Un</th>
-                            <th>Custo Uni</th>
-                            <th>Custo Tot</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="lista">
-                        <tr><td colspan="6" class="empty">Sem produtos</td></tr>
-                    </tbody>
-                </table>
-                <div class="total" id="total">Total: R$ 0,00</div>
+            <div class="campo">
+              <label>Unidade:</label>
+              <select id="unidade" name="unidade" required>
+                <option value="">Escolha...</option>
+                <optgroup label="Insumos Pizzaria">
+                  <option value="kg">KG (queijo, farinha)</option>
+                  <option value="g">G (fermento, sal)</option>
+                  <option value="l">Litro (óleo, molho)</option>
+                  <option value="dz">Dúzia (ovos)</option>
+                </optgroup>
+                <optgroup label="Bebidas">
+                  <option value="un">Unidade (lata, garrafa)</option>
+                  <option value="cx">Caixa (24 latas)</option>
+                </optgroup>
+              </select>
             </div>
-        </div>
-    </div>
-    </div>
+          </div>
 
-    <script src="script.js"></script>
-</body>
+          <div class="row">
+            <div class="campo">
+              <label>Quantidade:</label>
+              <input type="number" id="quantidade" name="quantidade" 
+                     min="0" step="0.01" placeholder="Ex: 2.5" required />
+            </div>
+            <div class="campo">
+              <label>Custo Unitário R$:</label>
+              <input type="number" id="custoUnitario" name="custoUnitario" 
+                     step="0.01" min="0" placeholder="0.00" required />
+            </div>
+          </div>
+
+          <div class="campo total-campo">
+            <label>Custo Total R$:</label>
+            <input type="number" id="custoTotal" name="custoTotal" readonly 
+                   placeholder="0.00 (auto)" />
+            <small>Quantidade × Custo Unitário</small>
+          </div>
+
+          <button type="submit">Salvar Produto</button>
+        </form>
+
+        <!-- TABELA COM 3 EXEMPLOS -->
+        <div class="tabela-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Un</th>
+                <th>Qtd</th>
+                <th>Custo Uni</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Queijo Muçarela</strong></td>
+                <td>KG</td>
+                <td>5.0</td>
+                <td>R$ 28,50</td>
+                <td>R$ 142,50</td>
+              </tr>
+              <tr>
+                <td><strong>Farinha 5kg</strong></td>
+                <td>Un</td>
+                <td>3.0</td>
+                <td>R$ 18,90</td>
+                <td>R$ 56,70</td>
+              </tr>
+              <tr>
+                <td><strong>Coca-Cola 350ml</strong></td>
+                <td>Cx</td>
+                <td>2.0</td>
+                <td>R$ 45,00</td>
+                <td>R$ 90,00</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="total">Total Estoque: <strong>R$ 289,20</strong></div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
