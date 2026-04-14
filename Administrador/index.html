@@ -3,55 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/index.css">
     <link rel="icon" href="../Imagens/reallogofinal.png" type="image/png">
-    <title>Administração</title>
+    <title>Administração - NanoSabores</title>
 </head>
 <body>
     <header>
         <h1>NanoSabores</h1>
-        <img src="../Imagens/reallogofinal.png">
-
-        <div id="user"></div>
+        <img src="../Imagens/reallogofinal.png" alt="Logo">
+        <div id="user">Admin</div>
     </header>
 
     <div id="sidebar">
-       <div class="container-sidebar">
-        <ul>
-          <li><a href="./index.html">Início</a></li>
-          <li><a href="./cad_funcionario.html">Cadastro de Funcionários</a></li>
-          <li><a href="./cad_produto.html">Cadastro de Produtos</a></li>
-          <li><a href="./rel_produto.html">Relatório do Estoque</a></li>
-          <li><a href="./rel_venda.html">Relatório de Vendas</a></li>
-          <li><a href="./rel_pedido.html">Relatório dos Pedidos</a></li>
-          <li>
-            <a href="./rel_funcionario.html">Relatório dos Funcionários</a>
-          </li>
-        </ul>
-      </div>
+        <div class="container-sidebar">
+            <ul>
+                <li><a href="./index.html">Início</a></li>
+                
+                <li class="categoria">Cadastros</li>
+                <li><a href="./cad_funcionario.html">Funcionários</a></li>
+                <li><a href="./cad_produto.html">Produtos</a></li>
+                
+                <li class="categoria">Relatórios</li>
+                <li><a href="./rel_produto.html">Estoque</a></li>
+                <li><a href="./rel_venda.html">Vendas</a></li>
+                <li><a href="./rel_pedido.html">Pedidos</a></li>
+                <li><a href="./rel_funcionario.html">Funcionários</a></li>
+            </ul>
+        </div>
     </div>
 
     <main>
         <div id="containerMain">
+            <h2>Bem-vindo(a) ao Painel!</h2>
+            <p class="subtitulo">Acesso rápido</p>
 
-            <h2>Bem Vindo(a)!</h2>
             <div id="middle">
-                <table>
-                    <div id="tableHeader"><img  src="../Imagens/reallogofinal.png"> <a href="./index.html"><p>Início</p></a></li></div>
-                    <tr>
-                        <td><img  src="../Imagens/pizzaiolo1.jpg">    <a href="./cad_funcionario.html"><p>Cad. Funcionários</p></a></td>
-                        <td><img  src="../Imagens/estoque.jpg">       <a href="./cad_produto.html"><p>Cad. Produtos</p></a></td>
-                        <td><img  src="../Imagens/relatórios3.jpg">   <a href="./rel_produto.html"><p>Rel. Estoque</p></a></td>
-                    </tr>
-                    <tr>
-                        <td><img  src="../Imagens/relatórios2.jpg">   <a href="./rel_venda.html"><p>Rel. Vendas</p></a></td>
-                        <td><img  src="../Imagens/relatórios1.jpg">   <a href="./rel_pedido.html"><p>Rel. Pedidos</p></a></td>
-                        <td><img  src="../Imagens/funcionarios.jpg">  <a href="./rel_funcionario.html"><p>Rel. Funcionários</p></a></td>
-                    </tr>
-                </table>
+                <div class="cards">
+                    <div class="card">
+                        <div class="card-icon"></div>
+                        <h3>Cad. Funcionários</h3>
+                        <p>Gerencie pizzaiolos e equipe</p>
+                        <a href="./cad_funcionario.html" class="btn-card">Acessar</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon"></div>
+                        <h3>Cad. Produtos</h3>
+                        <p>Controle insumos e bebidas</p>
+                        <a href="./cad_produto.html" class="btn-card">Acessar</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon"></div>
+                        <h3>Rel. Estoque</h3>
+                        <p>Veja produtos disponíveis</p>
+                        <a href="./rel_produto.html" class="btn-card">Acessar</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon"></div>
+                        <h3>Rel. Vendas</h3>
+                        <p>Acompanhe faturamento</p>
+                        <a href="./rel_venda.html" class="btn-card">Acessar</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon"></div>
+                        <h3>Rel. Pedidos</h3>
+                        <p>Controle entregas</p>
+                        <a href="./rel_pedido.html" class="btn-card">Acessar</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon"></div>
+                        <h3>Rel. Funcionários</h3>
+                        <p>Relatórios da equipe</p>
+                        <a href="./rel_funcionario.html" class="btn-card">Acessar</a>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
-    
 </body>
 </html>
