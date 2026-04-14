@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Almendra+SC&display=swap" rel="stylesheet">
     </head>
     <body>
-
+    <nav>
         <!-- Precisa ter: menu lateral, pizzas -->
             <div class="container">
                 <aside class="sidebar">
@@ -23,5 +23,60 @@
             </div>
         
     </nav>
+
+    <main class="principal">
+        <SECTION class="visualizaPedido">
+            <h3>Revisão</h3>
+            <section>
+                <h2>Pizza</h2>
+                <ul>
+                    <li><p>aasdasd</p></li>
+                    <li><p>adsasdad</p></li>
+                    <li><p>adsdasd</p></li>
+                    <li><p>dasdadada</p></li>
+                </ul> 
+            </section>
+            <br>
+            <section>
+                <h2>Bebida</h2>
+                <ul>
+                    <li><p>aasdasd</p></li>
+                    <li><p>adsasdad</p></li>
+                    <li><p>adsdasd</p></li>
+                    <li><p>dasdadada</p></li>
+                </ul> 
+            </section> 
+        </SECTION>
+        <br>
+        <br>         
+        <SECTION class="pagamentos">
+            <h3>Pagamento</h3>
+            <section>
+                <section>
+                    <h2>Selecione o método de pagamento</h2>
+                    <select name="formaPagamento" id="formaPagamento">
+                        <option value="">Selecione</option>
+                        <option value="pix">PIX</option>
+                        <option value="credito">Cartão de Crédito</option>
+                        <option value="debito">Cartão de Débito</option>
+                        <option value="aVista">Dinheiro</option>
+                    </select>
+                </section>
+                <br>
+                <br>
+                <section>
+                    <h3>Observações</h3>
+                    <textarea name="obsBox" id="obsBox" cols="80" rows="5">Observações: </textarea>
+                </section>
+            </section>
+        </SECTION>
+        <br>
+        <br>
+        <h3>Confirmar</h3>
+        <div id="confirmaPedido">
+            <button id="enviar"> FAZER PEDIDO </button>
+        </div>
+    </main>
+
     </body>
 </html>

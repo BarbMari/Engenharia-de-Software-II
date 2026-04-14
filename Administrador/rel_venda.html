@@ -31,6 +31,73 @@
       </div>
     </div>
 
-    <main><div id="containerMain"></div></main>
+    <main><div id="containerMain">
+      <p> </p> <!-- shh tu n viu nada-->
+
+      <h2>RELATÓRIO VENDAS:</h2>
+
+      <h3>Filtros</h3>
+      <p>Data Inicio <input type="datetime-local"></p>
+      <p>Data Fim    <input type="datetime-local"></p>
+      <p><button>Enviar</button></p>
+      
+      
+      <table border="1px">
+        <tr>
+          <th>ID venda</th>
+          <th>Cliente</th>
+          <th>Data</th>
+          <th>Status</th>
+          <th>Pagamento</th>
+          <th>Valor</th>
+        </tr>
+        <tr>
+          <td>1</tl>
+          <td>Fulano</tl>
+          <td>10/09/2026</tl>
+          <td>Concluido</tl>
+          <td>PIX</tl>
+          <td>R$: 36.50</tl>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Beltrano</td>
+          <td>20/08/2026</td>
+          <td>Concluido</td>
+          <td>Cartão Crédito</td>
+          <td>R$: 89.99</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Ciclano</td>
+          <td>21/08/2026</td>
+          <td>Pagamento Pendente</td>
+          <td>N/E</td>
+          <td>R$: 128.98</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Tirano</td>
+          <td>31/08/2026</tl>
+          <td>Em Entrega / Pago</tl>
+          <td>PIX</tl>
+          <td>R$: 69.69</tl>
+        </tr>
+      </table>
+
+      <!--
+        RF.012 - O sistema deve permitir a emissão de um relatório de vendas:
+          RN.20: No relatório, devem constar os seguintes campos:  
+            Venda realizada (Produtos);
+            Nome do cliente;
+            Data da venda;
+            Status da venda;
+            Forma de Pagamento;
+            Valor da venda.
+          RN.21: O relatório pode ser filtrado por data de início e fim.
+          RN.22: O relatório será filtrado por padrão na data da emissão.
+
+      -->
+    </div></main>
   </body>
 </html>
