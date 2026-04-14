@@ -4,8 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/styles.css" />
-        <link rel="icon" href="../Imagens/reallogofinal.png" type="image/png">
+    <link rel="stylesheet" href="./css/funcionario.css" />
+    <link rel="icon" href="../Imagens/reallogofinal.png" type="image/png" />
     <title>Cadastro dos Funcionários</title>
   </head>
   <body>
@@ -20,10 +20,8 @@
       <div class="container-sidebar">
         <ul>
           <li><a href="./index.html">Início</a></li>
-          <h3 id="sidebar-categoria">Cadastro</h3>
           <li><a href="./cad_funcionario.html">Cadastro de Funcionários</a></li>
           <li><a href="./cad_produto.html">Cadastro de Produtos</a></li>
-          <h3 id="sidebar-categoria">Relatórios</h3>
           <li><a href="./rel_produto.html">Relatório do Estoque</a></li>
           <li><a href="./rel_venda.html">Relatório de Vendas</a></li>
           <li><a href="./rel_pedido.html">Relatório dos Pedidos</a></li>
@@ -38,38 +36,38 @@
       <div id="containerMain">
         <h2>Cadastro de Funcionários</h2>
 
-      <form id="formFuncionario">
-        <input type="hidden" id="idAtual" />
+        <form id="formFuncionario">
+          <input type="hidden" id="idAtual" />
 
-        <div class="campo">
-          <label>Nome Completo:</label>
-          <input type="text" id="nome" required />
-        </div>
+          <div class="campo">
+            <label>Nome Completo:</label>
+            <input type="text" id="nome" required />
+          </div>
 
-        <div class="row">
-          <div class="campo">
-            <label>E-mail:</label>
-            <input type="email" id="email" required />
+          <div class="row">
+            <div class="campo">
+              <label>E-mail:</label>
+              <input type="email" id="email" required />
+            </div>
+            <div class="campo">
+              <label>Telefone:</label>
+              <input type="tel" id="telefone" placeholder="(00) 00000-0000" />
+            </div>
           </div>
-          <div class="campo">
-            <label>Telefone:</label>
-            <input type="tel" id="telefone" placeholder="(00) 00000-0000" />
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="campo">
-            <label>Cargo:</label>
-            <input type="text" id="cargo" required />
+          <div class="row">
+            <div class="campo">
+              <label>Cargo:</label>
+              <input type="text" id="cargo" required />
+            </div>
+            <div class="campo">
+              <label>CPF:</label>
+              <input type="text" id="cpf" placeholder="000.000.000-00" />
+            </div>
           </div>
-          <div class="campo">
-            <label>CPF:</label>
-            <input type="text" id="cpf" placeholder="000.000.000-00" />
-          </div>
-        </div>
 
-        <button type="submit" id="btnSalvar">Finalizar Cadastro</button>
-      </form>
+          <button type="submit" id="btnSalvar">Finalizar Cadastro</button>
+        </form>
       </div>
     </main>
   </body>
