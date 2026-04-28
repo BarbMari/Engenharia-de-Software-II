@@ -3,3 +3,17 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+/* Vou fazer uma versão verde dessa imagem pra combinar com a pagina do adm */
+    background-image: url(../../assets/fundo_cardapio.jpg);
+}
+
+h1 {
+    color: #2c5530;
+}
+
+button {
+    background-color:#2c5530;
+    color: white;
+}
