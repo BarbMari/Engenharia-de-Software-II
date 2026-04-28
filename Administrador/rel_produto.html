@@ -55,16 +55,6 @@
       </div>
 
       <div class="filtro">
-        <label>Status</label>
-        <select>
-          <option value="">Todos</option>
-          <option>Disponível</option>
-          <option>Baixo estoque</option>
-          <option>Sem estoque</option>
-        </select>
-      </div>
-
-      <div class="filtro">
         <label>Unidade</label>
         <select id="filtroUnidade">
           <option value="">Todas</option>
@@ -74,6 +64,15 @@
           <option value="DZ">Dúzia</option>
           <option value="G">G</option>
           <option value="CX">Caixa (24 latas)</option>
+        </select>
+      </div>
+
+      <div class="filtro">
+        <label>Ordenar por quantidade</label>
+        <select id="ordenarQuantidade">
+          <option value="">Padrão</option>
+          <option value="asc">Menor → Maior</option>
+          <option value="desc">Maior → Menor</option>
         </select>
       </div>
 
@@ -94,6 +93,16 @@
       <div class="filtro">
         <label>Data de Validade</label>
         <input type="date" />
+      </div>
+      
+      <div class="filtro">
+        <label>Status</label>
+        <select>
+          <option value="">Todos</option>
+          <option>Disponível</option>
+          <option>Baixo estoque</option>
+          <option>Sem estoque</option>
+        </select>
       </div>
 
       <div class="acoes">
