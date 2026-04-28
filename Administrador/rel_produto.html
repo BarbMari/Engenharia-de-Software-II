@@ -9,8 +9,11 @@
   </head>
   <body>
     <header>
-      <h1>NanoSabores</h1>
-      <img src="../Imagens/reallogofinal.png" alt="Logo" />
+        <div class="header-left">
+          <h1>NanoSabores</h1>
+          <img src="../Imagens/pizza-slice-felted-floating-cartoon-vector-icon-ilustracao-icon-objeto-alimentar-vector-plano-isolado.png" alt="Logo" />
+      </div>
+
       <div id="user">Admin</div>
     </header>
 
@@ -18,11 +21,11 @@
       <div class="container-sidebar">
         <ul>
           <li><a href="./index.html">Início</a></li>
-          
+
           <li class="categoria">Cadastros</li>
           <li><a href="./cad_funcionario.html">Funcionários</a></li>
           <li><a href="./cad_produto.html">Produtos</a></li>
-          
+
           <li class="categoria">Relatórios</li>
           <li><a href="./rel_produto.html" class="active">Estoque</a></li>
           <li><a href="./rel_venda.html">Vendas</a></li>
@@ -37,48 +40,138 @@
         <h2>Relatório de Estoque</h2>
         <p class="subtitulo">Insumos da pizzaria e bebidas</p>
 
-     <!-- EXEMPLOS -->
-
-      <table>
+    <div id="filtros">
+      <div class="filtro">
+        <label>Produto</label>
+        <input type="text" placeholder="Buscar produto..." />
       </div>
+
+      <div class="filtro">
+        <label>Categoria</label>
+        <select>
+          <option value="">Todas</option>
+          <option>Frios</option>
+          <option>Massas</option>
+          <option>Bebidas</option>
+          <option>Embalagens</option>
+        </select>
+      </div>
+
+      <div class="filtro">
+        <label>Unidade</label>
+        <select id="filtroUnidade">
+          <option value="">Todas</option>
+          <option value="KG">KG</option>
+          <option value="L">L</option>
+          <option value="UN">UN</option>
+          <option value="DZ">Dúzia</option>
+          <option value="G">G</option>
+          <option value="CX">Caixa (24 latas)</option>
+        </select>
+      </div>
+
+      <div class="filtro">
+        <label>Ordenar por quantidade</label>
+        <select id="ordenarQuantidade">
+          <option value="">Padrão</option>
+          <option value="asc">Menor → Maior</option>
+          <option value="desc">Maior → Menor</option>
+        </select>
+      </div>
+
+      <div class="filtro">
+        <label>Ordenar por preço total</label>
+        <select id="ordenarPreco">
+          <option value="">Padrão</option>
+          <option value="asc">Menor → Maior</option>
+          <option value="desc">Maior → Menor</option>
+        </select>
+      </div>
+
+      <div class="filtro">
+        <label>Data de Entrada</label>
+        <input type="date" />
+      </div>
+
+      <div class="filtro">
+        <label>Data de Validade</label>
+        <input type="date" />
+      </div>
+      
+      <div class="filtro">
+        <label>Status</label>
+        <select>
+          <option value="">Todos</option>
+          <option>Disponível</option>
+          <option>Baixo estoque</option>
+          <option>Sem estoque</option>
+        </select>
+      </div>
+
+      <div class="acoes">
+        <button class="btn-filtrar">Filtrar</button>
+      </div>
+    </div>
+
+      <!-- TABELA -->
+      <table>
         <thead>
-        <div id="Filtros">
-        <p>Data Início    <input type="datetime-local"></p>
-        <p>Data Fim       <input type="datetime-local"></p>
-        <button>Enviar</button>
           <tr>
             <th>Produto</th>
+            <th>Categoria</th>
             <th>Un</th>
             <th>Qtd</th>
             <th>Custo Uni</th>
             <th>Total</th>
+            <th>Data Entrada</th>
+            <th>Validade</th>
+            <th>Status</th>
           </tr>
         </thead>
+        
         <tbody>
           <tr>
             <td><strong>Queijo Muçarela</strong></td>
+            <td>Frios</td>
             <td>KG</td>
             <td>5.0</td>
             <td>R$ 28,50</td>
             <td>R$ 142,50</td>
+            <td>20/04/2026</td>
+            <td>30/04/2026</td>
+            <td>Disponível</td>
           </tr>
+
           <tr>
             <td><strong>Farinha 5kg</strong></td>
-            <td>Un</td>
+            <td>Massas</td>
+            <td>UN</td>
             <td>3.0</td>
             <td>R$ 18,90</td>
             <td>R$ 56,70</td>
+            <td>18/04/2026</td>
+            <td>10/06/2026</td>
+            <td>Disponível</td>
           </tr>
+
           <tr>
             <td><strong>Coca-Cola 350ml</strong></td>
-            <td>Cx</td>
+            <td>Bebidas</td>
+            <td>CX</td>
             <td>2.0</td>
             <td>R$ 45,00</td>
             <td>R$ 90,00</td>
+            <td>15/04/2026</td>
+            <td>22/04/2026</td>
+            <td>Baixo estoque</td>
           </tr>
-        </tbody>
+      </tbody>
       </table>
-      <div class="total">Total Estoque: <strong>R$ 289,20</strong></div>
+
+      <div class="total">
+        Total Estoque: <strong>R$ 289,20</strong>
+      </div>
     </div>
-  </body>
+  </main>
+</body>
 </html>
