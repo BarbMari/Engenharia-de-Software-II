@@ -256,32 +256,68 @@ tr:hover {
   }
 }
 
-#Filtros {
-  text-align: center;
-  align-items: center;
-  border-radius: 25px;
-  margin-bottom: 5%;
-  margin-top: 2.5%;
+#filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
 }
 
-#Filtros p {
-  position: relative;
-  border-radius: 5px;
-  border: #95bb95 2px solid;
-  margin-bottom: 7px;
-  width: 50%;
-  left: 25%;
+/* CADA BLOCO */
+.filtro {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  flex: 1;
 }
 
-#Filtros input {
-  border: none;
-}
-
-#Filtros button {
-  border-radius: 5px;
-  border: #95bb95 1px solid;
-  font-size: 100%;
+/* LABEL */
+.filtro label {
+  font-size: 13px;
+  color: #555;
   margin-bottom: 5px;
-  width: 15%;
-  margin: 10px;
+}
+
+/* INPUTS E SELECT */
+.filtro input,
+.filtro select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+/* HOVER/FOCUS */
+.filtro input:focus,
+.filtro select:focus {
+  border-color: #afcfb4;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(7, 88, 4, 0.2);
+}
+
+/* BOTÃO */
+.acoes {
+  display: flex;
+  align-items: flex-end;
+}
+
+.btn-filtrar {
+  background: #2c5530;
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+/* HOVER BOTÃO */
+.btn-filtrar:hover {
+  background: #2c5530;
 }
