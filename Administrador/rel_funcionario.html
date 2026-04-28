@@ -1,91 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/relFuncionario.css" />
     <link rel="icon" href="../Imagens/reallogofinal.png" type="image/png" />
-    <title>Funcionários</title>
+    <title>Relatório de Funcionários</title>
   </head>
   <body>
     <header>
-      <h1>NanoSabores</h1>
-      <img src="../Imagens/reallogofinal.png" />
+      <div class="header-left">
+        <h1>NanoSabores</h1>
+        <img
+          src="../Imagens/pizza-slice-felted-floating-cartoon-vector-icon-ilustracao-icon-objeto-alimentar-vector-plano-isolado.png"
+        />
+      </div>
 
-      <div id="user"></div>
-    </header>
+      <div id="user">Admin</div>
+    </header> 
 
     <div id="sidebar">
       <div class="container-sidebar">
         <ul>
           <li><a href="./index.html">Início</a></li>
-          <li><a href="./cad_funcionario.html">Cadastro de Funcionários</a></li>
-          <li><a href="./cad_produto.html">Cadastro de Produtos</a></li>
-          <li><a href="./rel_produto.html">Relatório do Estoque</a></li>
-          <li><a href="./rel_venda.html">Relatório de Vendas</a></li>
-          <li><a href="./rel_pedido.html">Relatório dos Pedidos</a></li>
+
+          <li class="categoria">Cadastros</li>
+          <li><a href="./cad_funcionario.html">Funcionários</a></li>
+          <li><a href="./cad_produto.html">Produtos</a></li>
+
+          <li class="categoria">Relatórios</li>
+          <li><a href="./rel_produto.html">Estoque</a></li>
+          <li><a href="./rel_venda.html">Vendas</a></li>
+          <li><a href="./rel_pedido.html">Pedidos</a></li>
           <li>
-            <a href="./rel_funcionario.html">Relatório dos Funcionários</a>
+            <a href="./rel_funcionario.html" class="active">Funcionários</a>
           </li>
         </ul>
       </div>
     </div>
 
-    <main><div id="containerMain">
+    <main>
+      <div id="containerMain">
+        <h2>Relatório de Funcionários</h2>
+        <p class="subtitulo">Lista completa dos colaboradores da pizzaria</p>
 
-      <h2>Funcionários Cadastrados</h2>
-      
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome Completo</th>
-            <th>E-mail</th>
-            <th>Telefone</th>
-            <th>Cargo</th>
-            <th>CPF</th>
-          </tr>
-        </thead>
-        <tbody id="tabelaFuncionarios">
-          <tr>
-            <td>1</td>
-            <td>Ana Beatriz Silva</td>
-            <td>ana.silva@pizzaria.com</td>
-            <td>(11) 98765-4321</td>
-            <td>Gerenete</td>
-            <td>123.456.789-00</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Carlos Eduardo Souza</td>
-            <td>carlos.souza@pizzaria.com</td>
-            <td>(21) 99888-7766</td>
-            <td>Caixa</td>
-            <td>234.567.890-11</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Mariana Oliveira Costa</td>
-            <td>mariana.costa@pizzaria.com</td>
-            <td>(31) 97766-5544</td>
-            <td>Adiministrção</td>
-            <td>345.678.901-22</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Ricardo Pereira Lima</td>
-            <td>ricardo.lima@pizzaria.com</td>
-            <td>(41) 96655-4433</td>
-            <td>Pizzaiolo</td>
-            <td>456.789.012-33</td>
-          </tr>
-        </tbody>
-      </table>
+        <!-- TABELA -->
+        <div class="tabela-container">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome Completo</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Cargo</th>
+                <th>CPF</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaFuncionarios">
+              <tr>
+                <td>1</td>
+                <td>Ana Beatriz Silva</td>
+                <td>ana.silva@pizzaria.com</td>
+                <td>(11) 98765-4321</td>
+                <td>Gerente</td>
+                <td>123.456.789-00</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Carlos Eduardo Souza</td>
+                <td>carlos.souza@pizzaria.com</td>
+                <td>(21) 99888-7766</td>
+                <td>Caixa</td>
+                <td>234.567.890-11</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Mariana Oliveira Costa</td>
+                <td>mariana.costa@pizzaria.com</td>
+                <td>(31) 97766-5544</td>
+                <td>Administração</td>
+                <td>345.678.901-22</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Ricardo Pereira Lima</td>
+                <td>ricardo.lima@pizzaria.com</td>
+                <td>(41) 96655-4433</td>
+                <td>Pizzaiolo</td>
+                <td>456.789.012-33</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-      <button class="button-cadFunc">
-        <a href="./cad_funcionario.html">Adicionar Cadastro</a>
-      </button>
-    </div>
+        <button class="button-cadFunc">
+          <a href="./cad_funcionario.html">Adicionar Funcionário</a>
+        </button>
+      </div>
     </main>
   </body>
-  </html>
+</html>
