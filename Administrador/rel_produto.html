@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/produto.css" />
     <link rel="icon" href="../Imagens/reallogofinal.png" type="image/png" />
-    <title>Administração</title>
+    <title>Relatório de Estoque</title>
   </head>
   <body>
     <header>
@@ -18,11 +18,11 @@
       <div class="container-sidebar">
         <ul>
           <li><a href="./index.html">Início</a></li>
-          
+
           <li class="categoria">Cadastros</li>
           <li><a href="./cad_funcionario.html">Funcionários</a></li>
           <li><a href="./cad_produto.html">Produtos</a></li>
-          
+
           <li class="categoria">Relatórios</li>
           <li><a href="./rel_produto.html" class="active">Estoque</a></li>
           <li><a href="./rel_venda.html">Vendas</a></li>
@@ -37,15 +37,73 @@
         <h2>Relatório de Estoque</h2>
         <p class="subtitulo">Insumos da pizzaria e bebidas</p>
 
-     <!-- EXEMPLOS -->
-
-      <table>
+    <div id="filtros">
+      <div class="filtro">
+        <label>Produto</label>
+        <input type="text" placeholder="Buscar produto..." />
       </div>
+
+      <div class="filtro">
+        <label>Categoria</label>
+        <select>
+          <option value="">Todas</option>
+          <option>Frios</option>
+          <option>Massas</option>
+          <option>Bebidas</option>
+          <option>Embalagens</option>
+        </select>
+      </div>
+
+      <div class="filtro">
+        <label>Status</label>
+        <select>
+          <option value="">Todos</option>
+          <option>Disponível</option>
+          <option>Baixo estoque</option>
+          <option>Sem estoque</option>
+        </select>
+      </div>
+
+      <div class="filtro">
+        <label>Unidade</label>
+        <select id="filtroUnidade">
+          <option value="">Todas</option>
+          <option value="KG">KG</option>
+          <option value="L">L</option>
+          <option value="UN">UN</option>
+          <option value="DZ">Dúzia</option>
+          <option value="G">G</option>
+          <option value="CX">Caixa (24 latas)</option>
+        </select>
+      </div>
+
+      <div class="filtro">
+        <label>Ordenar por preço total</label>
+        <select id="ordenarPreco">
+          <option value="">Padrão</option>
+          <option value="asc">Menor → Maior</option>
+          <option value="desc">Maior → Menor</option>
+        </select>
+      </div>
+
+      <div class="filtro">
+        <label>Data início</label>
+        <input type="date" />
+      </div>
+
+      <div class="filtro">
+        <label>Data fim</label>
+        <input type="date" />
+      </div>
+
+      <div class="acoes">
+        <button class="btn-filtrar">Filtrar</button>
+      </div>
+    </div>
+
+      <!-- TABELA -->
+      <table>
         <thead>
-        <div id="Filtros">
-        <p>Data Início    <input type="datetime-local"></p>
-        <p>Data Fim       <input type="datetime-local"></p>
-        <button>Enviar</button>
           <tr>
             <th>Produto</th>
             <th>Un</th>
@@ -54,6 +112,7 @@
             <th>Total</th>
           </tr>
         </thead>
+
         <tbody>
           <tr>
             <td><strong>Queijo Muçarela</strong></td>
@@ -62,6 +121,7 @@
             <td>R$ 28,50</td>
             <td>R$ 142,50</td>
           </tr>
+
           <tr>
             <td><strong>Farinha 5kg</strong></td>
             <td>Un</td>
@@ -69,6 +129,7 @@
             <td>R$ 18,90</td>
             <td>R$ 56,70</td>
           </tr>
+
           <tr>
             <td><strong>Coca-Cola 350ml</strong></td>
             <td>Cx</td>
@@ -78,7 +139,11 @@
           </tr>
         </tbody>
       </table>
-      <div class="total">Total Estoque: <strong>R$ 289,20</strong></div>
+
+      <div class="total">
+        Total Estoque: <strong>R$ 289,20</strong>
+      </div>
     </div>
-  </body>
+  </main>
+</body>
 </html>
