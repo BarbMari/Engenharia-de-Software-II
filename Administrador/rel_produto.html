@@ -3,31 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/relVenda.css" />
+    <link rel="stylesheet" href="./css/produto.css" />
     <link rel="icon" href="../Imagens/reallogofinal.png" type="image/png" />
     <title>Administração</title>
   </head>
   <body>
     <header>
-        <div class="header-left">
-          <h1>NanoSabores</h1>
-          <img src="../Imagens/pizza-slice-felted-floating-cartoon-vector-icon-ilustracao-icon-objeto-alimentar-vector-plano-isolado.png" alt="Logo" />
-      </div>
-
+      <h1>NanoSabores</h1>
+      <img src="../Imagens/reallogofinal.png" alt="Logo" />
       <div id="user">Admin</div>
     </header>
 
-<div id="sidebar">
+    <div id="sidebar">
       <div class="container-sidebar">
         <ul>
           <li><a href="./index.html">Início</a></li>
-
+          
           <li class="categoria">Cadastros</li>
           <li><a href="./cad_funcionario.html">Funcionários</a></li>
           <li><a href="./cad_produto.html">Produtos</a></li>
-
+          
           <li class="categoria">Relatórios</li>
-          <li><a href="./rel_produto.html">Estoque</a></li>
+          <li><a href="./rel_produto.html" class="active">Estoque</a></li>
           <li><a href="./rel_venda.html">Vendas</a></li>
           <li><a href="./rel_pedido.html">Pedidos</a></li>
           <li><a href="./rel_funcionario.html">Funcionários</a></li>
@@ -35,62 +32,53 @@
       </div>
     </div>
 
-    <main><div id="containerMain">
-      <p> </p> <!-- shh tu n viu nada-->
+    <main>
+      <div id="containerMain">
+        <h2>Relatório de Estoque</h2>
+        <p class="subtitulo">Insumos da pizzaria e bebidas</p>
 
-      <h2>NÃO É O RELATÓRIO VENDAS, ISSO É SÓ TEMPLATE:</h2>
+     <!-- EXEMPLOS -->
 
-      <div id="Filtros">
-        <h3>Filtros</h3>
-        <p>Data Inicio    <input type="datetime-local"></p>
+      <table>
+      </div>
+        <thead>
+        <div id="Filtros">
+        <p>Data Início    <input type="datetime-local"></p>
         <p>Data Fim       <input type="datetime-local"></p>
         <button>Enviar</button>
-      </div>
-      
-      
-      <table>
-        <tr>
-            <th>ID venda</th>
-            <th>Cliente</th>
-            <th>Data</th>
-            <th>Status</th>
-            <th>Pagamento</th>
-            <th>Valor</th>
-        </tr>
-        <tr>
-          <td>1</tl>
-          <td>Fulano</tl>
-          <td>10/09/2026</tl>
-          <td>Concluido</tl>
-          <td>PIX</tl>
-          <td>R$: 36.50</tl>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Beltrano</td>
-          <td>20/08/2026</td>
-          <td>Concluido</td>
-          <td>Cartão Crédito</td>
-          <td>R$: 89.99</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Ciclano</td>
-          <td>21/08/2026</td>
-          <td>Pagamento Pendente</td>
-          <td>N/E</td>
-          <td>R$: 128.98</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Tirano</td>
-          <td>31/08/2026</tl>
-          <td>Em Entrega / Pago</tl>
-          <td>PIX</tl>
-          <td>R$: 69.69</tl>
-        </tr>
+          <tr>
+            <th>Produto</th>
+            <th>Un</th>
+            <th>Qtd</th>
+            <th>Custo Uni</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Queijo Muçarela</strong></td>
+            <td>KG</td>
+            <td>5.0</td>
+            <td>R$ 28,50</td>
+            <td>R$ 142,50</td>
+          </tr>
+          <tr>
+            <td><strong>Farinha 5kg</strong></td>
+            <td>Un</td>
+            <td>3.0</td>
+            <td>R$ 18,90</td>
+            <td>R$ 56,70</td>
+          </tr>
+          <tr>
+            <td><strong>Coca-Cola 350ml</strong></td>
+            <td>Cx</td>
+            <td>2.0</td>
+            <td>R$ 45,00</td>
+            <td>R$ 90,00</td>
+          </tr>
+        </tbody>
       </table>
-
-    </div></main>
+      <div class="total">Total Estoque: <strong>R$ 289,20</strong></div>
+    </div>
   </body>
 </html>
