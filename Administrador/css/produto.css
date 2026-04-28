@@ -255,3 +255,33 @@ tr:hover {
     font-size: 1.6rem;
   }
 }
+
+#Filtros {
+  text-align: center;
+  align-items: center;
+  border-radius: 25px;
+  margin-bottom: 5%;
+  margin-top: 2.5%;
+}
+
+#Filtros p {
+  position: relative;
+  border-radius: 5px;
+  border: #95bb95 2px solid;
+  margin-bottom: 7px;
+  width: 50%;
+  left: 25%;
+}
+
+#Filtros input {
+  border: none;
+}
+
+#Filtros button {
+  border-radius: 5px;
+  border: #95bb95 1px solid;
+  font-size: 100%;
+  margin-bottom: 5px;
+  width: 15%;
+  margin: 10px;
+}
