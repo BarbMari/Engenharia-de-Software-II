@@ -117,7 +117,7 @@ h2 {
 .subtitulo {
   color: #666;
   font-size: 1.2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 /* CARDS */
@@ -144,11 +144,29 @@ h2 {
 .card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+
 }
 
 .card-icon {
   font-size: 4rem;
   margin-bottom: 1rem;
+}
+
+.card img {
+  width: 80%;
+  height: auto;           /* Let the image keep its natural aspect ratio */
+  max-height: 0;          /* Start collapsed */
+  opacity: 0;
+  border-radius: 10px;
+  overflow: hidden;       /* Important to hide content while collapsed */
+  transition: 
+    max-height 0.8s ease-in-out,
+    opacity 0.8s ease-out;
+}
+
+.card:hover img {
+  max-height: 100%;      /* Choose a value larger than the image will ever be */
+  opacity: 1;
 }
 
 .card h3 {
