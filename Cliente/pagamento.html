@@ -14,8 +14,7 @@
         </style>
     </head>
     <body>
-    <nav>
-        <!-- Precisa ter: menu lateral, pizzas -->
+        <nav>
             <div class="container">
                 <aside class="sidebar">
                     <ul>
@@ -27,61 +26,60 @@
                     </ul>
                 </aside>
             </div>
-        
-    </nav>
+        </nav>
 
-    <main class="principal">
-        <SECTION class="visualizaPedido">
-            <h1 class="uncial-antiqua-regular">Revisão</h1>
-            <h1>R$<span class="valorFinal">0,00</span></h1>
-            <section>
-                <h2>Pizza</h2>
-                <ul>
-                    <li><p>1x - Pizza Calabresa</p><span class="preco">R$ 45,00</span></li>
-                    <li><p>1x - Pizza Margherita</p><span class="preco">R$ 42,00</span></li>
-                    <li><p>1x - Pizza Pepperoni</p><span class="preco">R$ 45,00</span></li>
-                    <li><p>1x - Pizza Vegetariana</p><span class="preco">R$ 42,00</span></li>
-                </ul> 
+        <main class="principal">
+            <section class="visualizaPedido">
+                <h1 class="uncial-antiqua-regular">Revisão</h1>
+                <h1>R$<span class="valorFinal">0,00</span></h1>
+                <section>
+                    <h2>Pizza</h2>
+                    <ul>
+                        <li><p>1x - Pizza Calabresa</p><span class="preco">R$ 45,00</span></li>
+                        <li><p>1x - Pizza Margherita</p><span class="preco">R$ 42,00</span></li>
+                        <li><p>1x - Pizza Pepperoni</p><span class="preco">R$ 45,00</span></li>
+                        <li><p>1x - Pizza Vegetariana</p><span class="preco">R$ 42,00</span></li>
+                    </ul> 
+                </section>
+                <br>
+                <section>
+                    <h2>Bebida</h2>
+                    <ul>
+                        <li><p>1x - Coca Lata</p><span class="preco">R$ 5,00</span></li>
+                        <li><p>1x - Suco de Laranja</p><span class="preco">R$ 10,00</span></li>
+                        <li><p>1x - Água Mineral</p><span class="preco">R$ 3,00</span></li>
+                        <li><p>1x - Heineken</p><span class="preco">R$ 18,00</span></li>
+                    </ul> 
+                </section> 
             </section>
             <br>
-            <section>
-                <h2>Bebida</h2>
-                <ul>
-                    <li><p>1x - Coca Lata</p><span class="preco">R$ 5,00</span></li>
-                    <li><p>1x - Suco de Laranja</p><span class="preco">R$ 10,00</span></li>
-                    <li><p>1x - Água Mineral</p><span class="preco">R$ 3,00</span></li>
-                    <li><p>1x - Heineken</p><span class="preco">R$ 18,00</span></li>
-                </ul> 
-            </section> 
-        </SECTION>
-        <br>
-        <br>         
-        <SECTION class="pagamentos">
-            <h2>Pagamento</h2>
-            <div class="payment-block">
-                <div class="payment-field">
-                    <label for="formaPagamento">Selecione o método de pagamento</label>
-                    <select name="formaPagamento" id="formaPagamento">
-                        <option value="">Selecione</option>
-                        <option value="pix">PIX</option>
-                        <option value="credito">Cartão de Crédito</option>
-                        <option value="debito">Cartão de Débito</option>
-                        <option value="aVista">Dinheiro</option>
-                    </select>
+            <br>         
+            <section class="pagamentos">
+                <h2>Pagamento</h2>
+                <div class="payment-block">
+                    <div class="payment-field">
+                        <label for="formaPagamento">Selecione o método de pagamento</label>
+                        <select name="formaPagamento" id="formaPagamento">
+                            <option value="">Selecione</option>
+                            <option value="pix">PIX</option>
+                            <option value="credito">Cartão de Crédito</option>
+                            <option value="debito">Cartão de Débito</option>
+                            <option value="aVista">Dinheiro</option>
+                        </select>
+                    </div>
+                    <div class="payment-field">
+                        <label for="obsBox">Observações</label>
+                        <textarea name="obsBox" id="obsBox" cols="80" rows="5">-> </textarea>
+                    </div>
                 </div>
-                <div class="payment-field">
-                    <label for="obsBox">Observações</label>
-                    <textarea name="obsBox" id="obsBox" cols="80" rows="5">-> </textarea>
-                </div>
+            </section>
+            <br>
+            <br>
+            <h2>Confirmar</h2>
+            <div id="confirmaPedido">
+                <button class="sendButton"> FAZER PEDIDO - R$<span class="valorFinal">0,00</span></button>
             </div>
-        </SECTION>
-        <br>
-        <br>
-        <h2>Confirmar</h2>
-        <div id="confirmaPedido">
-            <button class="sendButton"> FAZER PEDIDO - R$<span class="valorFinal">0,00</span></button>
-        </div>
-    </main>
+        </main>
 
     </body>
 </html>
