@@ -36,7 +36,9 @@
     padding-bottom: 20px;
     
 }
-
+.valorFinal{
+    font-weight: bold;
+}
 
 .sidebar a {
     color: #5f3713;
