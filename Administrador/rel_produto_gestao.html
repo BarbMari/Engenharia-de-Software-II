@@ -6,12 +6,34 @@
     <link rel="stylesheet" href="./css/produto.css" />
     <link rel="icon" href="../Imagens/reallogofinal.png" type="image/png" />
     <title>Gestão de Produtos - NanoSabores</title>
+    <style>
+      /* Estilo para inputs dentro da tabela */
+      .tabela-input {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #afcfb4;
+        border-radius: 4px;
+        font-size: 13px;
+      }
+      .btn-salvar {
+        display: none;
+        background: #2c5530 !important;
+        color: white !important;
+        cursor: pointer;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+      /* Ajuste para tabela com muitas colunas */
+      table { font-size: 13px; }
+      th, td { padding: 8px 5px !important; }
+    </style>
   </head>
   <body>
     <header>
-        <div class="header-left">
-          <h1>NanoSabores</h1>
-          <img src="../Imagens/pizza-slice-felted-floating-cartoon-vector-icon-ilustracao-icon-objeto-alimentar-vector-plano-isolado.png" alt="Logo" />
+      <div class="header-left">
+        <h1>NanoSabores</h1>
+        <img src="../Imagens/pizza-slice-felted-floating-cartoon-vector-icon-ilustracao-icon-objeto-alimentar-vector-plano-isolado.png" alt="Logo" />
       </div>
       <div id="user">Admin</div>
     </header>
@@ -33,114 +55,82 @@
     </div>
 
     <main>
-      <div id="containerMain">
+      <div id="containerMain" style="max-width: 1200px;">
         <h2>Gestão de Produtos</h2>
-        <p class="subtitulo">Busque, edite ou exclua produtos do estoque</p>
+        <p class="subtitulo">Controle total de insumos e categorias</p>
 
-    <div id="filtros">
-    <div class="filtro">
-        <label>Produto</label>
-        <input type="text" placeholder="Buscar produto..." />
-    </div>
+        <!-- FILTROS SOLICITADOS -->
+        <div id="filtros">
+          <div class="filtro"><label>Produto</label><input type="text" placeholder="Nome..." /></div>
+          <div class="filtro">
+            <label>Categoria</label>
+            <select>
+              <option value="">Todas</option>
+              <option>Mercearia</option>
+              <option>Frios e Laticínios</option>
+              <option>Hortifruti</option>
+              <option>Bebidas</option>
+              <option>Embalagens e Descartáveis</option>
+            </select>
+          </div>
+          <div class="filtro">
+            <label>Unidade</label>
+            <select>
+              <option value="">Todas</option>
+              <option>KG</option><option>L</option><option>UN</option><option>DZ</option><option>G</option><option>CX</option>
+            </select>
+          </div>
+          <div class="filtro">
+            <label>Qtd</label>
+            <select><option value="">Padrão</option><option value="asc">Menor → Maior</option></select>
+          </div>
+          <div class="filtro">
+            <label>Preço Total</label>
+            <select><option value="">Padrão</option><option value="desc">Maior → Menor</option></select>
+          </div>
+          <div class="filtro"><label>Entrada</label><input type="date" /></div>
+          <div class="filtro"><label>Validade</label><input type="date" /></div>
+          <div class="filtro">
+            <label>Status</label>
+            <select><option>Todos</option><option>Disponível</option></select>
+          </div>
+          <div class="acoes">
+            <button class="btn-filtrar">Filtrar</button>
+            <a href="./rel_produto.html" class="btn-filtrar-cinza" style="text-decoration:none; margin-left:5px; display:inline-flex; align-items:center; height:38px; padding:0 15px; background:#666; color:white; border-radius:8px; font-weight:bold; font-size:14px;">Voltar</a>
+          </div>
+        </div>
 
-    <div class="filtro">
-        <label>Categoria</label>
-        <select>
-          <option value="">Todas</option>
-          <option>Mercearia</option>
-          <option>Frios e Laticínios</option>
-          <option>Hortifruti</option>
-          <option>Bebidas</option>
-          <option>Embalagens e Descartáveis</option>
-        </select>
-    </div>
-
-    <div class="filtro">
-        <label>Unidade</label>
-        <select id="filtroUnidade">
-          <option value="">Todas</option>
-          <option value="KG">KG</option>
-          <option value="L">L</option>
-          <option value="UN">UN</option>
-          <option value="DZ">Dúzia</option>
-          <option value="G">G</option>
-          <option value="CX">Caixa (24 latas)</option>
-        </select>
-    </div>
-
-    <div class="filtro">
-        <label>Ordenar por quantidade</label>
-        <select id="ordenarQuantidade">
-          <option value="">Padrão</option>
-          <option value="asc">Menor → Maior</option>
-          <option value="desc">Maior → Menor</option>
-        </select>
-    </div>
-
-    <div class="filtro">
-        <label>Ordenar por preço total</label>
-        <select id="ordenarPreco">
-          <option value="">Padrão</option>
-          <option value="asc">Menor → Maior</option>
-          <option value="desc">Maior → Menor</option>
-        </select>
-    </div>
-
-    <div class="filtro">
-        <label>Data de Entrada</label>
-        <input type="date" />
-    </div>
-
-    <div class="filtro">
-        <label>Data de Validade</label>
-        <input type="date" />
-    </div>
-      
-    <div class="filtro">
-        <label>Status</label>
-        <select>
-          <option value="">Todos</option>
-          <option>Disponível</option>
-          <option>Baixo estoque</option>
-          <option>Sem estoque</option>
-        </select>
-    </div>
-
-    <div class="acoes">
-            <button class="btn-filtrar">Buscar</button>
-            <a href="./rel_produto.html" class="btn-filtrar-cinza">Voltar</a>
-    </div>
-</div>
-
-        <table>
+        <!-- TABELA COM TODAS AS COLUNAS -->
+        <table id="tabelaGestao">
           <thead>
             <tr>
               <th>Produto</th>
               <th>Categoria</th>
+              <th>Un</th>
               <th>Qtd</th>
+              <th>Custo Uni</th>
+              <th>Total</th>
+              <th>Entrada</th>
+              <th>Validade</th>
               <th>Status</th>
-              <th style="text-align: center;">Ações</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Queijo Muçarela</strong></td>
-              <td>Frios e Laticínios</td>
-              <td>5.0</td>
-              <td>Disponível</td>
-              <td style="text-align: center;">
-                <button onclick="alert('Abrindo edição para: Queijo Muçarela')" style="cursor:pointer; background: #afcfb4; border:none; padding:5px 10px; border-radius:5px; margin-right: 5px;">Editar</button>
-                <button onclick="excluirItem(this)" style="cursor:pointer; background: #ffcccc; border:none; padding:5px 10px; border-radius:5px; color: #cc0000;">Excluir</button>
-              </td>
-            </tr>
-            <tr>
-              <td><strong>Farinha 5kg</strong></td>
-              <td>Mercearia</td>
-              <td>3.0</td>
-              <td>Disponível</td>
-              <td style="text-align: center;">
-                <button onclick="alert('Abrindo edição para: Farinha 5kg')" style="cursor:pointer; background: #afcfb4; border:none; padding:5px 10px; border-radius:5px; margin-right: 5px;">Editar</button>
-                <button onclick="excluirItem(this)" style="cursor:pointer; background: #ffcccc; border:none; padding:5px 10px; border-radius:5px; color: #cc0000;">Excluir</button>
+              <td data-field="produto"><strong>Queijo Muçarela</strong></td>
+              <td data-field="categoria">Frios e Laticínios</td>
+              <td data-field="un">KG</td>
+              <td data-field="qtd">5.0</td>
+              <td data-field="custo">28.50</td>
+              <td>R$ 142,50</td>
+              <td data-field="entrada">2026-04-20</td>
+              <td data-field="validade">2026-04-30</td>
+              <td data-field="status">Disponível</td>
+              <td style="text-align: center; min-width: 120px;">
+                <button class="btn-edit" onclick="habilitarEdicao(this)" style="cursor:pointer; background: #afcfb4; border:none; padding:5px; border-radius:5px;">Editar</button>
+                <button class="btn-salvar" onclick="salvarEdicao(this)">Salvar</button>
+                <button onclick="excluirItem(this)" style="cursor:pointer; background: #ffcccc; border:none; padding:5px; border-radius:5px; color:#cc0000;">Excluir</button>
               </td>
             </tr>
           </tbody>
@@ -149,10 +139,52 @@
     </main>
 
     <script>
+      const categorias = ["Mercearia", "Frios e Laticínios", "Hortifruti", "Bebidas", "Embalagens e Descartáveis"];
+      const unidades = ["KG", "L", "UN", "DZ", "G", "CX"];
+      const statuses = ["Disponível", "Baixo estoque", "Sem estoque"];
+
+      function habilitarEdicao(botao) {
+        const linha = botao.closest('tr');
+        const celulas = linha.querySelectorAll('td[data-field]');
+
+        celulas.forEach(td => {
+          const valorAtual = td.innerText;
+          const campo = td.getAttribute('data-field');
+
+          if (campo === "categoria") {
+            td.innerHTML = `<select class="tabela-input">${categorias.map(c => `<option ${c === valorAtual ? 'selected' : ''}>${c}</option>`).join('')}</select>`;
+          } else if (campo === "un") {
+            td.innerHTML = `<select class="tabela-input">${unidades.map(u => `<option ${u === valorAtual ? 'selected' : ''}>${u}</option>`).join('')}</select>`;
+          } else if (campo === "status") {
+            td.innerHTML = `<select class="tabela-input">${statuses.map(s => `<option ${s === valorAtual ? 'selected' : ''}>${s}</option>`).join('')}</select>`;
+          } else if (campo === "entrada" || campo === "validade") {
+            td.innerHTML = `<input type="date" class="tabela-input" value="${valorAtual}">`;
+          } else {
+            td.innerHTML = `<input type="text" class="tabela-input" value="${valorAtual}">`;
+          }
+        });
+
+        botao.style.display = "none";
+        linha.querySelector('.btn-salvar').style.display = "inline-block";
+      }
+
+      function salvarEdicao(botao) {
+        const linha = botao.closest('tr');
+        const celulas = linha.querySelectorAll('td[data-field]');
+
+        celulas.forEach(td => {
+          const input = td.querySelector('.tabela-input');
+          const novoValor = input.value;
+          td.innerHTML = td.getAttribute('data-field') === "produto" ? `<strong>${novoValor}</strong>` : novoValor;
+        });
+
+        botao.style.display = "none";
+        linha.querySelector('.btn-edit').style.display = "inline-block";
+        alert("Alterações aplicadas!");
+      }
+
       function excluirItem(botao) {
-        if(confirm("Tem certeza que deseja excluir este produto do estoque?")) {
-          botao.parentElement.parentElement.remove();
-        }
+        if(confirm("Excluir este produto?")) botao.closest('tr').remove();
       }
     </script>
   </body>
