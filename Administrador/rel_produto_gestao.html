@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/produto.css" />
     <link rel="icon" href="../Imagens/reallogofinal.png" type="image/png" />
-    <title>Administração</title>
+    <title>Gestão de Produtos - NanoSabores</title>
   </head>
   <body>
     <header>
@@ -13,7 +13,6 @@
           <h1>NanoSabores</h1>
           <img src="../Imagens/pizza-slice-felted-floating-cartoon-vector-icon-ilustracao-icon-objeto-alimentar-vector-plano-isolado.png" alt="Logo" />
       </div>
-
       <div id="user">Admin</div>
     </header>
 
@@ -21,13 +20,11 @@
       <div class="container-sidebar">
         <ul>
           <li><a href="./index.html">Início</a></li>
-
           <li class="categoria">Cadastros</li>
           <li><a href="./cad_funcionario.html">Funcionários</a></li>
           <li><a href="./cad_produto.html">Produtos</a></li>
-
           <li class="categoria">Relatórios</li>
-          <li><a href="./rel_produto.html" class="active">Estoque</a></li>
+          <li><a href="./rel_produto.html">Estoque</a></li>
           <li><a href="./rel_venda.html">Vendas</a></li>
           <li><a href="./rel_pedido.html">Pedidos</a></li>
           <li><a href="./rel_funcionario.html">Funcionários</a></li>
@@ -37,16 +34,16 @@
 
     <main>
       <div id="containerMain">
-        <h2>Relatório de Estoque</h2>
-        <p class="subtitulo">Insumos da pizzaria e bebidas</p>
+        <h2>Gestão de Produtos</h2>
+        <p class="subtitulo">Busque, edite ou exclua produtos do estoque</p>
 
     <div id="filtros">
-      <div class="filtro">
+    <div class="filtro">
         <label>Produto</label>
         <input type="text" placeholder="Buscar produto..." />
-      </div>
+    </div>
 
-      <div class="filtro">
+    <div class="filtro">
         <label>Categoria</label>
         <select>
           <option value="">Todas</option>
@@ -56,9 +53,9 @@
           <option>Bebidas</option>
           <option>Embalagens e Descartáveis</option>
         </select>
-      </div>
+    </div>
 
-      <div class="filtro">
+    <div class="filtro">
         <label>Unidade</label>
         <select id="filtroUnidade">
           <option value="">Todas</option>
@@ -69,37 +66,37 @@
           <option value="G">G</option>
           <option value="CX">Caixa (24 latas)</option>
         </select>
-      </div>
+    </div>
 
-      <div class="filtro">
+    <div class="filtro">
         <label>Ordenar por quantidade</label>
         <select id="ordenarQuantidade">
           <option value="">Padrão</option>
           <option value="asc">Menor → Maior</option>
           <option value="desc">Maior → Menor</option>
         </select>
-      </div>
+    </div>
 
-      <div class="filtro">
+    <div class="filtro">
         <label>Ordenar por preço total</label>
         <select id="ordenarPreco">
           <option value="">Padrão</option>
           <option value="asc">Menor → Maior</option>
           <option value="desc">Maior → Menor</option>
         </select>
-      </div>
+    </div>
 
-      <div class="filtro">
+    <div class="filtro">
         <label>Data de Entrada</label>
         <input type="date" />
-      </div>
+    </div>
 
-      <div class="filtro">
+    <div class="filtro">
         <label>Data de Validade</label>
         <input type="date" />
-      </div>
+    </div>
       
-      <div class="filtro">
+    <div class="filtro">
         <label>Status</label>
         <select>
           <option value="">Todos</option>
@@ -107,72 +104,56 @@
           <option>Baixo estoque</option>
           <option>Sem estoque</option>
         </select>
-      </div>
-
-      <div class="acoes">
-        <button class="btn-filtrar">Filtrar</button>
-        <a href="./rel_produto_gestao.html" class="btn-filtrar-cinza">Editar Produto</a>
-      </div>
-
-      <!-- TABELA -->
-      <table>
-        <thead>
-          <tr>
-            <th>Produto</th>
-            <th>Categoria</th>
-            <th>Un</th>
-            <th>Qtd</th>
-            <th>Custo Uni</th>
-            <th>Total</th>
-            <th>Data Entrada</th>
-            <th>Validade</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-          <tr>
-            <td><strong>Queijo Muçarela</strong></td>
-            <td>Frios e Laticínios</td>
-            <td>KG</td>
-            <td>5.0</td>
-            <td>R$ 28,50</td>
-            <td>R$ 142,50</td>
-            <td>20/04/2026</td>
-            <td>30/04/2026</td>
-            <td>Disponível</td>
-          </tr>
-
-          <tr>
-            <td><strong>Farinha 5kg</strong></td>
-            <td>Mercearia</td>
-            <td>UN</td>
-            <td>3.0</td>
-            <td>R$ 18,90</td>
-            <td>R$ 56,70</td>
-            <td>18/04/2026</td>
-            <td>10/06/2026</td>
-            <td>Disponível</td>
-          </tr>
-
-          <tr>
-            <td><strong>Coca-Cola 350ml</strong></td>
-            <td>Bebidas</td>
-            <td>CX</td>
-            <td>2.0</td>
-            <td>R$ 45,00</td>
-            <td>R$ 90,00</td>
-            <td>15/04/2026</td>
-            <td>22/04/2026</td>
-            <td>Baixo estoque</td>
-          </tr>
-      </tbody>
-      </table>
-
-      <div class="total">
-        Total Estoque: <strong>R$ 289,20</strong>
-      </div>
     </div>
-  </main>
-</body>
+
+    <div class="acoes">
+            <button class="btn-filtrar">Buscar</button>
+            <a href="./rel_produto.html" class="btn-filtrar-cinza">Voltar</a>
+    </div>
+</div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Categoria</th>
+              <th>Qtd</th>
+              <th>Status</th>
+              <th style="text-align: center;">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Queijo Muçarela</strong></td>
+              <td>Frios e Laticínios</td>
+              <td>5.0</td>
+              <td>Disponível</td>
+              <td style="text-align: center;">
+                <button onclick="alert('Abrindo edição para: Queijo Muçarela')" style="cursor:pointer; background: #afcfb4; border:none; padding:5px 10px; border-radius:5px; margin-right: 5px;">Editar</button>
+                <button onclick="excluirItem(this)" style="cursor:pointer; background: #ffcccc; border:none; padding:5px 10px; border-radius:5px; color: #cc0000;">Excluir</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Farinha 5kg</strong></td>
+              <td>Mercearia</td>
+              <td>3.0</td>
+              <td>Disponível</td>
+              <td style="text-align: center;">
+                <button onclick="alert('Abrindo edição para: Farinha 5kg')" style="cursor:pointer; background: #afcfb4; border:none; padding:5px 10px; border-radius:5px; margin-right: 5px;">Editar</button>
+                <button onclick="excluirItem(this)" style="cursor:pointer; background: #ffcccc; border:none; padding:5px 10px; border-radius:5px; color: #cc0000;">Excluir</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <script>
+      function excluirItem(botao) {
+        if(confirm("Tem certeza que deseja excluir este produto do estoque?")) {
+          botao.parentElement.parentElement.remove();
+        }
+      }
+    </script>
+  </body>
 </html>

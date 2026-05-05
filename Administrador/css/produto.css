@@ -317,6 +317,26 @@ tr:hover {
   transition: 0.2s;
 }
 
+.btn-filtrar-cinza {
+    background: #666; /* Ou a cor cinza que você preferir */
+    color: white;
+    padding: 11px 20px;
+    border-radius: 8px;
+    margin-left: 3.5px;
+    font-weight: bold;
+    text-decoration: none; /* Remove o sublinhado */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-filtrar-cinza:hover {
+    background: #444;
+}
+
 /* HOVER BOTÃO */
 .btn-filtrar:hover {
   background: #2c5530;
