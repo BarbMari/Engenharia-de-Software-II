@@ -25,7 +25,7 @@
           <li class="categoria">Cadastros</li>
           <li><a href="./cad_funcionario.html">Funcionários</a></li>
           <li><a href="./cad_produto.html">Produtos</a></li>
-          <li><a href="./cad_produtosBebidas.html" class="active">Venda de Pizzas e Bebibas</a></li>
+          <li><a href="./cad_produtosBebidas.html" class="active">Sabores de Pizza</a></li>
 
           <li class="categoria">Relatórios</li>
           <li><a href="./rel_funcionario.html">Funcionários</a></li>
@@ -42,6 +42,13 @@
         <p class="subtitulo">Crie uma novo sabor!</p>
     
       <div id="formVenda">
+        <div class="row">
+        <div class="campo full">
+              <label>Nome do Sabor:</label>
+              <input type="text" name="nomeProduto" required />
+            </div>
+        </div>
+
           <div class="row">
             <div class="campo full">
               <label>Pizza</label>
@@ -61,26 +68,7 @@
           </div>
 
           <div class="row">
-            <div class="campo">
-              <label>Borda</label>
-               <select id="pizza">
-                <option value="">Nenhuma</option>
-                <option value="Sim">Sim</option>
-                <option value="Não">Não</option>
-              </select>
-            </div>
             
-            <div class="campo">
-              <label>Tipo da borda</label>
-              <select id="pizza">
-                <option value="">Nenhuma</option>
-                <option value="Chocolate Preto">Chocolate Preto</option>
-                <option value="Chocolate Branco">Chocolate Branco</option>
-                <option value="Catupiry">Catupiry</option>
-                <option value="Cheddar">Cheddar</option>
-              </select>
-            </div>
-
             <div class="campo">
               <label>Tipo de molho</label>
               <select id="pizza">
@@ -105,12 +93,43 @@
           </div>
         </div>
         
-          <div class="row">
-            <div class="campo">
-              <label>Ingredientes:</label>
-              <input type="text" name="ingredientes" required />
-            </div>
+        <div class="row">
+          <div class="campo full">
+            <label>Ingredientes:</label>
+
+            <select
+              name="ingredientes"
+              id="ingredientes"
+              multiple
+              size="10"
+            >
+              <option value="Azeitona">Azeitona</option>
+              <option value="Alho">Alho</option>
+              <option value="Atum">Atum</option>
+              <option value="Bacon">Bacon</option>
+              <option value="Batata Palha">Batata Palha</option>
+              <option value="Calabresa">Calabresa</option>
+              <option value="Cebola">Cebola</option>
+              <option value="Cogumelos">Cogumelos</option>
+              <option value="Filé Mignon">Filé Mignon</option>
+              <option value="Frango desfiado">Frango desfiado</option>
+              <option value="Manjericão">Manjericão</option>
+              <option value="Milho">Milho</option>
+              <option value="Orégano">Orégano</option>
+              <option value="Ovo">Ovo</option>
+              <option value="Palmito">Palmito</option>
+              <option value="Pepperoni">Pepperoni</option>
+              <option value="Pimentão">Pimentão</option>
+              <option value="Presunto">Presunto</option>
+              <option value="Rúcula">Rúcula</option>
+              <option value="Tomate">Tomate</option>
+            </select>
+
+            <small>
+              Segure CTRL (Windows) ou CMD (Mac) para selecionar vários ingredientes.
+            </small>
           </div>
+        </div>
 
           <div class="row">
             <div class="campo full">
@@ -124,16 +143,34 @@
             </div>
           </div>
 
-          <button onclick="salvarVenda()" class="btn-salvar">
-            Salvar Venda
-          </button>
-        </div>
+          <div class="row">
+            <div class="campo full">
+              <label>Resumo do Sabor</label>
 
-        <div class="lista-vendas">
-          <div class="btn-salvar">
-            <a  href="./rel_venda.html"><p>Visualizar Vendas</p></a>
+              <textarea
+                id="resumoSabor"
+                rows="10"
+                placeholder="Exemplo:
+          
+          Nome do sabor: Strogonoff de Frango
+          Tipo da pizza: Salgada
+          Molho: Tomate
+          Queijo: Mussarela
+          Ingredientes: Frango Desfiado, Batata Palha
+          Valor: R$ 45,00"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo full">
+              <button class="btn-salvar" type="submit">
+                Salvar Sabor
+              </button>
+            </div>
           </div>
         </div>
+
       </div>
 
     </main>
