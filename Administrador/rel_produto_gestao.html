@@ -1,38 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/produto.css" />
+    <link rel="stylesheet" href="./css/produtoGestao.css" />
     <link rel="icon" href="../Imagens/reallogofinal.png" type="image/png" />
-    <title>Gestão de Produtos - NanoSabores</title>
-    <style>
-      /* Estilo para inputs dentro da tabela */
-      .tabela-input {
-        width: 100%;
-        padding: 5px;
-        border: 1px solid #afcfb4;
-        border-radius: 4px;
-        font-size: 13px;
-      }
-      .btn-salvar {
-        display: none;
-        background: #2c5530 !important;
-        color: white !important;
-        cursor: pointer;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-      }
-      table { font-size: 13px; }
-      th, td { padding: 8px 5px !important; }
-    </style>
+    <title>Gestão de Produtos</title>
   </head>
   <body>
     <header>
       <div class="header-left">
         <h1>NanoSabores</h1>
-          <img src="../assets/icon.png" alt="Logo do NanoSabores"/>
+        <img src="../assets/icon.png" alt="Logo do NanoSabores" />
       </div>
       <div id="user">Admin</div>
     </header>
@@ -40,16 +19,18 @@
     <div id="sidebar">
       <div class="container-sidebar">
         <ul>
+          <li class="categoria">Home</li>
           <li><a href="./index.html">Início</a></li>
+
           <li class="categoria">Cadastros</li>
           <li><a href="./cad_funcionario.html">Funcionários</a></li>
           <li><a href="./cad_produto.html">Produtos</a></li>
-          <li><a href="./cad_produtosBebidas.html">Venda de Pizzas e Bebidas</a></li>
+          <li><a href="./cad_produtosBebidas.html">Produtos e Bebidas</a></li>
 
           <li class="categoria">Relatórios</li>
           <li><a href="./rel_funcionario.html">Funcionários</a></li>
           <li><a href="./rel_produto.html" class="active">Estoque</a></li>
-          <li><a href="./cad_produtosBebidas.html">Venda de Pizzas e Bebidas</a></li>
+          <li><a href="./rel_produtosBebidas.html">Produtos e Bebidas</a></li>
           <li><a href="./rel_pedido.html">Pedidos</a></li>
           <li><a href="./rel_venda.html">Vendas</a></li>
         </ul>
@@ -57,13 +38,16 @@
     </div>
 
     <main>
-      <div id="containerMain" style="max-width: 1200px;">
+      <div id="containerMain">
         <h2>Gestão de Produtos</h2>
         <p class="subtitulo">Controle total de insumos e categorias</p>
 
-        <!-- FILTROS SOLICITADOS -->
+        <!-- FILTROS -->
         <div id="filtros">
-          <div class="filtro"><label>Produto</label><input type="text" placeholder="Nome..." /></div>
+          <div class="filtro">
+            <label>Produto</label>
+            <input type="text" placeholder="Nome..." />
+          </div>
           <div class="filtro">
             <label>Categoria</label>
             <select>
@@ -79,115 +63,95 @@
             <label>Unidade</label>
             <select>
               <option value="">Todas</option>
-              <option>KG</option><option>L</option><option>UN</option><option>DZ</option><option>G</option><option>CX</option>
+              <option>KG</option>
+              <option>L</option>
+              <option>UN</option>
+              <option>DZ</option>
+              <option>G</option>
+              <option>CX</option>
             </select>
           </div>
           <div class="filtro">
             <label>Qtd</label>
-            <select><option value="">Padrão</option><option value="asc">Menor → Maior</option></select>
+            <select>
+              <option value="">Padrão</option>
+              <option value="asc">Menor → Maior</option>
+            </select>
           </div>
           <div class="filtro">
             <label>Preço Total</label>
-            <select><option value="">Padrão</option><option value="desc">Maior → Menor</option></select>
+            <select>
+              <option value="">Padrão</option>
+              <option value="desc">Maior → Menor</option>
+            </select>
           </div>
-          <div class="filtro"><label>Entrada</label><input type="date" /></div>
-          <div class="filtro"><label>Validade</label><input type="date" /></div>
+          <div class="filtro">
+            <label>Entrada</label>
+            <input type="date" />
+          </div>
+          <div class="filtro">
+            <label>Validade</label>
+            <input type="date" />
+          </div>
           <div class="filtro">
             <label>Status</label>
-            <select><option>Todos</option><option>Disponível</option></select>
+            <select>
+              <option>Todos</option>
+              <option>Disponível</option>
+            </select>
           </div>
           <div class="acoes">
             <button class="btn-filtrar">Filtrar</button>
-            <a href="./rel_produto.html" class="btn-filtrar-cinza" style="text-decoration:none; margin-left:5px; display:inline-flex; align-items:center; height:38px; padding:0 15px; background:#666; color:white; border-radius:8px; font-weight:bold; font-size:14px;">Voltar</a>
+            <a href="./rel_produto.html" class="btn-filtrar-cinza">Voltar</a>
           </div>
         </div>
 
-        <!-- TABELA COM TODAS AS COLUNAS -->
-        <table id="tabelaGestao">
-          <thead>
-            <tr>
-              <th>Produto</th>
-              <th>Categoria</th>
-              <th>Un</th>
-              <th>Qtd</th>
-              <th>Custo Uni</th>
-              <th>Total</th>
-              <th>Entrada</th>
-              <th>Validade</th>
-              <th>Status</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-field="produto"><strong>Queijo Muçarela</strong></td>
-              <td data-field="categoria">Frios e Laticínios</td>
-              <td data-field="un">KG</td>
-              <td data-field="qtd">5.0</td>
-              <td data-field="custo">28.50</td>
-              <td>R$ 142,50</td>
-              <td data-field="entrada">2026-04-20</td>
-              <td data-field="validade">2026-04-30</td>
-              <td data-field="status">Disponível</td>
-              <td style="text-align: center; min-width: 120px;">
-                <button class="btn-edit" onclick="habilitarEdicao(this)" style="cursor:pointer; background: #afcfb4; border:none; padding:5px; border-radius:5px;">Editar</button>
-                <button class="btn-salvar" onclick="salvarEdicao(this)">Salvar</button>
-                <button onclick="excluirItem(this)" style="cursor:pointer; background: #ffcccc; border:none; padding:5px; border-radius:5px; color:#cc0000;">Excluir</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- TABELA -->
+        <div class="tabela-container">
+          <table id="tabelaGestao">
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Un</th>
+                <th>Qtd</th>
+                <th>Custo Uni</th>
+                <th>Total</th>
+                <th>Entrada</th>
+                <th>Validade</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-field="produto"><strong>Queijo Muçarela</strong></td>
+                <td data-field="categoria">Frios e Laticínios</td>
+                <td data-field="un">KG</td>
+                <td data-field="qtd">5.0</td>
+                <td data-field="custo">28.50</td>
+                <td>R$ 142,50</td>
+                <td data-field="entrada">2026-04-20</td>
+                <td data-field="validade">2026-04-30</td>
+                <td data-field="status">Disponível</td>
+                <td class="acoes-coluna">
+                  <button class="btn-edit" onclick="editarLinha(this)">
+                    Editar
+                  </button>
+                  <button class="btn-salvar" onclick="salvarLinha(this)">
+                    Salvar
+                  </button>
+                  <button class="btn-excluir" onclick="excluirLinha(this)">
+                    Excluir
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </main>
 
-    <script>
-      const categorias = ["Mercearia", "Frios e Laticínios", "Hortifruti", "Bebidas", "Embalagens e Descartáveis"];
-      const unidades = ["KG", "L", "UN", "DZ", "G", "CX"];
-      const statuses = ["Disponível", "Baixo estoque", "Sem estoque"];
-
-      function habilitarEdicao(botao) {
-        const linha = botao.closest('tr');
-        const celulas = linha.querySelectorAll('td[data-field]');
-
-        celulas.forEach(td => {
-          const valorAtual = td.innerText;
-          const campo = td.getAttribute('data-field');
-
-          if (campo === "categoria") {
-            td.innerHTML = `<select class="tabela-input">${categorias.map(c => `<option ${c === valorAtual ? 'selected' : ''}>${c}</option>`).join('')}</select>`;
-          } else if (campo === "un") {
-            td.innerHTML = `<select class="tabela-input">${unidades.map(u => `<option ${u === valorAtual ? 'selected' : ''}>${u}</option>`).join('')}</select>`;
-          } else if (campo === "status") {
-            td.innerHTML = `<select class="tabela-input">${statuses.map(s => `<option ${s === valorAtual ? 'selected' : ''}>${s}</option>`).join('')}</select>`;
-          } else if (campo === "entrada" || campo === "validade") {
-            td.innerHTML = `<input type="date" class="tabela-input" value="${valorAtual}">`;
-          } else {
-            td.innerHTML = `<input type="text" class="tabela-input" value="${valorAtual}">`;
-          }
-        });
-
-        botao.style.display = "none";
-        linha.querySelector('.btn-salvar').style.display = "inline-block";
-      }
-
-      function salvarEdicao(botao) {
-        const linha = botao.closest('tr');
-        const celulas = linha.querySelectorAll('td[data-field]');
-
-        celulas.forEach(td => {
-          const input = td.querySelector('.tabela-input');
-          const novoValor = input.value;
-          td.innerHTML = td.getAttribute('data-field') === "produto" ? `<strong>${novoValor}</strong>` : novoValor;
-        });
-
-        botao.style.display = "none";
-        linha.querySelector('.btn-edit').style.display = "inline-block";
-        alert("Alterações aplicadas!");
-      }
-
-      function excluirItem(botao) {
-        if(confirm("Excluir este produto?")) botao.closest('tr').remove();
-      }
-    </script>
+    <script src="./Js/gestaoProdutos.js"></script>
   </body>
 </html>
