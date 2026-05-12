@@ -119,6 +119,7 @@ h2 {
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
+    text-decoration: none;
 }
 
 .row {
@@ -195,6 +196,11 @@ h2 {
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.lista-vendas a {
+    text-decoration: none;
 }
 
 .venda-item {

@@ -25,12 +25,11 @@
           <li class="categoria">Cadastros</li>
           <li><a href="./cad_funcionario.html">Funcionários</a></li>
           <li><a href="./cad_produto.html">Produtos</a></li>
-          <li><a href="./cad_produtosBebidas.html" class="active">Venda de Pizzas e Bebibas</a></li>
+          <li><a href="./cad_produtosBebidas.html" class="active">Sabores de Pizza</a></li>
 
           <li class="categoria">Relatórios</li>
           <li><a href="./rel_funcionario.html">Funcionários</a></li>
-          <li><a href="./rel_produto.html">Estoque</a></li>
-<!--           <li><a href="./rel_produtosBebidas.html">Venda de Pizzas e Bebibas</a></li>-->   
+          <li><a href="./rel_produto.html">Estoque</a></li> 
           <li><a href="./rel_pedido.html">Pedidos</a></li>
           <li><a href="./rel_venda.html">Vendas</a></li>
         </ul>
@@ -39,85 +38,141 @@
 
     <main>
       <div id="containerMain">
-        <h2>Nova Venda</h2>
-        <p class="subtitulo">Registre o pedido do cliente</p>
-
-        <div id="formVenda">
-          <div class="row">
-            <div class="campo">
-              <label>Nome do Cliente</label>
-              <input type="text" id="cliente" placeholder="João Silva" />
+        <h2>Nova Pizza</h2>
+        <p class="subtitulo">Crie uma novo sabor!</p>
+    
+      <div id="formVenda">
+        <div class="row">
+        <div class="campo full">
+              <label>Nome do Sabor:</label>
+              <input type="text" name="nomeProduto" required />
             </div>
-            <div class="campo">
-              <label>Telefone</label>
-              <input type="tel" id="telefone" placeholder="(11) 99999-9999" />
-            </div>
-          </div>
+        </div>
 
           <div class="row">
             <div class="campo full">
               <label>Pizza</label>
               <select id="pizza">
-                <option value="">Selecione a pizza</option>
-                <option value="marguerita">
-                  Marguerita - Queijo, molho, tomate, orégano
+                <option value="">Selecione o tipo</option>
+                <option value="Salgada">
+                  Salgada
                 </option>
-                <option value="calabresa">
-                  Calabresa - Queijo, calabresa, cebola, molho
+                <option value="Vegetariana">
+                  Vegetariana
                 </option>
-                <option value="frango">
-                  Frango com Catupiry - Frango, catupiry, queijo
-                </option>
-                <option value="portuguesa">
-                  Portuguesa - Presunto, ovo, cebola, queijo
+                <option value="Doce">
+                  Doce
                 </option>
               </select>
             </div>
           </div>
 
           <div class="row">
+            
             <div class="campo">
-              <label>Quantidade de Pizzas</label>
-              <input type="number" id="qtdPizzas" min="1" max="10" value="1" />
-            </div>
-            <div class="campo">
-              <label>Bebida</label>
-              <select id="bebida">
-                <option value="">Nenhuma</option>
-                <option value="coca">Coca-Cola 350ml</option>
-                <option value="guarana">Guaraná Antarctica 350ml</option>
-                <option value="pepsi">Pepsi 350ml</option>
+              <label>Tipo de molho</label>
+              <select id="pizza">
+                <option value="">Nenhum</option>
+                <option value="Tomate">Tomate</option>
+                <option value="Pesto">Pesto</option>
               </select>
             </div>
+          
+
+            <div class="campo">
+              <label>Tipo de queijo</label>
+              <select id="pizza">
+                <option value="">Nenhum</option>
+                <option value="Mussarela">Mussarela</option>
+                <option value="Cheddar">Cheddar</option>
+                <option value="Parmesão">Parmesão</option>
+                <option value="Provolone">Provolone</option>
+                <option value="Gouda">Gouda</option>
+                <option value="5 Queijos">5 Queijos</option>
+              </select>
           </div>
+        </div>
+        
+        <div class="row">
+          <div class="campo full">
+            <label>Ingredientes:</label>
+
+            <select
+              name="ingredientes"
+              id="ingredientes"
+              multiple
+              size="10"
+            >
+              <option value="Azeitona">Azeitona</option>
+              <option value="Alho">Alho</option>
+              <option value="Atum">Atum</option>
+              <option value="Bacon">Bacon</option>
+              <option value="Batata Palha">Batata Palha</option>
+              <option value="Calabresa">Calabresa</option>
+              <option value="Cebola">Cebola</option>
+              <option value="Cogumelos">Cogumelos</option>
+              <option value="Filé Mignon">Filé Mignon</option>
+              <option value="Frango desfiado">Frango desfiado</option>
+              <option value="Manjericão">Manjericão</option>
+              <option value="Milho">Milho</option>
+              <option value="Orégano">Orégano</option>
+              <option value="Ovo">Ovo</option>
+              <option value="Palmito">Palmito</option>
+              <option value="Pepperoni">Pepperoni</option>
+              <option value="Pimentão">Pimentão</option>
+              <option value="Presunto">Presunto</option>
+              <option value="Rúcula">Rúcula</option>
+              <option value="Tomate">Tomate</option>
+            </select>
+
+            <small>
+              Segure CTRL (Windows) ou CMD (Mac) para selecionar vários ingredientes.
+            </small>
+          </div>
+        </div>
 
           <div class="row">
-            <div class="campo">
-              <label>Quantidade de Bebidas</label>
-              <input type="number" id="qtdBebidas" min="0" max="50" value="0" />
-            </div>
-            <div class="campo">
-              <label>Valor Total</label>
+            <div class="campo full">
+              <label>Definir Preço</label>
               <input
                 type="number"
                 id="valorTotal"
-                step="0.01"
+                step="0.5"
                 placeholder="R$ 45.00"
               />
             </div>
           </div>
 
-          <button onclick="salvarVenda()" class="btn-salvar">
-            Salvar Venda
-          </button>
-        </div>
+          <div class="row">
+            <div class="campo full">
+              <label>Resumo do Sabor</label>
 
-        <div id="listaVendas" class="lista-vendas">
-          <div class="btn-salvar">
-            <a  href="./rel_venda.html"><p>Vizualizar Vendas</p></a>
+              <textarea
+                id="resumoSabor"
+                rows="10"
+                placeholder="Exemplo:
+          
+          Nome do sabor: Strogonoff de Frango
+          Tipo da pizza: Salgada
+          Molho: Tomate
+          Queijo: Mussarela
+          Ingredientes: Frango Desfiado, Batata Palha
+          Valor: R$ 45,00"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo full">
+              <button class="btn-salvar" type="submit">
+                Salvar Sabor
+              </button>
+            </div>
           </div>
         </div>
+
       </div>
+
     </main>
   </body>
 </html>
