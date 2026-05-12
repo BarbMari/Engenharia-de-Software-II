@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/relFuncionario.css" />
+    <link rel="stylesheet" href="./css/relatorios.css" />
     <link rel="icon" href="../assets/reallogofinal.png" type="image/png" />
     <title>Relatório de Funcionários</title>
   </head>
@@ -42,6 +42,31 @@
         <h2>Relatório de Funcionários</h2>
         <p class="subtitulo">Lista completa dos colaboradores da pizzaria</p>
 
+        <div id="filtros">
+        <h3>Filtros</h3>
+
+        <div class="filtro">
+          <label>Nome</label><input type="text" placeholder="_____________________">
+        </div>
+        <div class="filtro">
+          <label>E-mail</label><input type="email" placeholder="_____@____.com">
+        </div>
+        <div class="filtro">
+        <label>Cargo</label>
+        <select>
+          <option value="">Todos</option>
+          <option>Gerente</option>
+          <option>Caixa</option>
+          <option>Administração</option>
+          <option>Pizzaiolo</option>
+          <option>Faxineiro</option>
+          <option>Motoboy</option>
+          <option>INSIGNIFICANT FUCK</option>
+        </select>
+      </div>
+        <div class="acoes">
+          <button class="btn-filtrar">Enviar</button>
+        </div>  
         <!-- TABELA -->
         <div class="tabela-container">
           <table>
