@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/cadProdutosBebidas.css" />
+    <link rel="icon" href="../assets/reallogofinal.png" type="image/png" />
+    <title>Cadastro de Vendas</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <h1>NanoSabores</h1>
+        <img src="../assets/icon.png" alt="Logo" />
+      </div>
+      <div id="user">Admin</div>
+    </header>
+
+    <div id="sidebar">
+      <div class="container-sidebar">
+        <ul>
+          <li class="categoria">Home</li>
+          <li><a href="./index.html">Início</a></li>
+
+          <li class="categoria">Cadastros</li>
+          <li><a href="./cad_funcionario.html">Funcionários</a></li>
+          <li><a href="./cad_produto.html">Produtos</a></li>
+          <li><a href="./cad_produtosBebidas.html" class="active">Produtos e Bebidas</a></li>
+
+          <li class="categoria">Relatórios</li>
+          <li><a href="./rel_funcionario.html">Funcionários</a></li>
+          <li><a href="./rel_produto.html">Estoque</a></li>
+          <li><a href="./rel_produtosBebidas.html">Produtos e Bebidas</a></li>
+          <li><a href="./rel_venda.html">Vendas</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <main>
+      <div id="containerMain">
+        <h2>Nova Venda</h2>
+        <p class="subtitulo">Registre o pedido do cliente</p>
+
+        <div id="formVenda">
+          <div class="row">
+            <div class="campo">
+              <label>Nome do Cliente</label>
+              <input type="text" id="cliente" placeholder="João Silva" />
+            </div>
+            <div class="campo">
+              <label>Telefone</label>
+              <input type="tel" id="telefone" placeholder="(11) 99999-9999" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo full">
+              <label>Pizza</label>
+              <select id="pizza">
+                <option value="">Selecione a pizza</option>
+                <option value="marguerita">
+                  Marguerita - Queijo, molho, tomate, orégano
+                </option>
+                <option value="calabresa">
+                  Calabresa - Queijo, calabresa, cebola, molho
+                </option>
+                <option value="frango">
+                  Frango com Catupiry - Frango, catupiry, queijo
+                </option>
+                <option value="portuguesa">
+                  Portuguesa - Presunto, ovo, cebola, queijo
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo">
+              <label>Quantidade de Pizzas</label>
+              <input type="number" id="qtdPizzas" min="1" max="10" value="1" />
+            </div>
+            <div class="campo">
+              <label>Bebida</label>
+              <select id="bebida">
+                <option value="">Nenhuma</option>
+                <option value="coca">Coca-Cola 350ml</option>
+                <option value="guarana">Guaraná Antarctica 350ml</option>
+                <option value="pepsi">Pepsi 350ml</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo">
+              <label>Quantidade de Bebidas</label>
+              <input type="number" id="qtdBebidas" min="0" max="50" value="0" />
+            </div>
+            <div class="campo">
+              <label>Valor Total</label>
+              <input
+                type="number"
+                id="valorTotal"
+                step="0.01"
+                placeholder="R$ 45.00"
+              />
+            </div>
+          </div>
+
+          <button onclick="salvarVenda()" class="btn-salvar">
+            Salvar Venda
+          </button>
+        </div>
+
+        <div id="listaVendas" class="lista-vendas"></div>
+      </div>
+    </main>
+
+    <script src="./js/cad_venda.js"></script>
+  </body>
+</html>
