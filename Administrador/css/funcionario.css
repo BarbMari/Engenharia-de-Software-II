@@ -1,3 +1,4 @@
+/* PÁGINA INICIAL */
 * {
   margin: 0;
   padding: 0;
@@ -69,6 +70,9 @@ header img {
   height: calc(100vh - 75px);
   background: white;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .container-sidebar ul {

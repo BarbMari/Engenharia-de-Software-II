@@ -1,4 +1,4 @@
-/* CSS SIMPLES - PÁGINA INICIAL */
+/* PÁGINA INICIAL */
 * {
   margin: 0;
   padding: 0;
@@ -59,6 +59,9 @@ header img {
   height: calc(100vh - 75px);
   background: white;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .container-sidebar ul {
@@ -154,19 +157,19 @@ h2 {
 
 .card img {
   width: 80%;
-  height: auto;           /* Let the image keep its natural aspect ratio */
-  max-height: 0;          /* Start collapsed */
+  height: auto;
+  max-height: 0;
   opacity: 0;
   border-radius: 10px;
   margin-top: -10%;
-  overflow: hidden;       /* Important to hide content while collapsed */
-  transition: 
+  overflow: hidden;
+  transition:
     max-height 0.8s ease-in-out,
     opacity 0.8s ease-out;
 }
 
 .card:hover img {
-  max-height: 100%;      /* Choose a value larger than the image will ever be */
+  max-height: 100%;
   opacity: 1;
 }
 
