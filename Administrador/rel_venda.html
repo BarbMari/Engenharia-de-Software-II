@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/relVenda.css" />
+    <link rel="stylesheet" href="./css/relatorios.css" />
     <link rel="icon" href="../assets/reallogofinal.png" type="image/png" />
     <title>Administração</title>
   </head>
@@ -43,15 +43,21 @@
 
       <h2>Relatório de Vendas:</h2>
 
-      <div id="Filtros">
+      <div id="filtros">
         <h3>Filtros</h3>
-        <p>Data Inicio    <input type="datetime-local"></p>
-        <p>Data Fim       <input type="datetime-local"></p>
-          E/OU
-        <p>Nome Cliente:   <input type="text" placeholder="_____________________"></p>
-        <button>Enviar</button>
-      </div>
-      
+
+        <div class="filtro">
+          <label>Data Inicio</label><input type="datetime-local">
+        </div>
+        <div class="filtro">
+          <label>Data Fim</label><input type="datetime-local">
+        </div>
+        <div class="filtro">
+          <label>Nome Cliente: </label><input type="text" placeholder="_____________________">
+        </div>
+        <div class="acoes">
+          <button class="btn-filtrar">Enviar</button>
+        </div>    
       
       
       <table>
@@ -96,6 +102,7 @@
           <td>R$: 69.69</tl>
         </tr>
       </table>
+      </div>
     </div>
   </main>
   </body>
