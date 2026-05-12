@@ -165,8 +165,24 @@ h2 {
     border-radius: 10px;
     font-size: 1.1rem;
     font-weight: bold;
-    cursor: pointer;
     width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-salvar a {
+    width: 100%;
+    color: #2c5530;
+}
+
+.btn-salvar a p {  /*? Sla isso aqui funcionou, reclama n*/
+    width: 100%;
+    color: #2c5530;
+}
+
+.btn-salvar a:visited {
+    width: 100%;
+    color: #2c5530;
 }
 
 .btn-salvar:hover {
