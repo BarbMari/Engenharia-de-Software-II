@@ -205,7 +205,8 @@ h2 {
 
 .preco-range {
   display: flex;
-  gap: 1rem;
+  flex-direction: column; 
+  gap: 2.7rem;
 }
 
 .preco-range input {
