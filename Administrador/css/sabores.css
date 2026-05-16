@@ -12,15 +12,11 @@ body {
     color: #333;
 }
 
-<<<<<<< Updated upstream:Administrador/css/cadProdutosBebidas.css
 html {
   overflow-y: scroll;
   scrollbar-gutter: stable;
 }
 
-=======
-/* HEADER */
->>>>>>> Stashed changes:Administrador/css/sabores.css
 header {
     background: linear-gradient(to right, #afcfb4, #9fd39c);
     padding: 1rem 2rem;
