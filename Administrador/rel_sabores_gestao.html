@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/produtoGestao.css" />
+    <link rel="icon" href="../Imagens/LogoNanoSaboresCortada.png" type="image/png" />
+    <title>Gestão de Sabores</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <h1>NanoSabores</h1>
+        <img src="../assets/icon.png" alt="Logo do NanoSabores" />
+      </div>
+      <div id="user">Admin</div>
+    </header>
+
+    <div id="sidebar">
+      <div class="container-sidebar">
+        <ul>
+          <li class="categoria">Home</li>
+          <li><a href="./index.html">Início</a></li>
+
+          <li class="categoria">Cadastros</li>
+          <li><a href="./cad_funcionario.html">Funcionários</a></li>
+          <li><a href="./cad_produto.html">Produtos</a></li>
+          <li><a href="./cad_sabores.html">Sabores de Pizza</a></li>
+
+          <li class="categoria">Relatórios</li>
+          <li><a href="./rel_funcionario.html">Funcionários</a></li>
+          <li><a href="./rel_produto.html">Estoque</a></li>       
+          <li><a href="./rel_pedido.html">Pedidos</a></li>
+          <li><a href="./rel_venda.html">Vendas</a></li>
+          <li><a href="./rel_sabores.html" class="active">Sabores Cadastrados</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <main>
+      <div id="containerMain">
+        <h2>Gestão de Sabores</h2>
+        <p class="subtitulo">Controle total dos sabores cadastrados</p>
+
+        
+        <div id="filtros">
+          <div class="filtro">
+            <label>Sabor</label>
+            <input type="text" placeholder="Nome..." />
+        </div>
+
+        <div class="filtro">
+            <label>Tipo</label>
+            <select>
+              <option value="">Todos</option>
+              <option>Salgada</option>
+              <option>Doce</option>
+              <option>Vegetariana</option>
+            </select>
+        </div>
+          
+        <div class="filtro">
+            <label>Molho</label>
+            <select>
+              <option value="">Todos</option>
+              <option>Tomate</option>
+              <option>Pesto</option>
+              <option>Branco</option>
+            </select>
+        </div>
+
+        <div class="filtro">
+            <label>Queijo</label>
+            <select>
+              <option value="">Todos</option>
+              <option>Mussarela</option>
+              <option>Gouda</option>
+              <option>Catupiry</option>
+            </select>
+        </div>
+
+        <div class="filtro">
+        <label>Ingrediente</label>
+        <select>
+            <option value="">Todos</option>
+            <option>Azeitona</option>
+            <option>Alho</option>
+            <option>Atum</option>
+            <option>Bacon</option>
+            <option>Batata Palha</option>
+            <option>Calabresa</option>
+            <option>Catupiry</option>
+            <option>Cebola</option>
+            <option>Cogumelos</option>
+            <option>Filé Mignon</option>
+            <option>Frango desfiado</option>
+            <option>Manjericão</option>
+            <option>Milho</option>
+            <option>Orégano</option>
+            <option>Ovo</option>
+            <option>Palmito</option>
+            <option>Pepperoni</option>
+            <option>Pimentão</option>
+            <option>Presunto</option>
+            <option>Rúcula</option>
+            <option>Tomate</option>
+        </select>
+        </div>
+
+        <div class="filtro">
+            <label>Preço</label>
+            <select>
+              <option value="">Padrão</option>
+              <option value="asc">Menor → Maior</option>
+              <option value="desc">Maior → Menor</option>
+            </select>
+          </div>
+
+        <div class="acoes">
+            <button class="btn-filtrar">Filtrar</button>
+            <a href="./rel_sabores.html" class="btn-filtrar-cinza">Voltar</a>
+          </div>
+        </div>
+
+        <!-- TABELA -->
+        <div class="tabela-container">
+          <table id="tabelaGestao">
+            <thead>
+              <tr>
+                <th>Sabor</th>
+                <th>Tipo</th>
+                <th>Molho</th>
+                <th>Queijo</th>
+                <th>Ingredientes</th>
+                <th>Preço</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-field="sabor"><strong>Calabresa Especial</strong></td>
+                <td data-field="tipo">Salgada</td>
+                <td data-field="molho">Tomate</td>
+                <td data-field="queijo">Mussarela</td>
+                <td data-field="ingredientes">Calabresa, Cebola, Azeitona</td>
+                <td data-field="preco">49.00</td>
+                <td class="acoes-coluna">
+                  <button class="btn-edit" onclick="editarLinha(this)">Editar</button>
+                  <button class="btn-salvar" onclick="salvarLinha(this)">Salvar</button>
+                  <button class="btn-excluir" onclick="excluirLinha(this)">Excluir</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <script src="./Js/gestaoSabores.js"></script>
+  </body>
+</html>
