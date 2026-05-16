@@ -1,8 +1,8 @@
 /* // Dados das opções
 const OPCOES = {
-  categorias: ["Mercearia", "Frios e Laticínios", "Hortifruti", "Bebidas", "Embalagens e Descartáveis"],
-  unidades: ["KG", "L", "UN", "DZ", "G", "CX"],
-  status: ["Disponível", "Baixo estoque", "Sem estoque"]
+  tipos: ["Salgada", "Doce", "Vegetariana"],
+  molhos: ["Tomate", "Pesto", "Branco", "Nenhum"],
+  queijos: ["Mussarela", "Cheddar", "Parmesão", "Provolone", "Gouda", "Catupiry", "Nenhum"]
 };
 
 // Editar linha
@@ -14,15 +14,16 @@ function editarLinha(btn) {
     const valor = td.textContent.trim();
     const campo = td.dataset.field;
     
-    if (campo === 'categoria') {
-      td.innerHTML = selectHTML(OPCOES.categorias, valor);
-    } else if (campo === 'un') {
-      td.innerHTML = selectHTML(OPCOES.unidades, valor);
-    } else if (campo === 'status') {
-      td.innerHTML = selectHTML(OPCOES.status, valor);
-    } else if (campo === 'entrada' || campo === 'validade') {
-      td.innerHTML = `<input type="date" class="tabela-input" value="${valor}">`;
-    } else {
+    if (campo === 'tipo') {
+      td.innerHTML = selectHTML(OPCOES.tipos, valor);
+    } 
+    else if (campo === 'molho') {
+      td.innerHTML = selectHTML(OPCOES.molhos, valor);
+    } 
+    else if (campo === 'queijo') {
+      td.innerHTML = selectHTML(OPCOES.queijos, valor);
+    } 
+    else {
       td.innerHTML = `<input type="text" class="tabela-input" value="${valor}">`;
     }
   });
@@ -39,7 +40,7 @@ function salvarLinha(btn) {
   celulas.forEach(td => {
     const input = td.querySelector('.tabela-input');
     const valor = input ? input.value : td.textContent;
-    td.textContent = td.dataset.field === 'produto' ? valor : valor;
+    td.textContent = valor;
   });
   
   btn.style.display = 'none';
@@ -49,7 +50,7 @@ function salvarLinha(btn) {
 
 // Excluir linha
 function excluirLinha(btn) {
-  if (confirm('Excluir este produto?')) {
+  if (confirm('Excluir este sabor?')) {
     btn.closest('tr').remove();
   }
 }
