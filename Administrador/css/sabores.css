@@ -229,13 +229,16 @@ h2 {
 
 .btn-filtrar,
 .btn-filtrar-cinza {
-  padding: 1.2rem 2.5rem;
-  border-radius: 10px;
+  padding: 11px 20px;
+  border-radius: 8px;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
   border: none;
   cursor: pointer;
-  text-decoration: none;
+  transition: 0.2s;
 }
 
 .btn-filtrar {

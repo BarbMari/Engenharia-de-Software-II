@@ -202,6 +202,44 @@ h2 {
   box-shadow: 0 5px 15px rgba(175, 207, 180, 0.4);
 }
 
+.acoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.btn-filtrar,
+.btn-filtrar-cinza {
+  padding: 11px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-filtrar {
+  background: #2c5530;
+  color: white;
+}
+
+.btn-filtrar:hover {
+  background: #1f3d23;
+}
+
+.btn-filtrar-cinza {
+  background: #666;
+  color: white;
+}
+
+.btn-filtrar-cinza:hover {
+  background: #444;
+}
+
 @media (max-width: 768px) {
   main {
     margin-left: 0;
