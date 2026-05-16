@@ -11,6 +11,11 @@ body {
   color: #333;
 }
 
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 /* HEADER */
 header {
   background: linear-gradient(to right, #afcfb4, #9fd39c);
@@ -102,7 +107,7 @@ main {
 }
 
 #containerMain {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 

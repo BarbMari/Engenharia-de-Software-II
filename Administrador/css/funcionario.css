@@ -1,4 +1,4 @@
-/* PÁGINA INICIAL */
+/* PÁGINA INICIAL - CERTO */
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +9,11 @@ body {
   font-family: Arial, sans-serif;
   background: #f8f9fa;
   color: #333;
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
 }
 
 /* HEADER */
@@ -117,7 +122,7 @@ main {
 }
 
 #containerMain {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
