@@ -261,10 +261,13 @@ table tr:hover {
   font-weight: bold;
   cursor: pointer;
   display: inline-block;
-  text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(175, 207, 180, 0.3);
   margin: 0 auto;
   display: block;
   width: 100%;
+}
+
+.button-cadFunc a{
+    text-decoration: none;
 }
