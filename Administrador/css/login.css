@@ -25,7 +25,7 @@ body {
   width: min(440px, 100%);
   background: rgba(255, 255, 255, 0.97);
   border-radius: 20px;
-  padding: 2.8rem 2.5rem 2.5rem;
+  padding: 2.5rem 2.5rem 2.5rem;
   box-shadow: 0 20px 60px rgba(15, 48, 28, 0.13);
   border: 1px solid rgba(159, 211, 156, 0.4);
   animation: fadeUp 0.45s ease both;
@@ -126,6 +126,21 @@ body {
 .btn-login:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(175, 207, 180, 0.5);
+}
+
+.btn-voltar {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: #888;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+  padding-top: 1rem;
+}
+
+.btn-voltar:hover {
+  color: #2c5530;
 }
 
 /* ANIMAÇÃO DE ENTRADA */
