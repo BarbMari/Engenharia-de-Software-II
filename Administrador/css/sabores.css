@@ -17,6 +17,7 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* HEADER */
 header {
   background: linear-gradient(to right, #afcfb4, #9fd39c);
   padding: 1rem 2rem;
@@ -154,75 +155,7 @@ h2 {
   margin-bottom: 2rem;
 }
 
-/* ===== CADASTRO ===== */
-
-#formVenda {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.campo {
-  display: flex;
-  flex-direction: column;
-}
-
-.campo.full {
-  grid-column: 1 / -1;
-}
-
-.campo label {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.campo input,
-.campo select,
-.campo textarea {
-  padding: 1rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.campo input:focus,
-.campo select:focus,
-.campo textarea:focus {
-  border-color: #afcfb4;
-  outline: none;
-}
-
-.btn-salvar {
-  background: linear-gradient(to right, #afcfb4, #9fd39c);
-  color: #2c5530;
-  border: none;
-  padding: 1.2rem 2.5rem;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  width: 100%;
-  cursor: pointer;
-  margin-top: 1.5rem;
-}
-
-.btn-salvar:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(175, 207, 180, 0.4);
-}
-
-/* ===== RELATÓRIO ===== */
-
+/* FILTROS */
 #filtros {
   background: white;
   padding: 2.5rem;
@@ -238,10 +171,16 @@ h2 {
   margin-bottom: 2rem;
 }
 
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .filtro {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.5rem;
 }
 
 .filtro label {
@@ -260,6 +199,24 @@ h2 {
 
 .filtro input:focus,
 .filtro select:focus {
+  border-color: #afcfb4;
+  outline: none;
+}
+
+.preco-range {
+  display: flex;
+  gap: 1rem;
+}
+
+.preco-range input {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.preco-range input:focus {
   border-color: #afcfb4;
   outline: none;
 }
@@ -352,6 +309,10 @@ tr:hover {
 
   .row {
     grid-template-columns: 1fr;
+  }
+
+  .preco-range {
+    flex-direction: column;
   }
 }
 
