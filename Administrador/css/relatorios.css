@@ -48,10 +48,30 @@ header img {
 
 #user {
   background: white;
-  padding: 0.7rem 1.5rem;
-  border-radius: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   border: 2px solid #afcfb4;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+#user:hover {
+  background: linear-gradient(to bottom right, #afcfb4, #9fd39c);
+  box-shadow: 0 0 0 4px rgba(18, 18, 18, 0.4);
+}
+
+#user:hover svg {
+  color: white;
+}
+
+#user svg {
+  width: 20px;
+  height: 20px;
+  color: #2c5530;
 }
 
 /* SIDEBAR */
