@@ -17,7 +17,6 @@
         <h1>NanoSabores</h1>
         <img src="../assets/icon.png" alt="Logo do NanoSabores" />
       </div>
-
       <a id="user" href="./login.html">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,46 +62,51 @@
         <div id="filtros">
           <h2 class="form-title">Filtros</h2>
 
-          <div class="filtro">
-            <label>Nome</label>
-            <input type="text" placeholder="_____________________" />
+          <div class="row">
+            <div class="filtro">
+              <label>Nome</label>
+              <input type="text" placeholder="_____________________" />
+            </div>
+            <div class="filtro">
+              <label>E-mail</label>
+              <input type="email" placeholder="_____@____.com" />
+            </div>
           </div>
 
-          <div class="filtro">
-            <label>E-mail</label>
-            <input type="email" placeholder="_____@____.com" />
-          </div>
-
-          <div class="filtro">
-            <label>CPF</label>
-            <input
-              type="text"
-              placeholder="___.___.___-__"
-              maxlength="14"
-              inputmode="numeric"
-              oninput="
-                this.value = this.value
-                  .replace(/[^\d]/g, '')
-                  .replace(/(\d{3})(\d)/, '$1.$2')
-                  .replace(/(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
-                  .replace(/(\d{3})\.(\d{3})\.(\d{3})(\d{1,2})/, '$1.$2.$3-$4')
-                  .slice(0, 14)
-              "
-            />
-          </div>
-
-          <div class="filtro">
-            <label>Cargo</label>
-            <select>
-              <option value="">Todos</option>
-              <option>Aprendiz</option>
-              <option>Gerente</option>
-              <option>Caixa</option>
-              <option>Administração</option>
-              <option>Pizzaiolo</option>
-              <option>Faxineiro</option>
-              <option>Motoboy</option>
-            </select>
+          <div class="row">
+            <div class="filtro">
+              <label>CPF</label>
+              <input
+                type="text"
+                placeholder="___.___.___-__"
+                maxlength="14"
+                inputmode="numeric"
+                oninput="
+                  this.value = this.value
+                    .replace(/[^\d]/g, '')
+                    .replace(/(\d{3})(\d)/, '$1.$2')
+                    .replace(/(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
+                    .replace(
+                      /(\d{3})\.(\d{3})\.(\d{3})(\d{1,2})/,
+                      '$1.$2.$3-$4',
+                    )
+                    .slice(0, 14)
+                "
+              />
+            </div>
+            <div class="filtro">
+              <label>Cargo</label>
+              <select>
+                <option value="">Todos</option>
+                <option>Aprendiz</option>
+                <option>Gerente</option>
+                <option>Caixa</option>
+                <option>Administração</option>
+                <option>Pizzaiolo</option>
+                <option>Faxineiro</option>
+                <option>Motoboy</option>
+              </select>
+            </div>
           </div>
 
           <div class="acoes">
@@ -160,7 +164,10 @@
           </table>
         </div>
 
-        <button class="button-cadFunc">
+        <button
+          class="button-cadFunc"
+          onclick="window.location.href = './cad_funcionario.html'"
+        >
           <a href="./cad_funcionario.html">Adicionar Funcionário</a>
         </button>
       </div>

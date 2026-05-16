@@ -171,12 +171,18 @@ h2 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .filtro {
   display: flex;
   flex-direction: column;
   min-width: 160px;
   flex: 1;
-  margin-bottom: 1.5rem;
 }
 
 .filtro label {
@@ -208,13 +214,13 @@ input[inputmode="numeric"] {
   align-items: flex-end;
   gap: 10px;
   margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .btn-filtrar,
 .btn-filtrar-cinza {
   padding: 1.2rem 2.5rem;
   border-radius: 8px;
-  margin-bottom: 1.4rem;
   font-weight: bold;
   font-size: 1rem;
   text-decoration: none;
@@ -318,6 +324,10 @@ tr:hover {
 
   main {
     margin-left: 0;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
   }
 
   .filtro {
