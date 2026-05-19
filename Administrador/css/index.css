@@ -141,9 +141,10 @@ h2 {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
-  justify-content: center;
+  align-content: center;
+  margin-left: 70px;
 }
 
 .card {
@@ -154,7 +155,7 @@ h2 {
   text-align: center;
   transition: all 0.3s ease;
   border-top: 6px solid #afcfb4;
-  max-width: 320px;
+  max-width: 350px;
 }
 
 .card:hover {
