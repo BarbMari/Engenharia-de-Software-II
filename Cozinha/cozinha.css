@@ -4,7 +4,16 @@
 }
 
 h1 {
-    font-size: 120px;
+    font-size: 100px;
+    color: #A22E21;
+}
+
+h2 {
+    color: #A22E21;
+}
+
+body {
+    background-color: white
 }
 
 .grid {
@@ -25,10 +34,11 @@ h1 {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
+    color: #A22E21;
 }
 
 .principal {
-    margin-left: 280px;
+    margin-left: 10px;
     padding: 20px;
 }
 
@@ -38,7 +48,7 @@ h1 {
 
 /* fontes */
 
-/* .almendra-sc-regular {
+.almendra-sc-regular {
     font-family: "Almendra SC", serif;
     font-weight: 400;
     font-style: normal;
@@ -48,4 +58,17 @@ h1 {
       font-family: "Uncial Antiqua", system-ui;
       font-weight: 400;
       font-style: normal;
-} */
+}
+
+.logo-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+
+}
+
+.logo-container img {
+    width: 150px;
+    height: auto;
+}
