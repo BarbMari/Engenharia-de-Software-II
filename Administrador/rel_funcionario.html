@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/relatorios.css" />
+    <link
+      rel="icon"
+      href="../assets/LogoNanoSaboresCortada.png"
+      type="image/png"
+    />
+    <title>Relatório de Funcionários</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <h1>NanoSabores</h1>
+        <img src="../assets/icon.png" alt="Logo do NanoSabores" />
+      </div>
+      <a id="user" href="./login.html">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          color="#2c5530"
+        >
+          <path
+            d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
+          />
+        </svg>
+      </a>
+    </header>
+
+    <div id="sidebar">
+      <div class="container-sidebar">
+        <ul>
+          <li class="categoria">Home</li>
+          <li><a href="./index.html">Início</a></li>
+
+          <li class="categoria">Cadastros</li>
+          <li><a href="./cad_funcionario.html">Funcionários</a></li>
+          <li><a href="./cad_produto.html">Produtos</a></li>
+          <li><a href="./cad_sabores.html">Sabores de Pizza</a></li>
+
+          <li class="categoria">Relatórios</li>
+          <li>
+            <a href="./rel_funcionario.html" class="active">Funcionários</a>
+          </li>
+          <li><a href="./rel_produto.html">Estoque</a></li>
+          <li><a href="./rel_pedido.html">Pedidos</a></li>
+          <li><a href="./rel_venda.html">Vendas</a></li>
+          <li><a href="./rel_sabores.html">Sabores Cadastrados</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <main>
+      <div id="containerMain">
+        <h2>Relatório de Funcionários</h2>
+        <p class="subtitulo">Lista completa dos colaboradores da pizzaria</p>
+
+        <div id="filtros">
+          <h2 class="form-title">Filtros</h2>
+
+          <div class="row">
+            <div class="filtro">
+              <label>Nome</label>
+              <input type="text" placeholder="__________________________________________________________" />
+            </div>
+            <div class="filtro">
+              <label>E-mail</label>
+              <input type="email" placeholder="nomeusuario@email.com" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="filtro">
+              <label>CPF</label>
+              <input
+                type="text"
+                placeholder="___.___.___-__"
+                maxlength="14"
+                inputmode="numeric"
+                oninput="
+                  this.value = this.value
+                    .replace(/[^\d]/g, '')
+                    .replace(/(\d{3})(\d)/, '$1.$2')
+                    .replace(/(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
+                    .replace(
+                      /(\d{3})\.(\d{3})\.(\d{3})(\d{1,2})/,
+                      '$1.$2.$3-$4',
+                    )
+                    .slice(0, 14)
+                "
+              />
+            </div>
+            <div class="filtro">
+              <label>Cargo</label>
+              <select>
+                <option value="">Todos</option>
+                <option>Aprendiz</option>
+                <option>Gerente</option>
+                <option>Caixa</option>
+                <option>Administração</option>
+                <option>Pizzaiolo</option>
+                <option>Faxineiro</option>
+                <option>Motoboy</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="acoes">
+            <button class="btn-filtrar">Enviar</button>
+          </div>
+        </div>
+
+        <!-- TABELA -->
+        <div class="tabela-container">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome Completo</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Cargo</th>
+                <th>CPF</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaFuncionarios">
+              <tr>
+                <td>1</td>
+                <td>Ana Beatriz Silva</td>
+                <td>ana.silva@pizzaria.com</td>
+                <td>(11) 98765-4321</td>
+                <td>Gerente</td>
+                <td>123.456.789-00</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Carlos Eduardo Souza</td>
+                <td>carlos.souza@pizzaria.com</td>
+                <td>(21) 99888-7766</td>
+                <td>Caixa</td>
+                <td>234.567.890-11</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Mariana Oliveira Costa</td>
+                <td>mariana.costa@pizzaria.com</td>
+                <td>(31) 97766-5544</td>
+                <td>Administração</td>
+                <td>345.678.901-22</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Ricardo Pereira Lima</td>
+                <td>ricardo.lima@pizzaria.com</td>
+                <td>(41) 96655-4433</td>
+                <td>Pizzaiolo</td>
+                <td>456.789.012-33</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <button
+          class="button-cadFunc"
+          onclick="window.location.href = './cad_funcionario.html'"
+        >
+          <a href="./cad_funcionario.html">Adicionar Funcionário</a>
+        </button>
+      </div>
+    </main>
+  </body>
+</html>

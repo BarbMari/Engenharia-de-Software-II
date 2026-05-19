@@ -1,0 +1,168 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', Arial, sans-serif;
+  background:
+    linear-gradient(rgba(248, 249, 250, 0.72), rgba(248, 249, 250, 0.72)),
+    url(../../assets/fundo_login.png) center / cover no-repeat;
+}
+
+/* PAGE */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* CARD */
+.login-card {
+  width: min(440px, 100%);
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 20px;
+  padding: 2.5rem 2.5rem 2.5rem;
+  box-shadow: 0 20px 60px rgba(15, 48, 28, 0.13);
+  border: 1px solid rgba(159, 211, 156, 0.4);
+  animation: fadeUp 0.45s ease both;
+}
+
+/* BRAND */
+.login-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1.8rem;
+}
+
+.login-brand img {
+  height: 42px;
+  border-radius: 8px;
+}
+
+.login-brand span {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  color: #2c5530;
+  letter-spacing: -0.02em;
+}
+
+/* TÍTULOS */
+.login-card h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: #1e3d22;
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+
+.login-sub {
+  text-align: center;
+  color: #888;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+/* CAMPOS */
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.campo label {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #333;
+  margin-bottom: 0.45rem;
+  letter-spacing: 0.01em;
+}
+
+.campo input {
+  padding: 0.85rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: 'DM Sans', Arial, sans-serif;
+  color: #333;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.campo input::placeholder {
+  color: #bbb;
+}
+
+.campo input:focus {
+  border-color: #9fd39c;
+  box-shadow: 0 0 0 3px rgba(159, 211, 156, 0.25);
+}
+
+/* BOTÃO */
+.btn-login {
+  display: block;
+  width: 100%;
+  margin-top: 1.8rem;
+  padding: 1rem;
+  background: linear-gradient(to right, #afcfb4, #9fd39c);
+  color: #2c5530;
+  font-family: 'DM Sans', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(175, 207, 180, 0.5);
+}
+
+.btn-voltar {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: #888;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+  padding-top: 1rem;
+}
+
+.btn-voltar:hover {
+  color: #2c5530;
+}
+
+/* ANIMAÇÃO DE ENTRADA */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVO */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .login-card h1 {
+    font-size: 1.45rem;
+  }
+}

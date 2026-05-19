@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/cad_pizza.css" />
+    <link
+      rel="icon"
+      href="../assets/LogoNanoSaboresCortada.png"
+      type="image/png"
+    />
+    <title>Cadastro de Vendas</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <h1>NanoSabores</h1>
+        <img src="../assets/icon.png" alt="Logo" />
+      </div>
+
+      <a id="user" href="./login.html">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          color="#2c5530"
+        >
+          <path
+            d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
+          />
+        </svg>
+      </a>
+    </header>
+
+    <div id="sidebar">
+      <div class="container-sidebar">
+        <ul>
+          <li class="categoria">Home</li>
+          <li><a href="./index.html">Início</a></li>
+
+          <li class="categoria">Cadastros</li>
+          <li><a href="./cad_funcionario.html">Funcionários</a></li>
+          <li><a href="./cad_produto.html">Produtos</a></li>
+          <li>
+            <a href="./cad_sabores.html" class="active">Sabores de Pizza</a>
+          </li>
+
+          <li class="categoria">Relatórios</li>
+          <li><a href="./rel_funcionario.html">Funcionários</a></li>
+          <li><a href="./rel_produto.html">Estoque</a></li>
+          <li><a href="./rel_pedido.html">Pedidos</a></li>
+          <li><a href="./rel_venda.html">Vendas</a></li>
+          <li><a href="./rel_sabores.html">Sabores Cadastrados</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <main>
+      <div id="containerMain">
+        <h2>Nova Pizza</h2>
+        <p class="subtitulo">Crie uma novo sabor!</p>
+
+        <div id="formVenda">
+          <div class="row">
+            <div class="campo full">
+              <label>Nome do Sabor:</label>
+              <input type="text" name="nomeProduto" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo full">
+              <label>Pizza</label>
+              <select id="pizza">
+                <option value="">Selecione o tipo</option>
+                <option value="Salgada">Salgada</option>
+                <option value="Vegetariana">Vegetariana</option>
+                <option value="Doce">Doce</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo">
+              <label>Tipo de molho</label>
+              <select id="pizza">
+                <option value="">Nenhum</option>
+                <option value="Tomate">Tomate</option>
+                <option value="Pesto">Pesto</option>
+              </select>
+            </div>
+
+            <div class="campo">
+              <label>Tipo de queijo</label>
+              <select id="pizza">
+                <option value="">Nenhum</option>
+                <option value="Mussarela">Mussarela</option>
+                <option value="Cheddar">Cheddar</option>
+                <option value="Parmesão">Parmesão</option>
+                <option value="Provolone">Provolone</option>
+                <option value="Gouda">Gouda</option>
+                <option value="5 Queijos">5 Queijos</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo full">
+              <label>Ingredientes:</label>
+
+              <select name="ingredientes" id="ingredientes" multiple size="10">
+                <option value="Azeitona">Azeitona</option>
+                <option value="Alho">Alho</option>
+                <option value="Atum">Atum</option>
+                <option value="Bacon">Bacon</option>
+                <option value="Batata Palha">Batata Palha</option>
+                <option value="Calabresa">Calabresa</option>
+                <option value="Catupiry">Catupiry</option>
+                <option value="Cebola">Cebola</option>
+                <option value="Cogumelos">Cogumelos</option>
+                <option value="Filé Mignon">Filé Mignon</option>
+                <option value="Frango desfiado">Frango desfiado</option>
+                <option value="Manjericão">Manjericão</option>
+                <option value="Milho">Milho</option>
+                <option value="Orégano">Orégano</option>
+                <option value="Ovo">Ovo</option>
+                <option value="Palmito">Palmito</option>
+                <option value="Pepperoni">Pepperoni</option>
+                <option value="Pimentão">Pimentão</option>
+                <option value="Presunto">Presunto</option>
+                <option value="Rúcula">Rúcula</option>
+                <option value="Tomate">Tomate</option>
+              </select>
+
+              <small>
+                Segure CTRL (Windows) ou CMD (Mac) para selecionar vários
+                ingredientes.
+              </small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo full">
+              <label>Definir Preço</label>
+              <input
+                type="number"
+                id="valorTotal"
+                step="0.5"
+                placeholder="R$ 45.00"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo full">
+              <label>Resumo do Sabor</label>
+
+              <textarea
+                id="resumoSabor"
+                rows="10"
+                placeholder="Exemplo:
+          
+          Nome do sabor: Strogonoff de Frango
+          Tipo da pizza: Salgada
+          Molho: Tomate
+          Queijo: Mussarela
+          Ingredientes: Frango Desfiado, Batata Palha
+          Valor: R$ 45,00"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo full">
+              <button class="btn-salvar" type="submit">Salvar Sabor</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
