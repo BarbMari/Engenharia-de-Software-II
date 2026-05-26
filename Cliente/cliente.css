@@ -470,7 +470,7 @@ main.principal {
             }
 
             .payment-field textarea {
-                min-height: 120px;
+                min-height: 20px;
                 resize: vertical;
             }
 
