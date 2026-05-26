@@ -1,9 +1,10 @@
 CREATE TABLE IF NOT EXISTS `Venda` (
 	`id` int AUTO_INCREMENT NOT NULL UNIQUE,
+	`IdPedido` int NOT NULL,
 	`Valor` float NOT NULL,
 	`Status` varchar(20) NOT NULL,
-	`DataPedido` date,
-	`Pagamento` varchar(15),
+	`DataPedido` date NOT NULL,
+	`Pagamento` varchar(15) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 CREATE TABLE IF NOT EXISTS `Pedido` (
@@ -11,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `Pedido` (
 	`NomePedido` varchar(25),
 	`NomeCliente` varchar(25),
 	`Observacoes` text NOT NULL,
+	`Itens` int NOT NULL,
 	PRIMARY KEY (`id`)
 );
 CREATE TABLE IF NOT EXISTS `Item` (
@@ -19,6 +21,9 @@ CREATE TABLE IF NOT EXISTS `Item` (
 	`Valor` float NOT NULL,
 	`Imagem` blob,
 	`Venda` boolean NOT NULL,
+	`Resumo` text,
+	`Igredientes` text,
+	`Tipo` varchar(12) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 CREATE TABLE IF NOT EXISTS `Funcionario` (
@@ -41,3 +46,5 @@ CREATE TABLE IF NOT EXISTS `ProdutoEstoque` (
 	`DataValidade` date NOT NULL,
 	PRIMARY KEY (`id`)
 );
+ALTER TABLE `Venda` ADD CONSTRAINT `Venda_fk1` FOREIGN KEY (`IdPedido`) REFERENCES `Pedido`(`id`);
+ALTER TABLE `Pedido` ADD CONSTRAINT `Pedido_fk4` FOREIGN KEY (`Itens`) REFERENCES `Item`(`id`);
