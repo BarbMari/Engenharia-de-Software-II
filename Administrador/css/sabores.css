@@ -1,11 +1,15 @@
-/* RESET */
+/* =========================
+   RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* BASE */
+/* =========================
+   BASE
+========================= */
 body {
   font-family: Arial, sans-serif;
   background: #f8f9fa;
@@ -17,6 +21,9 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* =========================
+   HEADER
+========================= */
 header {
   background: linear-gradient(to right, #afcfb4, #9fd39c);
   padding: 1rem 2rem;
@@ -47,6 +54,7 @@ header img {
   display: block;
 }
 
+/* USER */
 #user {
   background: white;
   width: 38px;
@@ -57,16 +65,12 @@ header img {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: 0.2s;
 }
 
 #user:hover {
   background: linear-gradient(to bottom right, #afcfb4, #9fd39c);
   box-shadow: 0 0 0 4px rgba(175, 207, 180, 0.4);
-}
-
-#user:hover svg {
-  color: white;
 }
 
 #user svg {
@@ -75,7 +79,13 @@ header img {
   color: #2c5530;
 }
 
-/* SIDEBAR */
+#user:hover svg {
+  color: white;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
 #sidebar {
   position: fixed;
   left: 0;
@@ -85,7 +95,6 @@ header img {
   background: white;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .container-sidebar ul {
@@ -102,7 +111,7 @@ header img {
   padding: 1rem 2rem;
   color: #666;
   text-decoration: none;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
 .container-sidebar a:hover,
@@ -111,7 +120,7 @@ header img {
   color: #2c5530;
 }
 
-/* CATEGORIAS */
+/* categoria */
 .categoria {
   padding: 0.8rem 2rem;
   color: #999;
@@ -122,10 +131,11 @@ header img {
   margin: 1rem 0 0.5rem 0;
 }
 
-/* MAIN */
+/* =========================
+   MAIN
+========================= */
 main {
   margin-left: 260px;
-  margin-top: 1px;
   padding: 2rem;
 }
 
@@ -140,34 +150,27 @@ h2 {
   margin-bottom: 5px;
 }
 
-.form-title {
-  color: #2c5530;
-  font-size: 2.2rem;
-  margin-bottom: 5px;
-  text-align: center;
-  padding-bottom: 1rem;
-}
-
 .subtitulo {
   color: #666;
   font-size: 1.1rem;
   margin-bottom: 2rem;
 }
 
-/* ===== CADASTRO ===== */
-
+/* =========================
+   FORM
+========================= */
 #formVenda {
   background: white;
   padding: 2.5rem;
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
 }
 
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .campo {
@@ -201,6 +204,9 @@ h2 {
   outline: none;
 }
 
+/* =========================
+   BOTÃO
+========================= */
 .btn-salvar {
   background: linear-gradient(to right, #afcfb4, #9fd39c);
   color: #2c5530;
@@ -212,6 +218,7 @@ h2 {
   width: 100%;
   cursor: pointer;
   margin-top: 1.5rem;
+  transition: 0.2s;
 }
 
 .btn-salvar:hover {
@@ -219,8 +226,57 @@ h2 {
   box-shadow: 0 5px 15px rgba(175, 207, 180, 0.4);
 }
 
-/* ===== RELATÓRIO ===== */
+/* =========================
+   INGREDIENTES (TAGS)
+========================= */
+#buscarIngrediente {
+  width: 100%;
+  margin-bottom: 12px;
+}
 
+.ingredientes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.ingrediente-tag {
+  background: #f8f9fa;
+  border: 2px solid #afcfb4;
+  color: #2c5530;
+  border-radius: 20px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 0.95rem;
+  font-weight: 500;
+  user-select: none;
+}
+
+.ingrediente-tag:hover {
+  background: #afcfb4;
+}
+
+.ingrediente-tag.selecionado {
+  background: #2c5530;
+  border-color: #2c5530;
+  color: white;
+  box-shadow: 0 3px 8px rgba(44, 85, 48, 0.3);
+}
+
+.ingrediente-tag.selecionado::before {
+  content: "✓ ";
+}
+
+/* =========================
+   RELATÓRIOS
+========================= */
 #filtros {
   background: white;
   padding: 2.5rem;
@@ -243,9 +299,7 @@ h2 {
 }
 
 .filtro label {
-
   font-weight: bold;
-  color: #333;
   margin-bottom: 0.5rem;
 }
 
@@ -254,7 +308,6 @@ h2 {
   padding: 1rem;
   border: 2px solid #ddd;
   border-radius: 8px;
-  font-size: 1rem;
 }
 
 .filtro input:focus,
@@ -263,63 +316,9 @@ h2 {
   outline: none;
 }
 
-/* FAIXA DE PREÇO */
-.preco-range {
-    display: flex;
-    flex-direction: column;
-    gap: 2.6rem;
-    max-width: 100%;
-}
-
-.preco-range input {
-  flex: 1;
-  padding: 1rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.preco-range input:focus {
-  border-color: #afcfb4;
-  outline: none;
-}
-
-.acoes {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-filtrar,
-.btn-filtrar-cinza {
-  padding: 1.2rem 2.5rem;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  margin-bottom: 1.3rem;
-}
-
-.btn-filtrar {
-  background: #2c5530;
-  color: white;
-}
-
-.btn-filtrar:hover {
-  background: #1f3d23;
-}
-
-.btn-filtrar-cinza {
-  background: #666;
-  color: white;
-}
-
-.btn-filtrar-cinza:hover {
-  background: #444;
-}
-
-/* TABELA */
+/* =========================
+   TABELA
+========================= */
 .tabela-container {
   background: white;
   padding: 2.5rem;
@@ -330,7 +329,6 @@ h2 {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 2rem;
 }
 
 th {
@@ -338,7 +336,6 @@ th {
   color: #2c5530;
   padding: 1.2rem;
   text-align: left;
-  font-weight: bold;
 }
 
 td {
@@ -360,7 +357,9 @@ tr:hover {
   border-radius: 10px;
 }
 
-/* RESPONSIVO */
+/* =========================
+   RESPONSIVO
+========================= */
 @media (max-width: 768px) {
   #sidebar {
     transform: translateX(-100%);
@@ -372,10 +371,6 @@ tr:hover {
 
   .row {
     grid-template-columns: 1fr;
-  }
-
-  .preco-range {
-    flex-direction: column;
   }
 }
 
