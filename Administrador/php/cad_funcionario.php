@@ -1,58 +1,48 @@
 <?php
-header('Content-Type: application/json');
+header("Content-Type: application/json");
+require_once "conection.php";
 
-$host = 'localhost';
-$db   = 'seu_banco';
-$user = 'root';
-$pass = '';
+$data = json_decode(file_get_contents("php://input"), true);
 
-$conn = new mysqli($host, $user, $pass, $db);
-$conn->set_charset('utf8mb4');
-
-if ($conn->connect_error) {
-    echo json_encode(['success' => false, 'message' => 'Erro de conexão.']);
+if (!$data) {
+    echo json_encode(["success" => false, "message" => "Nenhum dado recebido pelo servidor."]);
     exit;
 }
 
-$method = $_SERVER['REQUEST_METHOD'];
-$data   = json_decode(file_get_contents('php://input'), true);
+$id = isset($data['id']) ? intval($data['id']) : 0;
+$nomeCompleto = $conn->real_escape_string($data['NomeCompleto']);
+$email = $conn->real_escape_string($data['Email']);
+$cpf = $conn->real_escape_string($data['CPF']);
+$telefone = $conn->real_escape_string($data['Telefone']);
+$cargo = $conn->real_escape_string($data['Cargo']);
 
-// CADASTRAR
-if ($method === 'POST' && !isset($data['id'])) {
-    $stmt = $conn->prepare("INSERT INTO Funcionario (NomeCompleto, Email, CPF, Telefone, Cargo) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $data['NomeCompleto'], $data['Email'], $data['CPF'], $data['Telefone'], $data['Cargo']);
-    if ($stmt->execute()) {
-        echo json_encode(['success' => true, 'message' => 'Funcionário cadastrado com sucesso!']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Erro ao cadastrar: ' . $conn->error]);
-    }
+if (empty($nomeCompleto) || empty($email) || empty($cpf) || empty($cargo)) {
+    echo json_encode(["success" => false, "message" => "Preencha todos os campos obrigatórios."]);
+    exit;
 }
 
-// EDITAR
-if ($method === 'POST' && isset($data['id'])) {
-    $stmt = $conn->prepare("UPDATE Funcionario SET NomeCompleto=?, Email=?, CPF=?, Telefone=?, Cargo=? WHERE id=?");
-    $stmt->bind_param("sssssi", $data['NomeCompleto'], $data['Email'], $data['CPF'], $data['Telefone'], $data['Cargo'], $data['id']);
-    if ($stmt->execute()) {
-        echo json_encode(['success' => true, 'message' => 'Funcionário atualizado com sucesso!']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Erro ao atualizar: ' . $conn->error]);
-    }
+if ($id > 0) {
+    // Atualizar funcionário existente
+    $sql = "UPDATE Funcionario SET 
+            NomeCompleto = '$nomeCompleto', 
+            Email = '$email', 
+            CPF = '$cpf', 
+            Telefone = '$telefone', 
+            Cargo = '$cargo' 
+            WHERE id = $id";
+    $message = "Funcionário atualizado com sucesso!";
+} else {
+    // Inserir novo funcionário
+    $sql = "INSERT INTO Funcionario (NomeCompleto, Email, CPF, Telefone, Cargo) 
+            VALUES ('$nomeCompleto', '$email', '$cpf', '$telefone', '$cargo')";
+    $message = "Funcionário cadastrado com sucesso!";
 }
 
-// EXCLUIR
-if ($method === 'DELETE') {
-    $stmt = $conn->prepare("DELETE FROM Funcionario WHERE id=?");
-    $stmt->bind_param("i", $data['id']);
-    if ($stmt->execute()) {
-        echo json_encode(['success' => true, 'message' => 'Funcionário excluído!']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Erro ao excluir: ' . $conn->error]);
-    }
+if ($conn->query($sql)) {
+    echo json_encode(["success" => true, "message" => $message]);
+} else {
+    echo json_encode(["success" => false, "message" => "Erro no banco de dados: " . $conn->error]);
 }
 
-// BUSCAR POR ID (para preencher form de edição)
-if ($method === 'GET' && isset($_GET['id'])) {
-    $id = (int)$_GET['id'];
-    $result = $conn->query("SELECT * FROM Funcionario WHERE id=$id");
-    echo json_encode($result->fetch_assoc());
-}
+$conn->close();
+?>
