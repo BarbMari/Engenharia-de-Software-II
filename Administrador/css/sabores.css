@@ -226,6 +226,46 @@ h2 {
   box-shadow: 0 5px 15px rgba(175, 207, 180, 0.4);
 }
 
+.acoes {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-filtrar,
+.btn-filtrar-cinza {
+  padding: 1.2rem 2.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-filtrar {
+  background: #2c5530;
+  color: white;
+}
+
+.btn-filtrar:hover {
+  background: #1f3d23;
+}
+
+.btn-filtrar-cinza {
+  background: #666;
+  color: white;
+}
+
+.btn-filtrar-cinza:hover {
+  background: #444;
+}
+
+
 /* =========================
    INGREDIENTES (TAGS)
 ========================= */
