@@ -1,56 +1,62 @@
-const tbody = document.getElementById('tabelaFuncionarios');
+document.addEventListener("DOMContentLoaded", () => {
+    carregarTabelaFuncionarios();
+});
 
-// Carrega todos ao abrir a página
-carregarFuncionarios();
-
-// Botão filtrar
-document.querySelector('.btn-filtrar').addEventListener('click', carregarFuncionarios);
-
-async function carregarFuncionarios() {
-    const inputs  = document.querySelectorAll('#filtros input, #filtros select');
-    const nome    = inputs[0].value;
-    const email   = inputs[1].value;
-    const cpf     = inputs[2].value;
-    const cargo   = inputs[3].value;
-
-    const params = new URLSearchParams({ nome, email, cpf, cargo });
-    const res    = await fetch(`rel_funcionario.php?${params}`);
-    const lista  = await res.json();
-
-    tbody.innerHTML = '';
-
-    if (lista.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6">Nenhum funcionário encontrado.</td></tr>';
+function carregarTabelaFuncionarios() {
+    const tabelaBody = document.getElementById("tabelaFuncionarios");
+    
+    if (!tabelaBody) {
+        console.error("Erro: Não encontrei a tabela com id 'tabelaFuncionarios'");
         return;
     }
 
-    lista.forEach(f => {
-        tbody.innerHTML += `
-            <tr>
-                <td>${f.id}</td>
-                <td>${f.NomeCompleto}</td>
-                <td>${f.Email}</td>
-                <td>${f.Telefone}</td>
-                <td>${f.Cargo}</td>
-                <td>${f.CPF}</td>
-                <td>
-                    <a href="cad_funcionario.html?id=${f.id}">Editar</a> |
-                    <a href="#" onclick="excluir(${f.id})">Excluir</a>
-                </td>
-            </tr>`;
-    });
-}
+    // Faz a busca no arquivo PHP correspondente
+    fetch("./php/rel_funcionario.php")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro na resposta do servidor HTTP");
+            }
+            return response.json();
+        })
+        .then(funcionarios => {
+            // LIMPA OS DADOS FIXOS (Ana Beatriz, Carlos, etc.) PARA REESCREVER COM O BANCO
+            tabelaBody.innerHTML = ""; 
 
-async function excluir(id) {
-    if (!confirm('Excluir este funcionário?')) return;
+            if (funcionarios.length === 0) {
+                tabelaBody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: #888;">Nenhum funcionário cadastrado no banco de dados.</td></tr>`;
+                return;
+            }
 
-    const res  = await fetch('cad_funcionario.php', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id }),
-    });
-    const data = await res.json();
+            // Desenha as novas linhas vinda do MySQL
+            funcionarios.forEach(func => {
+                const tr = document.createElement("tr");
 
-    alert(data.message);
-    if (data.success) carregarFuncionarios();
+                // Formatar o Telefone visualmente
+                let telFormatado = func.Telefone;
+                if(telFormatado.length === 11) {
+                    telFormatado = `(${telFormatado.slice(0,2)}) ${telFormatado.slice(2,7)}-${telFormatado.slice(7)}`;
+                } else if(telFormatado.length === 10) {
+                    telFormatado = `(${telFormatado.slice(0,2)}) ${telFormatado.slice(2,6)}-${telFormatado.slice(6)}`;
+                }
+
+                // Formatar o CPF visualmente
+                let cpfFormatado = func.CPF;
+                if(cpfFormatado.length === 11) {
+                    cpfFormatado = `${cpfFormatado.slice(0,3)}.${cpfFormatado.slice(3,6)}.${cpfFormatado.slice(6,9)}-${cpfFormatado.slice(9)}`;
+                }
+
+                tr.innerHTML = `
+                    <td>${func.id}</td>
+                    <td>${func.NomeCompleto}</td>
+                    <td>${func.Email}</td>
+                    <td>${telFormatado}</td>
+                    <td>${func.Cargo}</td>
+                    <td>${cpfFormatado}</td>
+                `;
+                tabelaBody.appendChild(tr);
+            });
+        })
+        .catch(error => {
+            console.error("Erro ao carregar dados do relatório:", error);
+        });
 }
