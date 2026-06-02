@@ -133,10 +133,28 @@ async function fetchMenu() {
     }
 }
 
+function saveCartToStorage() {
+    localStorage.setItem('pedidoCart', JSON.stringify(cart));
+}
+
+function goToPayment() {
+    saveCartToStorage();
+    window.location.href = 'pagamento.html';
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     const items = await fetchMenu();
     renderItems(items);
     updateResumo();
+    
+    // Wire payment button
+    const pagamentoLink = document.querySelector('.pagamento a');
+    if (pagamentoLink) {
+        pagamentoLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            goToPayment();
+        });
+    }
 });
 
 
