@@ -15,10 +15,7 @@ try {
     $pizzas = $dataPrep->fetchAll(PDO::FETCH_ASSOC);
     
 
-    echo json_encode([
-        'pizzas' => $pizzas
-    ]);
-
+    echo json_encode($pizzas);
 
 } catch(PDOException $e) {echo 'ERRO ENCONTRADO: ' . $e->getMessage();}
 
