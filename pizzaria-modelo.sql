@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `Pedido` (
 	`id` int AUTO_INCREMENT NOT NULL UNIQUE,
 	`NomePedido` varchar(25),
 	`NomeCliente` varchar(25),
-	`Observacoes` text NOT NULL,
+	`Observacoes` text NOT NULL, //TODO: Precisa por coiso de pagamento ok?
 	`Itens` int NOT NULL,
 	PRIMARY KEY (`id`)
 );

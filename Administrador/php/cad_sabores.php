@@ -11,6 +11,7 @@ try {
 } catch (PDOException $error) {
   echo 'Connection error: ' . $error->getMessage();
 }
+
 $fla = $_POST['fla']; // ok
 $nom = $_POST['nom']; // ok
 $val = $_POST['val']; // ok

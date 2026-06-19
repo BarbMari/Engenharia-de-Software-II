@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-$username='';
+$username='root';
 $password='';
 $dbname='pizzaria';
 $host='localhost';
@@ -22,7 +22,7 @@ try {
     $nomeCliente = $data['nomeCliente'] ?? 'Cliente';
     $observacoes = $data['observacoes'] ?? '';
     $formaPagamento = $data['formaPagamento'] ?? 'indefinido';
-    $itens = $data['itens'] ?? [];
+    $itens = $data['itens'];
     
     if (empty($itens)) {
         http_response_code(400);
@@ -31,9 +31,13 @@ try {
     }
     
     // Save Pedido record
-    $sqlPedido = 'INSERT INTO Pedido (NomePedido, NomeCliente, Observacoes, Itens) VALUES (?, ?, ?, ?)';
-    $stmtPedido = $conn->prepare($sqlPedido);
-    $numItens = count($itens);
+    $sqlPedido = 'INSERT INTO Pedido (NomePedido, NomeCliente, Observacoes, Itens) VALUES (:ped, :cli, :obs, :itn)';
+    $sqlPedido->bindParam(':ped', $ped);
+    $sqlPedido->bindParam(':cli', $nomeCliente);
+    $sqlPedido->bindParam(':obs', $observacoes); //TODO: Precisa por coiso de pagamento ok?
+    $sqlPedido->bindParam(':itn', $img);
+
+
     $stmtPedido->execute([
         uniqid('PEDIDO-'),
         $nomeCliente,
@@ -68,3 +72,4 @@ try {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
+?>

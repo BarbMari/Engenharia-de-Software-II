@@ -100,11 +100,17 @@ async function submitOrder() {
         valor: item.preco
     }));
     
+    let itens = "";
+    
+    for (let i = 0; i < orderItems.length; i++) {
+        itens += orderItems[i].nome + ", ";
+    }
+    
     const payload = {
         nomeCliente,
         observacoes,
-        formaPagamento,
-        itens: orderItems
+        formaPagamento, //TODO: Precisa por coiso de pagamento ok?
+        itens: itens
     };
     
     try {
