@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 $host = 'localhost';
-$db   = 'seu_banco';
+$db   = 'pizzaria';
 $user = 'root';
 $pass = '';
 
