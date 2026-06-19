@@ -63,13 +63,13 @@
       <h2>Nova Pizza</h2>
       <p class="subtitulo">Crie um novo sabor!</p>
 
-      <div id="formVenda">
+      <form id="formVenda" action="./php/cad_sabores.php" method="post">
 
         <!-- NOME -->
         <div class="row">
           <div class="campo full">
             <label>Nome do Sabor:</label>
-            <input type="text" name="nomeProduto" required />
+            <input type="text" name="nom" required />
           </div>
         </div>
 
@@ -77,7 +77,7 @@
         <div class="row">
           <div class="campo full">
             <label>Pizza</label>
-            <select id="tipoPizza">
+            <select id="tipoPizza" name="fla">
               <option value="">Selecione o tipo</option>
               <option value="Salgada">Salgada</option>
               <option value="Vegetariana">Vegetariana</option>
@@ -166,6 +166,21 @@
               id="valorTotal"
               step="0.5"
               placeholder="R$ 45.00"
+              name="val"
+            />
+          </div>
+        </div>
+
+        <!-- IMAGEM -->
+        <div class="row">
+          <div class="campo full">
+            <label>Imagem</label>
+
+            <input
+              type="text"
+              id="valorTotal"
+              placeholder="Cole aqui o URL da sua imagem!"
+              name="img"
             />
           </div>
         </div>
@@ -175,38 +190,42 @@
           <div class="campo full">
             <label>Resumo do Sabor</label>
 
-            <textarea
+            <textarea name="res"
               id="resumoSabor"
               rows="10"
               placeholder="Exemplo:
 
-Nome do sabor: Strogonoff de Frango
-Tipo da pizza: Salgada
-Molho: Tomate
-Queijo: Mussarela
-Ingredientes: Frango Desfiado, Batata Palha
-Valor: R$ 45,00"
+                Nome do sabor: Strogonoff de Frango
+                Tipo da pizza: Salgada
+                Molho: Tomate
+                Queijo: Mussarela
+                Ingredientes: Frango Desfiado, Batata Palha
+                Valor: R$ 45,00"
+              name="res"
             ></textarea>
 
           </div>
         </div>
 
+        <input type="hidden" name="ing" id="ing">
+
         <!-- BOTÃO -->
         <div class="row">
           <div class="campo full">
-            <button class="btn-salvar" type="submit">
+            <input class="btn-salvar" type="submit">
               Salvar Sabor
-            </button>
+            </input>
           </div>
         </div>
 
-      </div>
+      </form>
     </div>
   </main>
 
   <!-- SCRIPT -->
   <script>
     const ingredientesSelecionados = [];
+    const ingredientes = "";
 
     document.querySelectorAll(".ingrediente-tag")
       .forEach(tag => {
@@ -229,7 +248,7 @@ Valor: R$ 45,00"
             ingredientesSelecionados.push(ingrediente);
           }
 
-          console.log(ingredientesSelecionados);
+          updateIng();
         });
 
       });
@@ -249,6 +268,28 @@ Valor: R$ 45,00"
           });
 
       });
+
+      document.getElementById("queijo").addEventListener("input", function(event) {
+        updateIng();
+      });
+
+      document.getElementById("molho").addEventListener("input", function(event) {
+        updateIng();
+      });
+
+      function updateIng() {
+        let ingredientes = "";
+        ingredientes += document.getElementById("queijo").value;
+        ingredientes += "\n" + document.getElementById("molho").value;
+
+        for (let i = 0; i < ingredientesSelecionados.length; i++) {
+          ingredientes += "\n" + ingredientesSelecionados[i];
+        }
+
+        document.getElementById("ing").value = ingredientes;
+
+        console.log("Ingredientes Atuais: \n\n" + ingredientes);
+      }
   </script>
 
 </body>

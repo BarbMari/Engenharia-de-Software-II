@@ -1,261 +1,196 @@
 <!doctype html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/sabores.css" />
+    <link rel="icon" href="../assets/reallogofinal.png" type="image/png" />
+    <title>Relatório de Sabores</title>
+  </head>
 
-  <link rel="stylesheet" href="./css/sabores.css" />
-  <link rel="icon" href="../assets/LogoNanoSaboresCortada.png" type="image/png" />
+  <body>
+    <header>
+      <div class="header-left">
+        <h1>NanoSabores</h1>
+        <img src="../assets/icon.png" alt="Logo do NanoSabores" />
+      </div>
 
-  <title>Relatório de Sabores</title>
-</head>
+      <a id="user" href="./login.html">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          color="#2c5530"
+        >
+          <path
+            d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
+          />
+        </svg>
+      </a>
+    </header>
 
-<body>
+    <div id="sidebar">
+      <div class="container-sidebar">
+        <ul>
+          <li class="categoria">Home</li>
+          <li><a href="./index.html">Início</a></li>
 
-  <!-- HEADER -->
-  <header>
-    <div class="header-left">
-      <h1>NanoSabores</h1>
-      <img src="../assets/icon.png" alt="Logo" />
-    </div>
+          <li class="categoria">Cadastros</li>
+          <li><a href="./cad_funcionario.html">Funcionários</a></li>
+          <li><a href="./cad_produto.html">Produtos</a></li>
+          <li><a href="./cad_sabores.html">Sabores de Pizza</a></li>
 
-    <a id="user" href="./login.html">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-      </svg>
-    </a>
-  </header>
-
-  <!-- SIDEBAR -->
-  <div id="sidebar">
-    <div class="container-sidebar">
-      <ul>
-        <li class="categoria">Home</li>
-        <li><a href="./index.html">Início</a></li>
-
-        <li class="categoria">Cadastros</li>
-        <li><a href="./cad_funcionario.html">Funcionários</a></li>
-        <li><a href="./cad_produto.html">Produtos</a></li>
-        <li><a href="./cad_sabores.html">Sabores de Pizza</a></li>
-
-        <li class="categoria">Relatórios</li>
-        <li><a href="./rel_funcionario.html">Funcionários</a></li>
-        <li><a href="./rel_produto.html">Estoque</a></li>
-        <li><a href="./rel_pedido.html">Pedidos</a></li>
-        <li><a href="./rel_venda.html">Vendas</a></li>
-        <li><a class="active" href="./rel_sabores.html">Sabores Cadastrados</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- MAIN -->
-  <main>
-    <div id="containerMain">
-
-      <h2>Relatório de Sabores</h2>
-      <p class="subtitulo">Sabores de pizza cadastrados no sistema</p>
-
-      <!-- FORM FILTROS -->
-      <form id="filtros">
-      
-        <div class="row">
-          <div class="campo full">
-            <label>Nome do Sabor</label>
-            <input type="text" placeholder="Buscar sabor..." />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="campo">
-            <label>Tipo de Pizza</label>
-            <select>
-              <option value="">Todas</option>
-              <option>Salgada</option>
-              <option>Vegetariana</option>
-              <option>Doce</option>
-            </select>
-          </div>
-
-          <div class="campo">
-            <label>Tipo de Molho</label>
-            <select>
-              <option value="">Todos</option>
-              <option>Tomate</option>
-              <option>Pesto</option>
-              <option>Nenhum</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="campo">
-            <label>Tipo de Queijo</label>
-            <select>
-              <option value="">Todos</option>
-              <option>Mussarela</option>
-              <option>Cheddar</option>
-              <option>Parmesão</option>
-              <option>Provolone</option>
-              <option>Gouda</option>
-              <option>5 Queijos</option>
-              <option>Nenhum</option>
-            </select>
-          </div>
-
-          <div class="campo">
-            <label>Faixa de Preço</label>
-            <div style="display:flex; gap:10px;">
-              <input type="number" placeholder="Mínimo" step="0.5" />
-              <input type="number" placeholder="Máximo" step="0.5" />
-            </div>
-          </div>
-        </div>
-
-        <!-- INGREDIENTES -->
-        <div class="row">
-          <div class="campo full">
-
-            <label>Ingredientes:</label>
-
-            <input
-              type="text"
-              id="buscarIngrediente"
-              placeholder="Pesquisar ingrediente..."
-            />
-
-            <div id="ingredientesContainer" class="ingredientes-container">
-
-              <div class="ingrediente-tag">Azeitona</div>
-              <div class="ingrediente-tag">Alho</div>
-              <div class="ingrediente-tag">Atum</div>
-              <div class="ingrediente-tag">Bacon</div>
-              <div class="ingrediente-tag">Batata Palha</div>
-              <div class="ingrediente-tag">Calabresa</div>
-              <div class="ingrediente-tag">Catupiry</div>
-              <div class="ingrediente-tag">Cebola</div>
-              <div class="ingrediente-tag">Cogumelos</div>
-              <div class="ingrediente-tag">Filé Mignon</div>
-              <div class="ingrediente-tag">Frango Desfiado</div>
-              <div class="ingrediente-tag">Manjericão</div>
-              <div class="ingrediente-tag">Milho</div>
-              <div class="ingrediente-tag">Orégano</div>
-              <div class="ingrediente-tag">Ovo</div>
-              <div class="ingrediente-tag">Palmito</div>
-              <div class="ingrediente-tag">Pepperoni</div>
-              <div class="ingrediente-tag">Pimentão</div>
-              <div class="ingrediente-tag">Presunto</div>
-              <div class="ingrediente-tag">Rúcula</div>
-              <div class="ingrediente-tag">Tomate</div>
-
-            </div>
-
-            <small>
-              Clique nos ingredientes para selecionar ou remover.
-            </small>
-
-          </div>
-        </div>
-
-        <!-- BOTÕES -->
-        <div class="acoes">
-          <button class="btn-pequeno btn-filtrar" type="submit">Filtrar</button>
-          <a href="./rel_sabores_gestao.html" class="btn-filtrar-cinza">Editar Sabor</a>
-        </div>
-
-      </form>
-
-      <!-- TABELA -->
-      <div class="tabela-container">
-
-        <table>
-          <thead>
-            <tr>
-              <th>Sabor</th>
-              <th>Tipo</th>
-              <th>Molho</th>
-              <th>Queijo</th>
-              <th>Ingredientes</th>
-              <th>Preço</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td><strong>Calabresa Especial</strong></td>
-              <td>Salgada</td>
-              <td>Tomate</td>
-              <td>Mussarela</td>
-              <td>Calabresa, Cebola, Azeitona</td>
-              <td>R$ 49,00</td>
-            </tr>
-
-            <tr>
-              <td><strong>Frango com Catupiry</strong></td>
-              <td>Salgada</td>
-              <td>Tomate</td>
-              <td>Mussarela</td>
-              <td>Frango, Catupiry, Orégano</td>
-              <td>R$ 52,00</td>
-            </tr>
-
-            <tr>
-              <td><strong>Vegetariana Suprema</strong></td>
-              <td>Vegetariana</td>
-              <td>Pesto</td>
-              <td>Gouda</td>
-              <td>Rúcula, Tomate, Cogumelos</td>
-              <td>R$ 55,00</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="total">
-          Total de Sabores Cadastrados: <strong>3</strong>
-        </div>
-
+          <li class="categoria">Relatórios</li>
+          <li><a href="./rel_funcionario.html">Funcionários</a></li>
+          <li><a href="./rel_produto.html">Estoque</a></li>
+          <li><a href="./rel_pedido.html">Pedidos</a></li>
+          <li><a href="./rel_venda.html">Vendas</a></li>
+          <li>
+            <a href="./rel_sabores.html" class="active">Sabores Cadastrados</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </main>
 
-  <!-- SCRIPT -->
-  <script>
-    const ingredientesSelecionados = [];
+    <main>
+      <div id="containerMain">
+        <h2>Relatório de Sabores</h2>
+        <p class="subtitulo">Sabores de pizza cadastrados no sistema</p>
 
-    document.querySelectorAll(".ingrediente-tag")
-      .forEach(tag => {
-        tag.addEventListener("click", () => {
+        <div id="filtros">
+          <h2 class="form-title">Filtros</h2>
 
-          tag.classList.toggle("selecionado");
+          <div class="row">
+            <div class="filtro">
+              <label>Nome do Sabor</label>
+              <input type="text" placeholder="Buscar sabor..." />
+            </div>
 
-          const ingrediente = tag.textContent;
+            <div class="filtro">
+              <label>Tipo de Pizza</label>
+              <select>
+                <option value="">Todas</option>
+                <option>Salgada</option>
+                <option>Vegetariana</option>
+                <option>Doce</option>
+              </select>
+            </div>
+          </div>
 
-          if (ingredientesSelecionados.includes(ingrediente)) {
-            const index = ingredientesSelecionados.indexOf(ingrediente);
-            ingredientesSelecionados.splice(index, 1);
-          } else {
-            ingredientesSelecionados.push(ingrediente);
-          }
+          <div class="row">
+            <div class="filtro">
+              <label>Tipo de Molho</label>
+              <select>
+                <option value="">Todos</option>
+                <option>Tomate</option>
+                <option>Pesto</option>
+                <option>Nenhum</option>
+              </select>
+            </div>
 
-          console.log(ingredientesSelecionados);
-        });
-      });
+            <div class="filtro">
+              <label>Tipo de Queijo</label>
+              <select>
+                <option value="">Todos</option>
+                <option>Mussarela</option>
+                <option>Cheddar</option>
+                <option>Parmesão</option>
+                <option>Provolone</option>
+                <option>Gouda</option>
+                <option>5 Queijos</option>
+                <option>Nenhum</option>
+              </select>
+            </div>
+          </div>
 
-    document.getElementById("buscarIngrediente")
-      .addEventListener("keyup", function () {
+          <div class="row">
+            <div class="filtro">
+              <label>Ingredientes</label>
+              <select multiple size="6">
+                <option>Azeitona</option>
+                <option>Alho</option>
+                <option>Atum</option>
+                <option>Bacon</option>
+                <option>Batata Palha</option>
+                <option>Calabresa</option>
+                <option>Catupiry</option>
+                <option>Cebola</option>
+                <option>Cogumelos</option>
+                <option>Filé Mignon</option>
+                <option>Frango desfiado</option>
+                <option>Manjericão</option>
+                <option>Milho</option>
+                <option>Orégano</option>
+                <option>Ovo</option>
+                <option>Palmito</option>
+                <option>Pepperoni</option>
+                <option>Pimentão</option>
+                <option>Presunto</option>
+                <option>Rúcula</option>
+                <option>Tomate</option>
+              </select>
+            </div>
 
-        const filtro = this.value.toLowerCase();
+            <div class="filtro">
+              <label>Faixa de Preço</label>
+              <div class="preco-range">
+                <input type="number" placeholder="Preço mínimo" step="0.5" />
+                <input type="number" placeholder="Preço máximo" step="0.5" />
+              </div>
+            </div>
+          </div>
 
-        document.querySelectorAll(".ingrediente-tag")
-          .forEach(tag => {
+          <div class="acoes">
+            <button class="btn-filtrar">Filtrar</button>
+            <a href="./rel_sabores_gestao.html" class="btn-filtrar-cinza"
+              >Editar Sabor</a
+            >
+          </div>
 
-            const texto = tag.textContent.toLowerCase();
+          <table>
+            <thead>
+              <tr>
+                <th>Sabor</th>
+                <th>Tipo</th>
+                <th>Molho</th>
+                <th>Queijo</th>
+                <th>Ingredientes</th>
+                <th>Preço</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Calabresa Especial</strong></td>
+                <td>Salgada</td>
+                <td>Tomate</td>
+                <td>Mussarela</td>
+                <td>Calabresa, Cebola, Azeitona</td>
+                <td>R$ 49,00</td>
+              </tr>
+              <tr>
+                <td><strong>Frango com Catupiry</strong></td>
+                <td>Salgada</td>
+                <td>Tomate</td>
+                <td>Mussarela</td>
+                <td>Frango desfiado, Catupiry, Orégano</td>
+                <td>R$ 52,00</td>
+              </tr>
+              <tr>
+                <td><strong>Vegetariana Suprema</strong></td>
+                <td>Vegetariana</td>
+                <td>Pesto</td>
+                <td>Gouda</td>
+                <td>Rúcula, Tomate, Palmito, Cogumelos</td>
+                <td>R$ 55,00</td>
+              </tr>
+            </tbody>
+          </table>
 
-            tag.style.display =
-              texto.includes(filtro) ? "block" : "none";
-          });
-
-      });
-  </script>
-
-</body>
+          <div class="total">
+            Total de Sabores Cadastrados: <strong>3</strong>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

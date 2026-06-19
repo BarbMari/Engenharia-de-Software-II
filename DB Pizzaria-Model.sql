@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `Item` (
 	`id` int AUTO_INCREMENT NOT NULL UNIQUE,
 	`Nome` varchar(25) NOT NULL,
 	`Valor` float NOT NULL,
-	`Imagem` blob,
+	`Imagem` text,
 	`Venda` boolean NOT NULL,
 	`Resumo` text,
 	`Igredientes` text,

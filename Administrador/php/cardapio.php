@@ -1,5 +1,5 @@
 <?php
-$username='';
+$username='root';
 $password='';
 $dbname='pizzaria';
 $host='localhost';
@@ -7,7 +7,7 @@ try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sqlPizza = 'SELECT itens *';
+    $sqlPizza = 'SELECT * FROM item';
     
     error_log("SQL: " . $sqlPizza);
     $dataPrep = $conn->prepare($sqlPizza);
@@ -20,7 +20,7 @@ try {
     ]);
 
 
-} catch(PDOException $e) {echo 'ERROR: ' . $e->getMessage();}
+} catch(PDOException $e) {echo 'ERRO ENCONTRADO: ' . $e->getMessage();}
 
 
 /*
