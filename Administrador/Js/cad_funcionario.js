@@ -9,7 +9,7 @@ if (params.get('id')) {
 }
 
 async function carregarParaEdicao(id) {
-    const res  = await fetch(`cad_funcionario.php?id=${id}`);
+    const res  = await fetch(`/Engenharia-de-Software-II/Administrador/php/cad_funcionario.php?id=${id}`);
     const func = await res.json();
 
     idAtual.value                             = func.id;
@@ -36,7 +36,7 @@ form.addEventListener('submit', async (e) => {
         payload.id = idAtual.value;
     }
 
-    const res  = await fetch('cad_funcionario.php', {
+    const res  = await fetch('/Engenharia-de-Software-II/Administrador/php/cad_funcionario.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

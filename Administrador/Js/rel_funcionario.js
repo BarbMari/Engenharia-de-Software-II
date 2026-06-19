@@ -14,7 +14,7 @@ async function carregarFuncionarios() {
     const cargo   = inputs[3].value;
 
     const params = new URLSearchParams({ nome, email, cpf, cargo });
-    const res    = await fetch(`rel_funcionario.php?${params}`);
+    const res    = await fetch(`/Engenharia-de-Software-II/Administrador/php/rel_funcionario.php?${params}`);
     const lista  = await res.json();
 
     tbody.innerHTML = '';
@@ -34,7 +34,7 @@ async function carregarFuncionarios() {
                 <td>${f.Cargo}</td>
                 <td>${f.CPF}</td>
                 <td>
-                    <a href="cad_funcionario.html?id=${f.id}">Editar</a> |
+                    <a href="/Engenharia-de-Software-II/Administrador/cad_funcionario.html?id=${f.id}">Editar</a> |
                     <a href="#" onclick="excluir(${f.id})">Excluir</a>
                 </td>
             </tr>`;
@@ -44,7 +44,7 @@ async function carregarFuncionarios() {
 async function excluir(id) {
     if (!confirm('Excluir este funcionário?')) return;
 
-    const res  = await fetch('cad_funcionario.php', {
+    const res  = await fetch('/Engenharia-de-Software-II/Administrador/php/cad_funcionario.php', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id }),
