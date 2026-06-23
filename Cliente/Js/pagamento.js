@@ -1,5 +1,6 @@
 //================Página de Pagamento================
 let cartData = {};
+let total = 0;
 
 function formatCurrencyBR(v) {
     return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -32,8 +33,7 @@ function renderReview() {
     
     pizzaUl.innerHTML = '';
     bebidaUl.innerHTML = '';
-    
-    let total = 0;
+
     
     Object.entries(cartData).forEach(([itemId, { item, qty }]) => {
         if (qty <= 0) return;
@@ -80,7 +80,7 @@ async function submitOrder() {
     
     const formaPagamento = document.getElementById('formaPagamento').value;
     const observacoes = document.getElementById('obsBox').value || '';
-    const nomeCliente = document.getElementById('nameBox').value || 'Cliente';
+    const nomeCliente = document.getElementById('nameBox').value;
     
     if (!formaPagamento) {
         alert('Selecione uma forma de pagamento');
@@ -107,6 +107,7 @@ async function submitOrder() {
     }
     
     const payload = {
+        total,  
         nomeCliente,
         observacoes,
         formaPagamento,
@@ -114,6 +115,7 @@ async function submitOrder() {
     };
     
     try {
+<<<<<<< Updated upstream
         const resp = await fetch('../Cliente/Js/salvarPedido.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -130,6 +132,11 @@ async function submitOrder() {
         } else {
             alert('Erro ao salvar pedido: ' + (result.message || 'desconhecido'));
         }
+=======
+    const queryString = new URLSearchParams(payload).toString();
+    const targetUrl = `../Cliente/Js/salvarPedido.php?${queryString}`;
+    window.location.href = targetUrl;
+>>>>>>> Stashed changes
     } catch (err) {
         alert('Erro ao enviar pedido: ' + err.message);
         console.error(err);

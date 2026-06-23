@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Jun-2026 às 22:01
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.0.25
+-- Tempo de geração: 23/06/2026 às 20:25
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,11 +20,13 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `pizzaria`
 --
+CREATE DATABASE IF NOT EXISTS `pizzaria` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `pizzaria`;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `funcionario`
+-- Estrutura para tabela `funcionario`
 --
 
 CREATE TABLE `funcionario` (
@@ -36,10 +38,18 @@ CREATE TABLE `funcionario` (
   `Cargo` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `funcionario`
+--
+
+INSERT INTO `funcionario` (`id`, `NomeCompleto`, `Email`, `CPF`, `Telefone`, `Cargo`) VALUES
+(1, 'Heitor Rauber Scussiato', 'scussiatoh@gmail.com', '12345678901', '49988587906', 'Gerente'),
+(2, 'Fulano', 'fulano@gmail.com', '123123131', '3216554', 'alguma coisa');
+
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `item`
+-- Estrutura para tabela `item`
 --
 
 CREATE TABLE `item` (
@@ -54,25 +64,28 @@ CREATE TABLE `item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `item`
+-- Despejando dados para a tabela `item`
 --
 
 INSERT INTO `item` (`id`, `Nome`, `Valor`, `Imagem`, `Venda`, `Resumo`, `Igredientes`, `Tipo`) VALUES
-(1, 'Pizza Margherita', 39.9, 'https://placehold.co/400x300?text=Pizza+Margherita', 0, 'Clássica italiana', 'Molho de tomate, mussarela, manjericão, azeite', 'Pizza'),
-(2, 'Pizza Calabresa', 42.9, 'https://placehold.co/400x300?text=Pizza+Calabresa', 1, 'A mais pedida da casa', 'Molho de tomate, mussarela, calabresa, cebola', 'Pizza'),
-(3, 'Pizza Quatro Queijos', 45.9, 'https://placehold.co/400x300?text=Pizza+4+Queijos', 0, 'Para quem ama queijo', 'Mussarela, provolone, parmesão, catupiry', 'Pizza'),
-(4, 'Pizza Portuguesa', 44.9, 'https://placehold.co/400x300?text=Pizza+Portuguesa', 0, 'Recheio completo', 'Presunto, ovos, cebola, ervilha, mussarela', 'Pizza'),
-(5, 'Pizza Frango Catupiry', 43.9, 'https://placehold.co/400x300?text=Pizza+Frango+Catupiry', 1, 'Cremosa e saborosa', 'Frango desfiado, catupiry, milho', 'Pizza'),
+(1, 'Pizza Margherita', 39.9, 'https://placehold.co/400x300?text=Pizza+Margherita', 0, 'Clássica italiana', 'Molho de tomate, mussarela, manjericão, azeite', 'Salgada'),
+(2, 'Pizza Calabresa', 42.9, 'https://placehold.co/400x300?text=Pizza+Calabresa', 1, 'A mais pedida da casa', 'Molho de tomate, mussarela, calabresa, cebola', 'Salgada'),
+(3, 'Pizza Quatro Queijos', 45.9, 'https://placehold.co/400x300?text=Pizza+4+Queijos', 0, 'Para quem ama queijo', 'Mussarela, provolone, parmesão, catupiry', 'Salgada'),
+(4, 'Pizza Portuguesa', 44.9, 'https://placehold.co/400x300?text=Pizza+Portuguesa', 0, 'Recheio completo', 'Presunto, ovos, cebola, ervilha, mussarela', 'Salgada'),
+(5, 'Pizza Frango Catupiry', 43.9, 'https://placehold.co/400x300?text=Pizza+Frango+Catupiry', 1, 'Cremosa e saborosa', 'Frango desfiado, catupiry, milho', 'Salgada'),
 (6, 'Coca-Cola 2L', 12, 'https://placehold.co/400x300?text=Coca-Cola+2L', 0, 'Refrigerante gelado', 'Água gaseificada, açúcar, corante caramelo', 'Bebida'),
 (7, 'Guaraná 2L', 10, 'https://placehold.co/400x300?text=Guarana+2L', 0, 'Refrigerante nacional', 'Água gaseificada, extrato de guaraná', 'Bebida'),
 (8, 'Suco de Laranja', 8, 'https://placehold.co/400x300?text=Suco+de+Laranja', 0, 'Suco natural', 'Laranja, água, açúcar', 'Bebida'),
 (9, 'Petit Gateau', 18, 'https://placehold.co/400x300?text=Petit+Gateau', 1, 'Sobremesa quentinha', 'Chocolate, manteiga, ovos, sorvete', 'Sobremesa'),
-(10, 'Pão de Alho', 15, 'https://placehold.co/400x300?text=Pao+de+Alho', 0, 'Entrada tradicional', 'Pão francês, alho, manteiga, ervas', 'Entrada');
+(11, 'pizza goxtosa hmm', 8001.5, 'https://static.wikia.nocookie.net/pizzatower/images/e/e1/Spr_vspizzaface_0.png/revision/latest/scale-to-width-down/250?cb=20230128141846', 1, 'teste kkkkkk', 'Mussarela\r\nTomate\r\nAzeitona\r\nAlho\r\nMilho\r\nFilé Mignon\r\nTomate\r\nRúcula', 'Salgada'),
+(12, 'pizza goxtosa hmm 2', 8001.5, 'https://recipesbyclare.com/cdn-cgi/image/fit=cover,width=1280,height=1280,format=auto/assets/images/1747742682989-ae0zopfm.webp', 1, 'teste kkkkkk 2', '\r\n', 'Doce'),
+(13, 'pizza goxtosa hmm 3', 0.5, 'https://www.image2url.com/r2/default/images/1782234523195-b31dd0b0-e69f-4fbd-904f-ca3a90a36834.png', 1, 'pizza de viadagem', '5 Queijos\r\nPesto\r\nAtum\r\nBacon\r\nCalabresa\r\nFilé Mignon\r\nFrango Desfiado\r\nOvo\r\nPepperoni\r\nPresunto', 'Vegetariana'),
+(14, 'pizza goxtosa hmm testew', 0, '', 1, '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pedido`
+-- Estrutura para tabela `pedido`
 --
 
 CREATE TABLE `pedido` (
@@ -81,20 +94,22 @@ CREATE TABLE `pedido` (
   `NomeCliente` varchar(25) DEFAULT NULL,
   `Observacoes` text NOT NULL,
   `Pagamento` text NOT NULL,
-  `Itens` text NOT NULL
+  `Itens` text NOT NULL,
+  `Valor` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `pedido`
+-- Despejando dados para a tabela `pedido`
 --
 
-INSERT INTO `pedido` (`id`, `NomePedido`, `NomeCliente`, `Observacoes`, `Pagamento`, `Itens`) VALUES
-(1, 'PEDIDO-6a359f8f103d7', '68764', '4', 'PIX', 'Pizza 1, Pizza 2, Pizza 3');
+INSERT INTO `pedido` (`id`, `NomePedido`, `NomeCliente`, `Observacoes`, `Pagamento`, `Itens`, `Valor`) VALUES
+(1, 'PEDIDO-6a359f8f103d7', '68764', '4', 'PIX', 'Pizza 1, Pizza 2, Pizza 3', 50.5),
+(0, 'PEDIDO-6679119', 'TEste', 'Memes, tipos de carinhas são', 'pix', 'pizza goxtosa hmm 2, pizza goxtosa hmm 3, ', 8002);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtoestoque`
+-- Estrutura para tabela `produtoestoque`
 --
 
 CREATE TABLE `produtoestoque` (
@@ -111,7 +126,7 @@ CREATE TABLE `produtoestoque` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `venda`
+-- Estrutura para tabela `venda`
 --
 
 CREATE TABLE `venda` (
@@ -124,7 +139,7 @@ CREATE TABLE `venda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `venda`
+-- Despejando dados para a tabela `venda`
 --
 
 INSERT INTO `venda` (`id`, `IdPedido`, `Valor`, `Status`, `DataPedido`, `Pagamento`) VALUES
@@ -135,36 +150,28 @@ INSERT INTO `venda` (`id`, `IdPedido`, `Valor`, `Status`, `DataPedido`, `Pagamen
 --
 
 --
--- Índices para tabela `funcionario`
+-- Índices de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Índices para tabela `item`
+-- Índices de tabela `item`
 --
 ALTER TABLE `item`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Índices para tabela `pedido`
---
-ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `Pedido_fk4` (`Itens`);
-
---
--- Índices para tabela `produtoestoque`
+-- Índices de tabela `produtoestoque`
 --
 ALTER TABLE `produtoestoque`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Índices para tabela `venda`
+-- Índices de tabela `venda`
 --
 ALTER TABLE `venda`
   ADD PRIMARY KEY (`id`),
@@ -172,26 +179,20 @@ ALTER TABLE `venda`
   ADD KEY `Venda_fk1` (`IdPedido`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de tabela `pedido`
---
-ALTER TABLE `pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `produtoestoque`
@@ -204,22 +205,6 @@ ALTER TABLE `produtoestoque`
 --
 ALTER TABLE `venda`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Restrições para despejos de tabelas
---
-
---
--- Limitadores para a tabela `pedido`
---
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `Pedido_fk4` FOREIGN KEY (`Itens`) REFERENCES `item` (`id`);
-
---
--- Limitadores para a tabela `venda`
---
-ALTER TABLE `venda`
-  ADD CONSTRAINT `Venda_fk1` FOREIGN KEY (`IdPedido`) REFERENCES `pedido` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
