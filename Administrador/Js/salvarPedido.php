@@ -30,12 +30,11 @@ try {
         exit;
     }
     
-    // Save Pedido record
-    $sqlPedido = 'INSERT INTO Pedido (NomePedido, NomeCliente, Observacoes, Itens) VALUES (:ped, :cli, :obs, :itn)';
-    $sqlPedido->bindParam(':ped', $ped);
+    $sqlPedido = 'INSERT INTO pedido (NomePedido, NomeCliente, Observacoes, Itens) VALUES (:ped, :cli, :obs, :itn)';
+    $sqlPedido->bindParam(':ped', 'PEDIDO-' + rand(1000000,9999999));
     $sqlPedido->bindParam(':cli', $nomeCliente);
-    $sqlPedido->bindParam(':obs', $observacoes); //TODO: Precisa por coiso de pagamento ok?
-    $sqlPedido->bindParam(':itn', $img);
+    $sqlPedido->bindParam(':obs', $observacoes);
+    $sqlPedido->bindParam(':itn', $itens);
 
 
     $stmtPedido->execute([

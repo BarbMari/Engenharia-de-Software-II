@@ -80,6 +80,7 @@ CREATE TABLE `pedido` (
   `NomePedido` varchar(25) DEFAULT NULL,
   `NomeCliente` varchar(25) DEFAULT NULL,
   `Observacoes` text NOT NULL,
+  `Pagamento` text NOT NULL,
   `Itens` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -87,8 +88,8 @@ CREATE TABLE `pedido` (
 -- Extraindo dados da tabela `pedido`
 --
 
-INSERT INTO `pedido` (`id`, `NomePedido`, `NomeCliente`, `Observacoes`, `Itens`) VALUES
-(1, 'PEDIDO-6a359f8f103d7', '68764', '4', 'Pizza 1, Pizza 2, Pizza 3');
+INSERT INTO `pedido` (`id`, `NomePedido`, `NomeCliente`, `Observacoes`, `Pagamento`, `Itens`) VALUES
+(1, 'PEDIDO-6a359f8f103d7', '68764', '4', 'PIX', 'Pizza 1, Pizza 2, Pizza 3');
 
 -- --------------------------------------------------------
 

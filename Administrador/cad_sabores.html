@@ -280,10 +280,10 @@
       function updateIng() {
         let ingredientes = "";
         ingredientes += document.getElementById("queijo").value;
-        ingredientes += "\n" + document.getElementById("molho").value;
+        ingredientes += ", " + document.getElementById("molho").value;
 
         for (let i = 0; i < ingredientesSelecionados.length; i++) {
-          ingredientes += "\n" + ingredientesSelecionados[i];
+          ingredientes += ", " + ingredientesSelecionados[i];
         }
 
         document.getElementById("ing").value = ingredientes;

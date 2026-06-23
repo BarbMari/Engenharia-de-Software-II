@@ -109,12 +109,12 @@ async function submitOrder() {
     const payload = {
         nomeCliente,
         observacoes,
-        formaPagamento, //TODO: Precisa por coiso de pagamento ok?
+        formaPagamento,
         itens: itens
     };
     
     try {
-        const resp = await fetch('../Administrador/Js/salvarPedido.php', {
+        const resp = await fetch('../Cliente/Js/salvarPedido.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
