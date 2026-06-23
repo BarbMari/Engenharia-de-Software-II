@@ -68,49 +68,49 @@
 
           <div class="card">
             <img src="../assets/pizzaiolo1.jpg" />
-            <h3>Cad. Funcionários</h3>
+            <h3>Cadastro Funcionários</h3>
             <p>Gerencie pizzaiolos e equipe</p>
             <a href="./cad_funcionario.html" class="btn-card">Acessar</a>
           </div>
 
           <div class="card">
             <img src="../assets/insumospizza.jpg" />
-            <h3>Cad. Produtos</h3>
+            <h3>Cadastro Produtos</h3>
             <p>Insumos e bebidas</p>
             <a href="./cad_produto.html" class="btn-card">Acessar</a>
           </div>
 
           <div class="card">
             <img src="../assets/estoque.jpg" />
-            <h3>Rel. Produtos</h3>
+            <h3>Relatório Produtos</h3>
             <p>Estoque completo</p>
             <a href="./rel_produto.html" class="btn-card">Acessar</a>
           </div>
 
           <div class="card">
             <img src="../assets/relatórios1.jpg" />
-            <h3>Rel. Vendas</h3>
+            <h3>Relatório Vendas</h3>
             <p>Acompanhe faturamento</p>
             <a href="./rel_venda.html" class="btn-card">Acessar</a>
           </div>
 
           <div class="card">
             <img src="../assets/relatórios3.jpg" />
-            <h3>Rel. Pedidos</h3>
+            <h3>Relatório Pedidos</h3>
             <p>Controle entregas</p>
             <a href="./rel_pedido.html" class="btn-card">Acessar</a>
           </div>
 
           <div class="card">
             <img src="../assets/funcionarios.jpg" />
-            <h3>Rel. Funcionários</h3>
+            <h3>Relatório Funcionários</h3>
             <p>Relatórios da equipe</p>
             <a href="./rel_funcionario.html" class="btn-card">Acessar</a>
           </div>
 
           <div class="card">
             <img src="../assets/Produtos.jpg" />
-            <h3>Novos Sabores</h3>
+            <h3>Cadastrar Sabores</h3>
             <p>Adicionar Novo Sabor</p>
             <a href="./cad_sabores.html" class="btn-card">Acessar</a>
           </div>
@@ -123,6 +123,55 @@
           </div>
         </div>
       </div>
+      <!-- ------------------------------------------------------------ -->
+
+      <div class="painel">
+        <h2>Dashboard de Administração</h2>
+
+        <!-- Filtrar por data inicial e final -->
+        <form id="formPeriodo"></form>
+          <div>
+              <label for="datainicio">Data inicial</label>
+              <input type="date" id="datainicio" placeholder="dd/mm/aaaa">
+          </div>
+          <div>
+              <label for="ultimadata">Data Final</label>
+              <input type="date" id="ultimadata" placeholder="dd/mm/aaaa">
+          </div>
+
+          <div>
+            <label for="intervalo">Intervalo</label>
+            <input type="number" id="intervalo" value="20" min="1">
+          </div>
+
+          <button type="button" id="botaoData">Filtrar</button>
+        </form>
+
+        <p id="pErro"></p>
+
+        <!-- Informações do dashboard --> 
+
+        <div id="dadosContainer">
+          <p id="lucro-total">Lucro: </p>
+          <p id="pedidos-relizados">Pedidos</p>
+        </div>
+
+          <div id="media-container">
+            <p id="media_he">Média HE</p>
+            <p id="media_hi_he">Média HI-HE</p>
+          </div>
+          <br>
+          <br>
+          <div id="chartDadosHe"></div>
+          <br>
+          <div id="chartMediaDiaria"></div>
+
+      </div>
+
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../Administrador/Js/grafico.js"></script>
+
   </body>
 </html>
