@@ -40,14 +40,13 @@ function guessMatches(headerText, tipo) {
     const h = (headerText||'').toLowerCase();
     const t = (tipo||'').toLowerCase();
     if (!t) return false;
-    if (h.includes('salg') && t.includes('salg')) return true;
-    if (h.includes('veget') && (t.includes('veg') || t.includes('veget'))) return true;
+    if (h.includes('salgada') && t.includes('salgada')) return true;
+    if (h.includes('vegetariana') && (t.includes('vegetariana') || t.includes('vegetariana'))) return true;
     if (h.includes('doce') && t.includes('doce')) return true;
     if (h.includes('refriger') && (t.includes('refriger') || t.includes('refri'))) return true;
     if (h.includes('suco') && t.includes('suco')) return true;
     if (h.includes('destil') && (t.includes('destil') || t.includes('cerve') || t.includes('long'))) return true;
     // fallback: if header mentions pizza and tipo mentions pizza
-    if (h.includes('pizza') && t.includes('pizza')) return true;
     if (h.includes('bebida') && t.includes('bebid')) return true;
     return false;
 }
