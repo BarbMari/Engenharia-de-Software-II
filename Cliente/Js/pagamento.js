@@ -24,7 +24,7 @@ function renderReview() {
     
     if (!pizzaSection || !bebidaSection) return;
     
-    // Clear existing lists
+    // liimpa as lista que ja existem
     let pizzaUl = pizzaSection.querySelector('ul');
     let bebidaUl = bebidaSection.querySelector('ul');
     
@@ -52,15 +52,15 @@ function renderReview() {
             bebidaUl.appendChild(li);
         }
         
-        // Remove button handler
+        // Remove o botao
         li.querySelector('.btn-remover').addEventListener('click', () => removeFromPaymentReview(itemId));
     });
     
-    // Hide sections if empty
+    // Oculta se ta vazio
     pizzaSection.style.display = pizzaUl.children.length > 0 ? 'block' : 'none';
     bebidaSection.style.display = bebidaUl.children.length > 0 ? 'block' : 'none';
     
-    // Update totals
+    // Atualiza totals
     document.querySelectorAll('.valorFinal').forEach(el => {
         el.textContent = total === 0 ? '0,00' : formatCurrencyBR(total).replace('R$', '').trim();
     });
@@ -115,7 +115,6 @@ async function submitOrder() {
     };
     
     try {
-<<<<<<< Updated upstream
         const resp = await fetch('../Cliente/Js/salvarPedido.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -126,17 +125,11 @@ async function submitOrder() {
         const result = await resp.json();
         
         if (result.success) {
-            // Clear cart and navigate
             localStorage.removeItem('pedidoCart');
             window.location.href = 'pedidoConcluido.html?pedidoId=' + result.pedidoId;
         } else {
             alert('Erro ao salvar pedido: ' + (result.message || 'desconhecido'));
         }
-=======
-    const queryString = new URLSearchParams(payload).toString();
-    const targetUrl = `../Cliente/Js/salvarPedido.php?${queryString}`;
-    window.location.href = targetUrl;
->>>>>>> Stashed changes
     } catch (err) {
         alert('Erro ao enviar pedido: ' + err.message);
         console.error(err);
