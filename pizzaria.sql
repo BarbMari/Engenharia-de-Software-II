@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/06/2026 às 04:20
+-- Tempo de geração: 28/06/2026 às 04:24
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -74,7 +74,37 @@ INSERT INTO `item` (`id`, `Nome`, `Valor`, `Imagem`, `Venda`, `Resumo`, `Igredie
 (6, 'Coca-Cola 2L', 12, 'https://placehold.co/400x300?text=Coca-Cola+2L', 1, 'Refrigerante gelado', 'Água gaseificada, açúcar, corante caramelo', 'Bebida'),
 (7, 'Guaraná 2L', 10, 'https://placehold.co/400x300?text=Guarana+2L', 1, 'Refrigerante nacional', 'Água gaseificada, extrato de guaraná', 'Bebida'),
 (8, 'Suco de Laranja', 8, 'https://placehold.co/400x300?text=Suco+de+Laranja', 1, 'Suco natural', 'Laranja, água, açúcar', 'Bebida'),
-(9, 'Petit Gateau', 18, 'https://placehold.co/400x300?text=Petit+Gateau', 1, 'Sobremesa quentinha', 'Chocolate, manteiga, ovos, sorvete', 'Sobremesa');
+(9, 'Petit Gateau', 18, 'https://placehold.co/400x300?text=Petit+Gateau', 1, 'Sobremesa quentinha', 'Chocolate, manteiga, ovos, sorvete', 'Sobremesa'),
+(15, 'Pizza Pepperoni', 46.9, 'https://placehold.co/400x300?text=Pepperoni', 1, 'Irresistível e picante', 'Molho de tomate, mussarela, pepperoni fatiado', 'Salgada'),
+(16, 'Pizza Bacon', 45.9, 'https://placehold.co/400x300?text=Bacon', 1, 'Crocante e defumada', 'Molho de tomate, mussarela, bacon crocante, cebola caramelizada', 'Salgada'),
+(17, 'Pizza Atum', 44.9, 'https://placehold.co/400x300?text=Atum', 1, 'Leve e saborosa', 'Molho de tomate, mussarela, atum, cebola, azeitona', 'Salgada'),
+(18, 'Pizza Presunto', 41.9, 'https://placehold.co/400x300?text=Presunto', 1, 'Clássica e simples', 'Molho de tomate, mussarela, presunto', 'Salgada'),
+(19, 'Pizza Frango Bacon', 47.9, 'https://placehold.co/400x300?text=Frango+Bacon', 1, 'A queridinha da casa', 'Frango desfiado, bacon, catupiry, milho, mussarela', 'Salgada'),
+(20, 'Pizza Carne Seca', 49.9, 'https://placehold.co/400x300?text=Carne+Seca', 1, 'Sabor do nordeste', 'Carne seca desfiada, catupiry, cebola, mussarela', 'Salgada'),
+(21, 'Pizza Strogonoff', 48.9, 'https://placehold.co/400x300?text=Strogonoff', 1, 'Cremosa e diferente', 'Frango ao molho strogonoff, mussarela, batata palha', 'Salgada'),
+(22, 'Pizza Vegetariana', 43.9, 'https://placehold.co/400x300?text=Vegetariana', 1, 'Leve e nutritiva', 'Molho de tomate, mussarela, brócolis, pimentão, milho, ervilha', 'Vegetariana'),
+(23, 'Pizza Rúcula Tomate', 44.9, 'https://placehold.co/400x300?text=Rucula+Tomate', 1, 'Fresca e sofisticada', 'Molho pesto, mussarela, tomate cereja, rúcula, parmesão', 'Vegetariana'),
+(24, 'Pizza Palmito', 43.9, 'https://placehold.co/400x300?text=Palmito', 1, 'Suave e delicada', 'Molho de tomate, mussarela, palmito, azeitona, cebola', 'Vegetariana'),
+(25, 'Pizza Alho e Azeite', 40.9, 'https://placehold.co/400x300?text=Alho+Azeite', 1, 'Simples e aromática', 'Azeite, alho, mussarela, tomate, manjericão', 'Vegetariana'),
+(26, 'Pizza Espinafre', 44.9, 'https://placehold.co/400x300?text=Espinafre', 1, 'Nutritiva e gostosa', 'Espinafre, ricota, alho, mussarela, noz-moscada', 'Vegetariana'),
+(27, 'Pizza Nutella', 47.9, 'https://placehold.co/400x300?text=Nutella', 1, 'A favorita das crianças', 'Nutella, morango fatiado, banana', 'Doce'),
+(28, 'Pizza Romeu e Julieta', 44.9, 'https://placehold.co/400x300?text=Romeu+Julieta', 1, 'Clássico brasileiro', 'Mussarela, goiabada cremosa', 'Doce'),
+(29, 'Pizza Brigadeiro', 46.9, 'https://placehold.co/400x300?text=Brigadeiro', 1, 'Puro chocolate', 'Brigadeiro, granulado, leite condensado', 'Doce'),
+(30, 'Pizza Banana c/ Canela', 44.9, 'https://placehold.co/400x300?text=Banana+Canela', 1, 'Quentinha e reconfortante', 'Banana, canela, açúcar, leite condensado, mussarela', 'Doce'),
+(31, 'Pizza Morango c/ Creme', 45.9, 'https://placehold.co/400x300?text=Morango+Creme', 1, 'Fresca e irresistível', 'Creme de leite, morango, leite condensado, granulado', 'Doce'),
+(32, 'Coca-Cola 600ml', 7, 'https://placehold.co/400x300?text=Coca+600ml', 1, 'Gelada e refrescante', 'Água gaseificada, açúcar, corante caramelo', 'Bebida'),
+(33, 'Pepsi 600ml', 6.5, 'https://placehold.co/400x300?text=Pepsi+600ml', 1, 'Refrescante e leve', 'Água gaseificada, açúcar, corante caramelo', 'Bebida'),
+(34, 'Guaraná Antarctica 600ml', 6.5, 'https://placehold.co/400x300?text=Guarana+600ml', 1, 'O sabor do Brasil', 'Água gaseificada, extrato de guaraná, açúcar', 'Bebida'),
+(35, 'Fanta Laranja 600ml', 6.5, 'https://placehold.co/400x300?text=Fanta+600ml', 1, 'Frutal e gelada', 'Água gaseificada, suco de laranja, açúcar', 'Bebida'),
+(36, 'Água Mineral 500ml', 3.5, 'https://placehold.co/400x300?text=Agua+500ml', 1, 'Pura e natural', 'Água mineral natural', 'Bebida'),
+(37, 'Água com Gás 500ml', 4, 'https://placehold.co/400x300?text=Agua+Gas', 1, 'Levemente gaseificada', 'Água mineral gaseificada', 'Bebida'),
+(38, 'Suco de Maracujá', 9, 'https://placehold.co/400x300?text=Suco+Maracuja', 1, 'Natural e refrescante', 'Maracujá, água, açúcar', 'Bebida'),
+(39, 'Suco de Abacaxi', 9, 'https://placehold.co/400x300?text=Suco+Abacaxi', 1, 'Tropical e gelado', 'Abacaxi, água, açúcar, hortelã', 'Bebida'),
+(40, 'Suco de Uva', 9, 'https://placehold.co/400x300?text=Suco+Uva', 1, 'Doce e natural', 'Uva, água, açúcar', 'Bebida'),
+(41, 'Cerveja Heineken 600ml', 16, 'https://placehold.co/400x300?text=Heineken', 1, 'Gelada e refrescante', 'Água, malte, lúpulo', 'Bebida'),
+(42, 'Cerveja Brahma 600ml', 12, 'https://placehold.co/400x300?text=Brahma', 1, 'A número 1', 'Água, malte, lúpulo, arroz', 'Bebida'),
+(43, 'Vinho Tinto Taça', 18, 'https://placehold.co/400x300?text=Vinho+Tinto', 1, 'Encorpado e sofisticado', 'Uva tinta, sulfitos', 'Bebida'),
+(44, 'Vinho Branco Taça', 18, 'https://placehold.co/400x300?text=Vinho+Branco', 1, 'Suave e aromático', 'Uva branca, sulfitos', 'Bebida');
 
 -- --------------------------------------------------------
 
@@ -206,7 +236,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de tabela `pedido`
