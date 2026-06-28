@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/06/2026 às 04:11
+-- Tempo de geração: 28/06/2026 às 04:20
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -66,19 +66,15 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id`, `Nome`, `Valor`, `Imagem`, `Venda`, `Resumo`, `Igredientes`, `Tipo`) VALUES
-(1, 'Pizza Margherita', 39.9, 'https://placehold.co/400x300?text=Pizza+Margherita', 0, 'Clássica italiana', 'Molho de tomate, mussarela, manjericão, azeite', 'Salgada'),
+(1, 'Pizza Margherita', 39.9, 'https://placehold.co/400x300?text=Pizza+Margherita', 1, 'Clássica italiana', 'Molho de tomate, mussarela, manjericão, azeite', 'Salgada'),
 (2, 'Pizza Calabresa', 42.9, 'https://placehold.co/400x300?text=Pizza+Calabresa', 1, 'A mais pedida da casa', 'Molho de tomate, mussarela, calabresa, cebola', 'Salgada'),
-(3, 'Pizza Quatro Queijos', 45.9, 'https://placehold.co/400x300?text=Pizza+4+Queijos', 0, 'Para quem ama queijo', 'Mussarela, provolone, parmesão, catupiry', 'Salgada'),
-(4, 'Pizza Portuguesa', 44.9, 'https://placehold.co/400x300?text=Pizza+Portuguesa', 0, 'Recheio completo', 'Presunto, ovos, cebola, ervilha, mussarela', 'Salgada'),
+(3, 'Pizza Quatro Queijos', 45.9, 'https://placehold.co/400x300?text=Pizza+4+Queijos', 1, 'Para quem ama queijo', 'Mussarela, provolone, parmesão, catupiry', 'Salgada'),
+(4, 'Pizza Portuguesa', 44.9, 'https://placehold.co/400x300?text=Pizza+Portuguesa', 1, 'Recheio completo', 'Presunto, ovos, cebola, ervilha, mussarela', 'Salgada'),
 (5, 'Pizza Frango Catupiry', 43.9, 'https://placehold.co/400x300?text=Pizza+Frango+Catupiry', 1, 'Cremosa e saborosa', 'Frango desfiado, catupiry, milho', 'Salgada'),
-(6, 'Coca-Cola 2L', 12, 'https://placehold.co/400x300?text=Coca-Cola+2L', 0, 'Refrigerante gelado', 'Água gaseificada, açúcar, corante caramelo', 'Bebida'),
-(7, 'Guaraná 2L', 10, 'https://placehold.co/400x300?text=Guarana+2L', 0, 'Refrigerante nacional', 'Água gaseificada, extrato de guaraná', 'Bebida'),
-(8, 'Suco de Laranja', 8, 'https://placehold.co/400x300?text=Suco+de+Laranja', 0, 'Suco natural', 'Laranja, água, açúcar', 'Bebida'),
-(9, 'Petit Gateau', 18, 'https://placehold.co/400x300?text=Petit+Gateau', 1, 'Sobremesa quentinha', 'Chocolate, manteiga, ovos, sorvete', 'Sobremesa'),
-(11, 'pizza goxtosa hmm', 8001.5, 'https://static.wikia.nocookie.net/pizzatower/images/e/e1/Spr_vspizzaface_0.png/revision/latest/scale-to-width-down/250?cb=20230128141846', 1, 'teste kkkkkk', 'Mussarela\r\nTomate\r\nAzeitona\r\nAlho\r\nMilho\r\nFilé Mignon\r\nTomate\r\nRúcula', 'Salgada'),
-(12, 'pizza goxtosa hmm 2', 8001.5, 'https://recipesbyclare.com/cdn-cgi/image/fit=cover,width=1280,height=1280,format=auto/assets/images/1747742682989-ae0zopfm.webp', 1, 'teste kkkkkk 2', '\r\n', 'Doce'),
-(13, 'pizza goxtosa hmm 3', 0.5, 'https://www.image2url.com/r2/default/images/1782234523195-b31dd0b0-e69f-4fbd-904f-ca3a90a36834.png', 1, 'pizza de viadagem', '5 Queijos\r\nPesto\r\nAtum\r\nBacon\r\nCalabresa\r\nFilé Mignon\r\nFrango Desfiado\r\nOvo\r\nPepperoni\r\nPresunto', 'Vegetariana'),
-(14, 'pizza goxtosa hmm testew', 0, '', 1, '', '', '');
+(6, 'Coca-Cola 2L', 12, 'https://placehold.co/400x300?text=Coca-Cola+2L', 1, 'Refrigerante gelado', 'Água gaseificada, açúcar, corante caramelo', 'Bebida'),
+(7, 'Guaraná 2L', 10, 'https://placehold.co/400x300?text=Guarana+2L', 1, 'Refrigerante nacional', 'Água gaseificada, extrato de guaraná', 'Bebida'),
+(8, 'Suco de Laranja', 8, 'https://placehold.co/400x300?text=Suco+de+Laranja', 1, 'Suco natural', 'Laranja, água, açúcar', 'Bebida'),
+(9, 'Petit Gateau', 18, 'https://placehold.co/400x300?text=Petit+Gateau', 1, 'Sobremesa quentinha', 'Chocolate, manteiga, ovos, sorvete', 'Sobremesa');
 
 -- --------------------------------------------------------
 
@@ -108,7 +104,9 @@ INSERT INTO `pedido` (`id`, `NomePedido`, `NomeCliente`, `Observacoes`, `Pagamen
 (4, 'PEDIDO-d56e625e81d0', 'ALex', 'Sem azeitona', 'aVista', 'Pizza Margherita, pizza goxtosa hmm 3,', 40.4, 'Concluido'),
 (5, 'PEDIDO-0c03f3c55251', 'alex', '', 'credito', 'Pizza Margherita,', 39.9, 'Concluido'),
 (6, 'PEDIDO-6aacbbe9055f', 'alex', '', 'pix', 'Pizza Margherita,', 39.9, 'Concluido'),
-(7, 'PEDIDO-4fe5cba674a0', 'Junior', 'Sem azeitona', 'credito', 'pizza goxtosa hmm 2, pizza goxtosa hmm 3,', 8002, 'Concluido');
+(7, 'PEDIDO-4fe5cba674a0', 'Junior', 'Sem azeitona', 'credito', 'pizza goxtosa hmm 2, pizza goxtosa hmm 3,', 8002, 'Concluido'),
+(9, 'PEDIDO-7f241825aa03', 'Mônica', 'Sem palmito', 'debito', 'pizza goxtosa hmm 3,', 0.5, 'Concluido'),
+(10, 'PEDIDO-e38171fddd35', 'Luan', '', 'aVista', 'pizza goxtosa hmm,', 8001.5, 'Concluido');
 
 -- --------------------------------------------------------
 
@@ -151,7 +149,9 @@ INSERT INTO `venda` (`id`, `IdPedido`, `Valor`, `Status`, `DataPedido`, `Pagamen
 (2, 0, 40.4, 'Processando', '2026-06-28', 'aVista'),
 (3, 0, 39.9, 'Processando', '2026-06-28', 'credito'),
 (4, 0, 39.9, 'Processando', '2026-06-28', 'pix'),
-(5, 0, 8002, 'Processando', '2026-06-28', 'credito');
+(5, 0, 8002, 'Processando', '2026-06-28', 'credito'),
+(6, 9, 0.5, 'Processando', '2026-06-28', 'debito'),
+(7, 10, 8001.5, 'Processando', '2026-06-28', 'aVista');
 
 --
 -- Índices para tabelas despejadas
@@ -212,7 +212,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `produtoestoque`
@@ -224,7 +224,7 @@ ALTER TABLE `produtoestoque`
 -- AUTO_INCREMENT de tabela `venda`
 --
 ALTER TABLE `venda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
