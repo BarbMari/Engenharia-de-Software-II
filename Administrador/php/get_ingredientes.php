@@ -9,6 +9,7 @@ try {
     $stmt = $pdo->query("
         SELECT Nome, Unidade
         FROM ProdutoEstoque
+        WHERE Categoria NOT IN ('Mercearia', 'Bebidas', 'Embalagens')
         ORDER BY Nome ASC
     ");
 
