@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/relatorios.css" />
+    <link rel="stylesheet" href="./css/gestao.css" />
     <link rel="icon" href="../assets/LogoNanoSaboresCortada.png" type="image/png" />
     <title>Relatório do Estoque</title>
   </head>
   <body>
     <header>
       <div class="header-left">
-        <h1>NanoSabores</h1>
         <img src="../assets/icon.png" alt="Logo do NanoSabores" />
+        <h1>NanoSabores</h1>
       </div>
       <a id="user" href="./login.html">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" color="#2c5530">
@@ -25,10 +25,12 @@
         <ul>
           <li class="categoria">Home</li>
           <li><a href="./index.html">Início</a></li>
+
           <li class="categoria">Cadastros</li>
           <li><a href="./cad_funcionario.html">Funcionários</a></li>
           <li><a href="./cad_produto.html">Produtos</a></li>
           <li><a href="./cad_sabores.html">Sabores de Pizza</a></li>
+
           <li class="categoria">Relatórios</li>
           <li><a href="./rel_funcionario.html">Funcionários</a></li>
           <li><a href="./rel_produto.html" class="active">Estoque</a></li>
@@ -44,17 +46,16 @@
         <h2>Relatório de Produtos</h2>
         <p class="subtitulo">Insumos da pizzaria e bebidas</p>
 
+        <!-- FILTROS -->
         <div id="filtros">
-          <h2 class="form-title">Filtros</h2>
-
           <div class="row">
-            <div class="filtro">
+            <div class="campo">
               <label>Produto</label>
-              <input type="text" placeholder="Buscar produto..." />
+              <input type="text" id="fProduto" placeholder="Buscar produto..." />
             </div>
-            <div class="filtro">
+            <div class="campo">
               <label>Categoria</label>
-              <select>
+              <select id="fCategoria">
                 <option value="">Todas</option>
                 <option>Mercearia</option>
                 <option>Frios e Laticínios</option>
@@ -66,7 +67,7 @@
           </div>
 
           <div class="row">
-            <div class="filtro">
+            <div class="campo">
               <label>Unidade</label>
               <select id="filtroUnidade">
                 <option value="">Todas</option>
@@ -78,9 +79,9 @@
                 <option value="CX">Caixa (24 latas)</option>
               </select>
             </div>
-            <div class="filtro">
+            <div class="campo">
               <label>Status</label>
-              <select>
+              <select id="fStatus">
                 <option value="">Todos</option>
                 <option>Disponível</option>
                 <option>Baixo estoque</option>
@@ -90,7 +91,7 @@
           </div>
 
           <div class="row">
-            <div class="filtro">
+            <div class="campo">
               <label>Ordenar por quantidade</label>
               <select id="ordenarQuantidade">
                 <option value="">Padrão</option>
@@ -98,7 +99,7 @@
                 <option value="desc">Maior → Menor</option>
               </select>
             </div>
-            <div class="filtro">
+            <div class="campo">
               <label>Ordenar por preço total</label>
               <select id="ordenarPreco">
                 <option value="">Padrão</option>
@@ -109,21 +110,25 @@
           </div>
 
           <div class="row">
-            <div class="filtro">
+            <div class="campo">
               <label>Data de Entrada</label>
-              <input type="date" />
+              <input type="date" id="fDataEntrada" />
             </div>
-            <div class="filtro">
+            <div class="campo">
               <label>Data de Validade</label>
-              <input type="date" />
+              <input type="date" id="fDataValidade" />
             </div>
           </div>
 
-          <div class="acoes">
-            <button class="btn-filtrar">Filtrar</button>
-            <a href="./rel_produto_gestao.html" class="btn-filtrar-cinza">Editar Produto</a>
+          <div class="row">
+            <div class="campo full">
+              <button type="button" class="btn-salvar" id="btnFiltrar">Filtrar</button>
+            </div>
           </div>
+        </div>
 
+        <!-- TABELA -->
+        <div class="tabela-container">
           <table>
             <thead>
               <tr>
@@ -136,10 +141,11 @@
                 <th>Data Entrada</th>
                 <th>Validade</th>
                 <th>Status</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody id="tabelaProdutos">
-              <tr><td colspan="9">Carregando...</td></tr>
+              <tr><td colspan="10">Carregando...</td></tr>
             </tbody>
           </table>
 
@@ -147,6 +153,75 @@
         </div>
       </div>
     </main>
+
+    <!-- MODAL DE EDIÇÃO -->
+    <div id="modalEditar" class="modal-overlay" style="display:none;">
+      <div class="modal-box">
+        <h2>Editar Produto</h2>
+
+        <input type="hidden" id="editId" />
+
+        <div class="row">
+          <div class="campo">
+            <label>Produto</label>
+            <input type="text" id="editNome" />
+          </div>
+          <div class="campo">
+            <label>Categoria</label>
+            <select id="editCategoria">
+              <option>Mercearia</option>
+              <option>Frios e Laticínios</option>
+              <option>Hortifruti</option>
+              <option>Bebidas</option>
+              <option>Embalagens e Descartáveis</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="campo">
+            <label>Unidade</label>
+            <select id="editUnidade">
+              <option value="KG">KG</option>
+              <option value="L">L</option>
+              <option value="UN">UN</option>
+              <option value="DZ">Dúzia</option>
+              <option value="G">G</option>
+              <option value="CX">Caixa (24 latas)</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label>Quantidade</label>
+            <input type="number" id="editQuantidade" step="1" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="campo full">
+            <label>Custo Unitário</label>
+            <input type="number" id="editCusto" step="0.01" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="campo">
+            <label>Data de Entrada</label>
+            <input type="date" id="editDataEntrada" />
+          </div>
+          <div class="campo">
+            <label>Data de Validade</label>
+            <input type="date" id="editDataValidade" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="campo full modal-acoes">
+            <button type="button" class="btn-salvar" id="btnSalvarEdicao">Salvar</button>
+            <button type="button" class="btn-filtrar-cinza" id="btnCancelarEdicao">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="./Js/rel_produto.js"></script>
   </body>

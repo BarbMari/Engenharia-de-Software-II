@@ -95,6 +95,7 @@ header img {
   background: white;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .container-sidebar ul {
@@ -157,13 +158,22 @@ h2 {
 }
 
 /* =========================
-   FORM
+   FORM / FILTROS
 ========================= */
-#formVenda {
+#formVenda,
+#filtros {
   background: white;
   padding: 2.5rem;
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+#filtros h3 {
+  font-size: 2rem;
+  font-weight: 350;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .row {
@@ -173,16 +183,19 @@ h2 {
   margin-bottom: 1.5rem;
 }
 
-.campo {
+.campo,
+.filtro {
   display: flex;
   flex-direction: column;
 }
 
-.campo.full {
+.campo.full,
+.filtro.full {
   grid-column: 1 / -1;
 }
 
-.campo label {
+.campo label,
+.filtro label {
   margin-bottom: 0.5rem;
   font-weight: bold;
   color: #333;
@@ -190,7 +203,9 @@ h2 {
 
 .campo input,
 .campo select,
-.campo textarea {
+.campo textarea,
+.filtro input,
+.filtro select {
   padding: 1rem;
   border: 2px solid #ddd;
   border-radius: 8px;
@@ -199,15 +214,18 @@ h2 {
 
 .campo input:focus,
 .campo select:focus,
-.campo textarea:focus {
+.campo textarea:focus,
+.filtro input:focus,
+.filtro select:focus {
   border-color: #afcfb4;
   outline: none;
 }
 
 /* =========================
-   BOTÃO
+   BOTÕES
 ========================= */
-.btn-salvar {
+.btn-salvar,
+.btn-filtrar {
   background: linear-gradient(to right, #afcfb4, #9fd39c);
   color: #2c5530;
   border: none;
@@ -217,46 +235,56 @@ h2 {
   font-weight: bold;
   width: 100%;
   cursor: pointer;
-  margin-top: 1.5rem;
+  margin-top: 0;
   transition: 0.2s;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.btn-salvar:hover {
+.btn-salvar:hover,
+.btn-filtrar:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(175, 207, 180, 0.4);
 }
 
-/* =========================
-   BOTÕES DE FILTRO
-========================= */
-.btn-filtrar,
 .btn-filtrar-cinza {
   display: inline-block;
   text-align: center;
   text-decoration: none;
   border: none;
-  padding: 1rem 2rem;
+  padding: 1.2rem 2.5rem;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
-}
-
-.btn-filtrar-cinza {
   background: #e9ecef;
   color: #495057;
+  width: 100%;
 }
 
 .btn-filtrar-cinza:hover {
   background: #dde1e4;
 }
 
+/* Botão dentro de .acoes */
+.acoes {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.acoes .btn-salvar,
+.acoes .btn-filtrar {
+  width: 100%;
+}
+
 /* =========================
    INGREDIENTES (TAGS) - estilo pílula
 ========================= */
 #buscarIngrediente,
-#editBuscarIngrediente {
+#editBuscarIngrediente,
+#fBuscarIngrediente {
   width: 100%;
   margin-bottom: 12px;
 }
@@ -304,48 +332,6 @@ h2 {
 }
 
 /* =========================
-   RELATÓRIOS
-========================= */
-#filtros {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
-}
-
-#filtros h3 {
-  font-size: 2rem;
-  font-weight: 350;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.filtro {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.5rem;
-}
-
-.filtro label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.filtro input,
-.filtro select {
-  padding: 1rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-}
-
-.filtro input:focus,
-.filtro select:focus {
-  border-color: #afcfb4;
-  outline: none;
-}
-
-/* =========================
    TABELA
 ========================= */
 .tabela-container {
@@ -353,6 +339,11 @@ h2 {
   padding: 2.5rem;
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+th, td {
+  white-space: nowrap;
 }
 
 table {
@@ -384,6 +375,7 @@ tr:hover {
   font-size: 1.4rem;
   font-weight: bold;
   border-radius: 10px;
+  margin-top: 1.5rem;
 }
 
 .sem-resultados {
@@ -393,11 +385,39 @@ tr:hover {
 }
 
 /* =========================
+   STATUS BADGES
+========================= */
+.status {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.status-ok {
+  background: #e3f3e4;
+  color: #2c5530;
+}
+
+.status-baixo {
+  background: #fff3cd;
+  color: #8a6d00;
+}
+
+.status-sem {
+  background: #fbecec;
+  color: #b33a3a;
+}
+
+/* =========================
    AÇÕES DA TABELA (EDITAR/EXCLUIR)
 ========================= */
-.acoes-tabela {
+.acoes-tabela,
+td.acoes-tabela {
   display: flex;
   gap: 0.5rem;
+  align-items: center;
   justify-content: flex-start;
 }
 
@@ -453,33 +473,52 @@ tr:hover {
   padding: 1.8rem;
   border-radius: 14px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-  max-width: 380px;
+  max-width: 420px;
   width: 100%;
   max-height: 85vh;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .modal-box h2 {
   font-size: 1.3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
+/* Rows dentro do modal: 1 coluna */
 .modal-box .row {
   grid-template-columns: 1fr;
-  gap: 0.8rem;
   margin-bottom: 0.8rem;
+  min-width: 0;
+  gap: 0.8rem;
 }
 
-.modal-box .campo label {
-  font-size: 0.85rem;
-  margin-bottom: 0.3rem;
+/* 2 colunas dentro do modal quando necessário */
+.modal-box .row.two-col {
+  grid-template-columns: 1fr 1fr;
+}
+
+.modal-box .campo,
+.modal-box .filtro {
+  min-width: 0;
 }
 
 .modal-box .campo input,
 .modal-box .campo select,
-.modal-box .campo textarea {
+.modal-box .campo textarea,
+.modal-box .filtro input,
+.modal-box .filtro select {
   padding: 0.6rem;
   font-size: 0.9rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.modal-box .campo label,
+.modal-box .filtro label {
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
 }
 
 .modal-box .ingredientes-container {
@@ -493,23 +532,22 @@ tr:hover {
   font-size: 0.8rem;
 }
 
-.modal-box .btn-salvar {
-  padding: 0.7rem;
-  font-size: 0.95rem;
-  margin-top: 0.3rem;
-}
-
+/* Linha de ações do modal */
 .modal-acoes {
   display: flex;
+  flex-direction: row;
   gap: 0.6rem;
+  margin-top: 0.4rem;
 }
 
 .modal-acoes .btn-salvar,
+.modal-acoes .btn-filtrar,
 .modal-acoes .btn-filtrar-cinza {
-  width: auto;
   flex: 1;
+  width: auto;
   padding: 0.7rem;
   font-size: 0.9rem;
+  margin-top: 0;
 }
 
 /* =========================
@@ -522,9 +560,14 @@ tr:hover {
 
   main {
     margin-left: 0;
+    padding: 1rem;
   }
 
   .row {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-box .row.two-col {
     grid-template-columns: 1fr;
   }
 }
