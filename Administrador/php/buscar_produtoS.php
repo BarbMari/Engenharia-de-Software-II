@@ -81,10 +81,9 @@ if ($action === 'update') {
 }
 
 // ───────────────────────────────────────────────────────────────────────────
-// LISTAR / FILTRAR (lógica original)
+// LISTAR / FILTRAR
 // ───────────────────────────────────────────────────────────────────────────
 
-// ── Filtros via GET ───────────────────────────────────────────────────────────
 $nome         = trim($_GET['nome']         ?? '');
 $categoria    = trim($_GET['categoria']    ?? '');
 $unidade      = trim($_GET['unidade']      ?? '');
@@ -94,7 +93,6 @@ $dataValidade = trim($_GET['dataValidade'] ?? '');
 $ordemQtd     = $_GET['ordemQtd']          ?? '';
 $ordemPreco   = $_GET['ordemPreco']        ?? '';
 
-// ── Monta WHERE ───────────────────────────────────────────────────────────────
 $where  = [];
 $params = [];
 
@@ -111,23 +109,35 @@ if ($unidade !== '') {
     $params[':unidade'] = $unidade;
 }
 if ($dataEntrada !== '') {
-    $where[]                 = 'DataEntrega = :dataEntrada';
-    $params[':dataEntrada']  = $dataEntrada;
+    $where[]                = 'DataEntrega = :dataEntrada';
+    $params[':dataEntrada'] = $dataEntrada;
 }
 if ($dataValidade !== '') {
-    $where[]                  = 'DataValidade = :dataValidade';
-    $params[':dataValidade']  = $dataValidade;
+    $where[]                 = 'DataValidade = :dataValidade';
+    $params[':dataValidade'] = $dataValidade;
 }
 if ($status === 'Sem estoque')   $where[] = 'Quantidade = 0';
-if ($status === 'Baixo estoque') $where[] = 'Quantidade > 0 AND Quantidade <= 5';
-if ($status === 'Disponível')    $where[] = 'Quantidade > 5';
+if ($status === 'Baixo estoque') $where[] = "Quantidade > 0 AND (
+    (Unidade = 'KG'  AND Quantidade <= 5)   OR
+    (Unidade = 'G'   AND Quantidade <= 500) OR
+    (Unidade = 'L'   AND Quantidade <= 5)   OR
+    (Unidade = 'UN'  AND Quantidade <= 10)  OR
+    (Unidade = 'DZ'  AND Quantidade <= 2)   OR
+    (Unidade = 'CX'  AND Quantidade <= 2)
+)";
+if ($status === 'Disponível') $where[] = "Quantidade > 0 AND NOT (
+    (Unidade = 'KG'  AND Quantidade <= 5)   OR
+    (Unidade = 'G'   AND Quantidade <= 500) OR
+    (Unidade = 'L'   AND Quantidade <= 5)   OR
+    (Unidade = 'UN'  AND Quantidade <= 10)  OR
+    (Unidade = 'DZ'  AND Quantidade <= 2)   OR
+    (Unidade = 'CX'  AND Quantidade <= 2)
+)";
 
-// ── Monta ORDER BY (sem concatenar input direto — usa whitelist) ──────────────
 $ordens = [];
-if (in_array($ordemQtd,   ['asc','desc'])) $ordens[] = 'Quantidade '  . strtoupper($ordemQtd);
-if (in_array($ordemPreco, ['asc','desc'])) $ordens[] = 'CustoTotal '  . strtoupper($ordemPreco);
+if (in_array($ordemQtd,   ['asc', 'desc'])) $ordens[] = 'Quantidade ' . strtoupper($ordemQtd);
+if (in_array($ordemPreco, ['asc', 'desc'])) $ordens[] = 'CustoTotal ' . strtoupper($ordemPreco);
 
-// ── Query ─────────────────────────────────────────────────────────────────────
 $sql = "SELECT
             id,
             Nome,
@@ -139,16 +149,20 @@ $sql = "SELECT
             DataEntrega,
             DataValidade,
             CASE
-                WHEN Quantidade = 0  THEN 'Sem estoque'
-                WHEN Quantidade <= 5 THEN 'Baixo estoque'
+                WHEN Quantidade = 0                          THEN 'Sem estoque'
+                WHEN Unidade = 'KG'  AND Quantidade <= 5    THEN 'Baixo estoque'
+                WHEN Unidade = 'G'   AND Quantidade <= 500  THEN 'Baixo estoque'
+                WHEN Unidade = 'L'   AND Quantidade <= 5    THEN 'Baixo estoque'
+                WHEN Unidade = 'UN'  AND Quantidade <= 10   THEN 'Baixo estoque'
+                WHEN Unidade = 'DZ'  AND Quantidade <= 2    THEN 'Baixo estoque'
+                WHEN Unidade = 'CX'  AND Quantidade <= 2    THEN 'Baixo estoque'
                 ELSE 'Disponível'
             END AS Status
         FROM ProdutoEstoque";
 
-if ($where)  $sql .= ' WHERE '    . implode(' AND ', $where);
+if ($where) $sql .= ' WHERE ' . implode(' AND ', $where);
 $sql .= $ordens ? ' ORDER BY ' . implode(', ', $ordens) : ' ORDER BY id DESC';
 
-// ── Executa ───────────────────────────────────────────────────────────────────
 try {
     $pdo  = (new connection())->connect();
     $stmt = $pdo->prepare($sql);

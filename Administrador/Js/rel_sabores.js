@@ -4,26 +4,74 @@ const tabelaCorpo = document.getElementById("tabelaCorpo");
 const totalSabores = document.getElementById("totalSabores");
 
 let fIngredientesSelecionados = [];
+let editIngredientesSelecionados = [];
+let editImagemAtual = "";
+let editResumoAtual = "";
 
-document.querySelectorAll("#fIngredientesContainer .ingrediente-tag").forEach((tag) => {
-  tag.addEventListener("click", () => {
-    tag.classList.toggle("selecionado");
-    const ingrediente = tag.textContent;
-    const idx = fIngredientesSelecionados.indexOf(ingrediente);
+/* =========================
+   CARREGAR INGREDIENTES DO ESTOQUE
+========================= */
+async function carregarIngredientes() {
+  try {
+    const res = await fetch("./php/get_ingredientes.php");
+    const data = await res.json();
 
-    if (idx >= 0) {
-      fIngredientesSelecionados.splice(idx, 1);
-    } else {
-      fIngredientesSelecionados.push(ingrediente);
+    const filtroContainer = document.getElementById("fIngredientesContainer");
+    const editContainer = document.getElementById("editIngredientesContainer");
+
+    filtroContainer.innerHTML = "";
+    editContainer.innerHTML = "";
+
+    if (!data.sucesso || data.produtos.length === 0) {
+      filtroContainer.innerHTML = '<span style="color:#999; font-size:0.9rem;">Nenhum produto no estoque.</span>';
+      editContainer.innerHTML = '<span style="color:#999; font-size:0.9rem;">Nenhum produto no estoque.</span>';
+      return;
     }
+
+    data.produtos.forEach(p => {
+      // Tag do filtro
+      const tagFiltro = document.createElement("div");
+      tagFiltro.className = "ingrediente-tag";
+      tagFiltro.textContent = p.Nome;
+      tagFiltro.addEventListener("click", () => {
+        tagFiltro.classList.toggle("selecionado");
+        const idx = fIngredientesSelecionados.indexOf(p.Nome);
+        if (idx >= 0) fIngredientesSelecionados.splice(idx, 1);
+        else fIngredientesSelecionados.push(p.Nome);
+      });
+      filtroContainer.appendChild(tagFiltro);
+
+      // Tag do modal de edição
+      const tagEdit = document.createElement("div");
+      tagEdit.className = "ingrediente-tag";
+      tagEdit.textContent = p.Nome;
+      tagEdit.addEventListener("click", () => {
+        tagEdit.classList.toggle("selecionado");
+        const idx = editIngredientesSelecionados.indexOf(p.Nome);
+        if (idx >= 0) editIngredientesSelecionados.splice(idx, 1);
+        else editIngredientesSelecionados.push(p.Nome);
+      });
+      editContainer.appendChild(tagEdit);
+    });
+
+  } catch (err) {
+    console.error("Erro ao carregar ingredientes:", err);
+  }
+}
+
+// Busca no filtro
+document.getElementById("fBuscarIngrediente").addEventListener("keyup", function () {
+  const filtro = this.value.toLowerCase();
+  document.querySelectorAll("#fIngredientesContainer .ingrediente-tag").forEach(tag => {
+    tag.style.display = tag.textContent.toLowerCase().includes(filtro) ? "" : "none";
   });
 });
 
-document.getElementById("fBuscarIngrediente").addEventListener("keyup", function () {
+// Busca no modal
+document.getElementById("editBuscarIngrediente").addEventListener("keyup", function () {
   const filtro = this.value.toLowerCase();
-  document.querySelectorAll("#fIngredientesContainer .ingrediente-tag").forEach((tag) => {
-    const texto = tag.textContent.toLowerCase();
-    tag.style.display = texto.includes(filtro) ? "block" : "none";
+  document.querySelectorAll("#editIngredientesContainer .ingrediente-tag").forEach(tag => {
+    tag.style.display = tag.textContent.toLowerCase().includes(filtro) ? "" : "none";
   });
 });
 
@@ -43,8 +91,8 @@ function carregarSabores() {
   });
 
   fetch(`${API_URL}?${params.toString()}`)
-    .then((resp) => resp.text())
-    .then((texto) => {
+    .then(resp => resp.text())
+    .then(texto => {
       let data;
       try {
         data = JSON.parse(texto);
@@ -61,7 +109,7 @@ function carregarSabores() {
         tabelaCorpo.innerHTML = `<tr><td colspan="7" class="sem-resultados">Erro: ${data.erro}</td></tr>`;
       }
     })
-    .catch((err) => console.error("Erro ao carregar sabores:", err));
+    .catch(err => console.error("Erro ao carregar sabores:", err));
 }
 
 function renderizarTabela(itens) {
@@ -69,16 +117,15 @@ function renderizarTabela(itens) {
   totalSabores.textContent = itens.length;
 
   if (itens.length === 0) {
-    tabelaCorpo.innerHTML =
-      '<tr><td colspan="7" class="sem-resultados">Nenhum sabor encontrado.</td></tr>';
+    tabelaCorpo.innerHTML = '<tr><td colspan="7" class="sem-resultados">Nenhum sabor encontrado.</td></tr>';
     return;
   }
 
-  itens.forEach((item) => {
-    const partes = (item.Igredientes || "").split(",").map((p) => p.trim());
+  itens.forEach(item => {
+    const partes = (item.Igredientes || "").split(",").map(p => p.trim());
     const queijo = partes[0] || "";
     const molho = partes[1] || "";
-    const ingredientes = partes.slice(2).filter((p) => p !== "").join(", ");
+    const ingredientes = partes.slice(2).filter(p => p !== "").join(", ");
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -89,18 +136,13 @@ function renderizarTabela(itens) {
       <td>${ingredientes || "-"}</td>
       <td>R$ ${Number(item.Valor).toFixed(2).replace(".", ",")}</td>
       <td class="acoes-tabela">
-        <button class="btn-editar" data-id="${item.id}" title="Editar">✏️</button>
-        <button class="btn-excluir" data-id="${item.id}" title="Excluir">🗑️</button>
+        <button class="btn-editar" title="Editar">✏️</button>
+        <button class="btn-excluir" title="Excluir">🗑️</button>
       </td>
     `;
 
-    tr.querySelector(".btn-editar").addEventListener("click", () =>
-      abrirModalEdicao(item)
-    );
-
-    tr.querySelector(".btn-excluir").addEventListener("click", () =>
-      excluirSabor(item.id, item.Nome)
-    );
+    tr.querySelector(".btn-editar").addEventListener("click", () => abrirModalEdicao(item));
+    tr.querySelector(".btn-excluir").addEventListener("click", () => excluirSabor(item.id, item.Nome));
 
     tabelaCorpo.appendChild(tr);
   });
@@ -119,30 +161,27 @@ function excluirSabor(id, nome) {
   formData.append("id", id);
 
   fetch(API_URL, { method: "POST", body: formData })
-    .then((resp) => resp.json())
-    .then((data) => {
+    .then(resp => resp.json())
+    .then(data => {
       if (data.sucesso) {
         carregarSabores();
       } else {
         alert("Erro ao excluir: " + (data.erro || "tente novamente."));
       }
     })
-    .catch((err) => console.error("Erro ao excluir sabor:", err));
+    .catch(err => console.error("Erro ao excluir sabor:", err));
 }
 
 /* =========================
    EDITAR (MODAL)
 ========================= */
 const modalEditar = document.getElementById("modalEditar");
-let editIngredientesSelecionados = [];
-let editImagemAtual = "";
-let editResumoAtual = "";
 
 function abrirModalEdicao(item) {
-  const partes = (item.Igredientes || "").split(",").map((p) => p.trim());
+  const partes = (item.Igredientes || "").split(",").map(p => p.trim());
   const queijo = partes[0] || "";
   const molho = partes[1] || "";
-  const ingredientes = partes.slice(2).filter((p) => p !== "");
+  const ingredientes = partes.slice(2).filter(p => p !== "");
 
   document.getElementById("editId").value = item.id;
   document.getElementById("editNome").value = item.Nome;
@@ -153,11 +192,11 @@ function abrirModalEdicao(item) {
 
   editImagemAtual = item.Imagem || "";
   editResumoAtual = item.Resumo || "";
-
   editIngredientesSelecionados = [...ingredientes];
 
-  document.querySelectorAll("#editIngredientesContainer .ingrediente-tag").forEach((tag) => {
-    tag.style.display = "block";
+  // Marca os ingredientes selecionados no modal
+  document.querySelectorAll("#editIngredientesContainer .ingrediente-tag").forEach(tag => {
+    tag.style.display = "";
     if (editIngredientesSelecionados.includes(tag.textContent)) {
       tag.classList.add("selecionado");
     } else {
@@ -168,38 +207,22 @@ function abrirModalEdicao(item) {
   modalEditar.style.display = "flex";
 }
 
-document.querySelectorAll("#editIngredientesContainer .ingrediente-tag").forEach((tag) => {
-  tag.addEventListener("click", () => {
-    tag.classList.toggle("selecionado");
-    const ingrediente = tag.textContent;
-    const idx = editIngredientesSelecionados.indexOf(ingrediente);
-
-    if (idx >= 0) {
-      editIngredientesSelecionados.splice(idx, 1);
-    } else {
-      editIngredientesSelecionados.push(ingrediente);
-    }
-  });
-});
-
-document.getElementById("editBuscarIngrediente").addEventListener("keyup", function () {
-  const filtro = this.value.toLowerCase();
-  document.querySelectorAll("#editIngredientesContainer .ingrediente-tag").forEach((tag) => {
-    const texto = tag.textContent.toLowerCase();
-    tag.style.display = texto.includes(filtro) ? "block" : "none";
-  });
-});
-
 document.getElementById("btnCancelarEdicao").addEventListener("click", () => {
   modalEditar.style.display = "none";
+});
+
+modalEditar.addEventListener("click", e => {
+  if (e.target === modalEditar) modalEditar.style.display = "none";
 });
 
 document.getElementById("btnSalvarEdicao").addEventListener("click", () => {
   const queijo = document.getElementById("editQueijo").value;
   const molho = document.getElementById("editMolho").value;
 
-  let ing = queijo + ", " + molho;
-  editIngredientesSelecionados.forEach((i) => (ing += ", " + i));
+  const partes = [];
+  if (queijo) partes.push(queijo);
+  if (molho) partes.push(molho);
+  partes.push(...editIngredientesSelecionados);
 
   const formData = new FormData();
   formData.append("action", "update");
@@ -209,11 +232,11 @@ document.getElementById("btnSalvarEdicao").addEventListener("click", () => {
   formData.append("val", document.getElementById("editValor").value);
   formData.append("img", editImagemAtual);
   formData.append("res", editResumoAtual);
-  formData.append("ing", ing);
+  formData.append("ing", partes.join(", "));
 
   fetch(API_URL, { method: "POST", body: formData })
-    .then((resp) => resp.json())
-    .then((data) => {
+    .then(resp => resp.json())
+    .then(data => {
       if (data.sucesso) {
         modalEditar.style.display = "none";
         carregarSabores();
@@ -221,10 +244,11 @@ document.getElementById("btnSalvarEdicao").addEventListener("click", () => {
         alert("Erro ao salvar: " + (data.erro || "tente novamente."));
       }
     })
-    .catch((err) => console.error("Erro ao salvar edição:", err));
+    .catch(err => console.error("Erro ao salvar edição:", err));
 });
 
 /* =========================
    INICIALIZAÇÃO
 ========================= */
+carregarIngredientes();
 carregarSabores();

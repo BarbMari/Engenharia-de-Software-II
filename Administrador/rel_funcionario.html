@@ -59,7 +59,6 @@
         <h2>Relatório de Funcionários</h2>
         <p class="subtitulo">Lista completa dos colaboradores da pizzaria</p>
 
-        <!-- FILTROS -->
         <div id="filtros">
           <div class="row">
             <div class="filtro">
@@ -114,15 +113,33 @@
           </div>
 
           <div class="row">
+            <div class="filtro">
+              <label>Ordenar por ID</label>
+              <select id="ordemId">
+                <option value="">Nenhum</option>
+                <option value="asc">Crescente</option>
+                <option value="desc">Decrescente</option>
+              </select>
+            </div>
+            <div class="filtro">
+              <label>Ordenar por Cargo Hierárquico</label>
+              <select id="ordemCargo">
+                <option value="">Nenhum</option>
+                <option value="asc">Mais Alto → Mais Baixo</option>
+                <option value="desc">Mais Baixo → Mais Alto</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
             <div class="campo full">
               <button type="button" class="btn-salvar" id="btnFiltrar">
-                Filtrar
+                Filtrar e Ordenar
               </button>
             </div>
           </div>
         </div>
 
-        <!-- TABELA -->
         <div class="tabela-container">
           <table>
             <thead>
@@ -136,68 +153,11 @@
                 <th>Ações</th>
               </tr>
             </thead>
-            <tbody id="tabelaFuncionarios">
-              <tr>
-                <td>1</td>
-                <td>Ana Beatriz Silva</td>
-                <td>ana.silva@pizzaria.com</td>
-                <td>(11) 98765-4321</td>
-                <td>Gerente</td>
-                <td>123.456.789-00</td>
-                <td>
-                  <div class="acoes-tabela">
-                    <button class="btn-editar" title="Editar">✏️</button>
-                    <button class="btn-excluir" title="Excluir">🗑️</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Carlos Eduardo Souza</td>
-                <td>carlos.souza@pizzaria.com</td>
-                <td>(21) 99888-7766</td>
-                <td>Caixa</td>
-                <td>234.567.890-11</td>
-                <td>
-                  <div class="acoes-tabela">
-                    <button class="btn-editar" title="Editar">✏️</button>
-                    <button class="btn-excluir" title="Excluir">🗑️</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Mariana Oliveira Costa</td>
-                <td>mariana.costa@pizzaria.com</td>
-                <td>(31) 97766-5544</td>
-                <td>Administração</td>
-                <td>345.678.901-22</td>
-                <td>
-                  <div class="acoes-tabela">
-                    <button class="btn-editar" title="Editar">✏️</button>
-                    <button class="btn-excluir" title="Excluir">🗑️</button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Ricardo Pereira Lima</td>
-                <td>ricardo.lima@pizzaria.com</td>
-                <td>(41) 96655-4433</td>
-                <td>Pizzaiolo</td>
-                <td>456.789.012-33</td>
-                <td>
-                  <div class="acoes-tabela">
-                    <button class="btn-editar" title="Editar">✏️</button>
-                    <button class="btn-excluir" title="Excluir">🗑️</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+            <tbody id="tabelaFuncionarios"></tbody>
           </table>
 
           <div class="total">
-            Total de Funcionários: <strong id="totalFuncionarios">4</strong>
+            Total de Funcionários: <strong id="totalFuncionarios">0</strong>
           </div>
         </div>
 
@@ -216,7 +176,6 @@
       </div>
     </main>
 
-    <!-- MODAL DE EDIÇÃO -->
     <div id="modalEditar" class="modal-overlay" style="display: none">
       <div class="modal-box">
         <h2>Editar Funcionário</h2>
