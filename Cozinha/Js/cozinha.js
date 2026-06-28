@@ -109,9 +109,7 @@ async function markOrderDone(pedidoId, element) {
         pedidos = pedidos.filter(p => p.id !== pedidoId);
         renderPedidos(pedidos);
     }, 800);
-
-    // Aqui você pode avisar o backend futuramente:
-    // await fetch('Js/concluirPedido.php', { method: 'POST', body: JSON.stringify({ id: pedidoId }) });
+    await fetch('Js/concluirPedido.php', { method: 'POST', body: JSON.stringify({ id: pedidoId }) });
 }
 
 async function loadAndRender() {

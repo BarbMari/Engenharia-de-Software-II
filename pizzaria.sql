@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/06/2026 às 20:25
+-- Tempo de geração: 28/06/2026 às 04:11
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `pizzaria`
 --
-CREATE DATABASE IF NOT EXISTS `pizzaria` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `pizzaria`;
 
 -- --------------------------------------------------------
 
@@ -95,16 +93,22 @@ CREATE TABLE `pedido` (
   `Observacoes` text NOT NULL,
   `Pagamento` text NOT NULL,
   `Itens` text NOT NULL,
-  `Valor` float NOT NULL
+  `Valor` float NOT NULL,
+  `Status` varchar(20) NOT NULL DEFAULT 'Pendente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `pedido`
 --
 
-INSERT INTO `pedido` (`id`, `NomePedido`, `NomeCliente`, `Observacoes`, `Pagamento`, `Itens`, `Valor`) VALUES
-(1, 'PEDIDO-6a359f8f103d7', '68764', '4', 'PIX', 'Pizza 1, Pizza 2, Pizza 3', 50.5),
-(0, 'PEDIDO-6679119', 'TEste', 'Memes, tipos de carinhas são', 'pix', 'pizza goxtosa hmm 2, pizza goxtosa hmm 3, ', 8002);
+INSERT INTO `pedido` (`id`, `NomePedido`, `NomeCliente`, `Observacoes`, `Pagamento`, `Itens`, `Valor`, `Status`) VALUES
+(1, 'PEDIDO-6a359f8f103d7', '68764', '4', 'PIX', 'Pizza 1, Pizza 2, Pizza 3', 50.5, 'Concluido'),
+(2, 'PEDIDO-6679119', 'TEste', 'Memes, tipos de carinhas são', 'pix', 'pizza goxtosa hmm 2, pizza goxtosa hmm 3, ', 8002, 'Concluido'),
+(3, 'PEDIDO-9394744', '', '', 'pix', 'Pizza Margherita, Pizza Calabresa', 0, 'Concluido'),
+(4, 'PEDIDO-d56e625e81d0', 'ALex', 'Sem azeitona', 'aVista', 'Pizza Margherita, pizza goxtosa hmm 3,', 40.4, 'Concluido'),
+(5, 'PEDIDO-0c03f3c55251', 'alex', '', 'credito', 'Pizza Margherita,', 39.9, 'Concluido'),
+(6, 'PEDIDO-6aacbbe9055f', 'alex', '', 'pix', 'Pizza Margherita,', 39.9, 'Concluido'),
+(7, 'PEDIDO-4fe5cba674a0', 'Junior', 'Sem azeitona', 'credito', 'pizza goxtosa hmm 2, pizza goxtosa hmm 3,', 8002, 'Concluido');
 
 -- --------------------------------------------------------
 
@@ -143,7 +147,11 @@ CREATE TABLE `venda` (
 --
 
 INSERT INTO `venda` (`id`, `IdPedido`, `Valor`, `Status`, `DataPedido`, `Pagamento`) VALUES
-(1, 1, 292.3, 'Processando', '2026-06-19', 'credito');
+(1, 1, 292.3, 'Processando', '2026-06-19', 'credito'),
+(2, 0, 40.4, 'Processando', '2026-06-28', 'aVista'),
+(3, 0, 39.9, 'Processando', '2026-06-28', 'credito'),
+(4, 0, 39.9, 'Processando', '2026-06-28', 'pix'),
+(5, 0, 8002, 'Processando', '2026-06-28', 'credito');
 
 --
 -- Índices para tabelas despejadas
@@ -162,6 +170,12 @@ ALTER TABLE `funcionario`
 ALTER TABLE `item`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Índices de tabela `pedido`
+--
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `produtoestoque`
@@ -195,6 +209,12 @@ ALTER TABLE `item`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT de tabela `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de tabela `produtoestoque`
 --
 ALTER TABLE `produtoestoque`
@@ -204,7 +224,7 @@ ALTER TABLE `produtoestoque`
 -- AUTO_INCREMENT de tabela `venda`
 --
 ALTER TABLE `venda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
