@@ -2,7 +2,6 @@ const form    = document.getElementById('formFuncionario');
 const btnSalvar = document.getElementById('btnSalvar');
 const idAtual = document.getElementById('idAtual');
 
-// Se vier ?id=X na URL, carrega os dados para edição
 const params = new URLSearchParams(window.location.search);
 if (params.get('id')) {
     carregarParaEdicao(params.get('id'));

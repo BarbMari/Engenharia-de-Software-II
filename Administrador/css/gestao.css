@@ -1,10 +1,15 @@
-/* PÁGINA INICIAL */
+/* =========================
+   RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* =========================
+   BASE
+========================= */
 body {
   font-family: Arial, sans-serif;
   background: #f8f9fa;
@@ -16,7 +21,9 @@ html {
   scrollbar-gutter: stable;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 header {
   background: linear-gradient(to right, #afcfb4, #9fd39c);
   padding: 1rem 2rem;
@@ -44,8 +51,10 @@ header img {
   height: 50px;
   margin-right: 15px;
   border-radius: 8px;
+  display: block;
 }
 
+/* USER */
 #user {
   background: white;
   width: 38px;
@@ -56,16 +65,12 @@ header img {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: 0.2s;
 }
 
 #user:hover {
   background: linear-gradient(to bottom right, #afcfb4, #9fd39c);
-  box-shadow: 0 0 0 4px rgba(18, 18, 18, 0.4);
-}
-
-#user:hover svg {
-  color: white;
+  box-shadow: 0 0 0 4px rgba(175, 207, 180, 0.4);
 }
 
 #user svg {
@@ -74,7 +79,13 @@ header img {
   color: #2c5530;
 }
 
-/* SIDEBAR COM SCROLL */
+#user:hover svg {
+  color: white;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
 #sidebar {
   position: fixed;
   left: 0;
@@ -84,7 +95,6 @@ header img {
   background: white;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .container-sidebar ul {
@@ -101,7 +111,7 @@ header img {
   padding: 1rem 2rem;
   color: #666;
   text-decoration: none;
-  transition: background 0.3s;
+  transition: 0.3s;
 }
 
 .container-sidebar a:hover,
@@ -110,6 +120,7 @@ header img {
   color: #2c5530;
 }
 
+/* categoria */
 .categoria {
   padding: 0.8rem 2rem;
   color: #999;
@@ -120,7 +131,9 @@ header img {
   margin: 1rem 0 0.5rem 0;
 }
 
-/* MAIN */
+/* =========================
+   MAIN
+========================= */
 main {
   margin-left: 260px;
   padding: 2rem;
@@ -143,86 +156,198 @@ h2 {
   margin-bottom: 2rem;
 }
 
-/* FILTROS */
-#filtros {
+/* =========================
+   FORM
+========================= */
+#formVenda {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo.full {
+  grid-column: 1 / -1;
+}
+
+.campo label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  border-color: #afcfb4;
+  outline: none;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+.btn-salvar {
+  background: linear-gradient(to right, #afcfb4, #9fd39c);
+  color: #2c5530;
+  border: none;
+  padding: 1.2rem 2.5rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: 0.2s;
+}
+
+.btn-salvar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(175, 207, 180, 0.4);
+}
+
+/* =========================
+   BOTÕES DE FILTRO
+========================= */
+.btn-filtrar,
+.btn-filtrar-cinza {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-filtrar-cinza {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.btn-filtrar-cinza:hover {
+  background: #dde1e4;
+}
+
+/* =========================
+   INGREDIENTES (TAGS) - estilo pílula
+========================= */
+#buscarIngrediente,
+#editBuscarIngrediente {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.ingredientes-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  background: white;
+  gap: 12px;
   padding: 20px;
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  margin-bottom: 20px;
+  background: #fff;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.ingrediente-tag {
+  background: #ffffff;
+  border: 1.5px solid #afcfb4;
+  color: #2c5530;
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 0.95rem;
+  font-weight: 500;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.ingrediente-tag:hover {
+  background: #f1f8f1;
+  border-color: #9fd39c;
+}
+
+.ingrediente-tag.selecionado {
+  background: #2c5530;
+  border-color: #2c5530;
+  color: white;
+  box-shadow: 0 3px 8px rgba(44, 85, 48, 0.3);
+}
+
+.ingrediente-tag.selecionado::before {
+  content: "✓ ";
+}
+
+/* =========================
+   RELATÓRIOS
+========================= */
+#filtros {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+#filtros h3 {
+  font-size: 2rem;
+  font-weight: 350;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .filtro {
   display: flex;
   flex-direction: column;
-  min-width: 160px;
-  flex: 1;
+  margin-bottom: 1.5rem;
 }
 
 .filtro label {
-  font-size: 13px;
-  color: #2c5530;
-  margin-bottom: 5px;
-  font-weight: 500;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 .filtro input,
 .filtro select {
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 1rem;
+  border: 2px solid #ddd;
   border-radius: 8px;
-  font-size: 14px;
 }
 
 .filtro input:focus,
 .filtro select:focus {
   border-color: #afcfb4;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(175, 207, 180, 0.2);
 }
 
-.acoes {
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-}
-
-.btn-filtrar,
-.btn-filtrar-cinza {
-  padding: 11px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 14px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.btn-filtrar {
-  background: #2c5530;
-  color: white;
-}
-
-.btn-filtrar:hover {
-  background: #1f3d23;
-}
-
-.btn-filtrar-cinza {
-  background: #666;
-  color: white;
-}
-
-.btn-filtrar-cinza:hover {
-  background: #444;
-}
-
-/* TABELA */
+/* =========================
+   TABELA
+========================= */
 .tabela-container {
   background: white;
   padding: 2.5rem;
@@ -230,92 +355,188 @@ h2 {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-#tabelaGestao {
+table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
 }
 
-#tabelaGestao th {
+th {
   background: #afcfb4;
   color: #2c5530;
-  padding: 15px 12px;
+  padding: 1.2rem;
   text-align: left;
-  font-weight: bold;
-  font-size: 13px;
 }
 
-#tabelaGestao td {
-  padding: 12px 12px;
+td {
+  padding: 1.2rem;
   border-bottom: 1px solid #eee;
 }
 
-#tabelaGestao tr:hover {
+tr:hover {
   background: #f8f9fa;
 }
 
-/* BOTÕES DA TABELA */
-.acoes-coluna {
-  text-align: center;
-  white-space: nowrap;
-}
-
-.btn-edit,
-.btn-salvar,
-.btn-excluir {
-  padding: 6px 12px;
-  margin: 0 2px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.btn-edit {
+.total {
   background: #afcfb4;
+  color: #2c5530;
+  padding: 1.5rem;
+  text-align: right;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.sem-resultados {
+  text-align: center;
+  color: #999;
+  padding: 2rem !important;
+}
+
+/* =========================
+   AÇÕES DA TABELA (EDITAR/EXCLUIR)
+========================= */
+.acoes-tabela {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+
+.btn-editar,
+.btn-excluir {
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 1rem;
+  padding: 0;
+}
+
+.btn-editar {
+  background: #eef6ef;
   color: #2c5530;
 }
 
-.btn-salvar {
-  background: #2c5530;
-  color: white;
-  display: none;
+.btn-editar:hover {
+  background: #afcfb4;
 }
 
 .btn-excluir {
-  background: #ffcccc;
-  color: #cc0000;
+  background: #fbecec;
+  color: #b33a3a;
 }
 
-/* INPUTS DA TABELA */
-.tabela-input {
+.btn-excluir:hover {
+  background: #f1b9b9;
+}
+
+/* =========================
+   MODAL DE EDIÇÃO
+========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+}
+
+.modal-box {
+  background: white;
+  padding: 1.8rem;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  max-width: 380px;
   width: 100%;
-  padding: 5px;
-  border: 1px solid #afcfb4;
-  border-radius: 4px;
-  font-size: 13px;
-  box-sizing: border-box;
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
-/* RESPONSIVO */
-@media (max-width: 1200px) {
+.modal-box h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.modal-box .row {
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.modal-box .campo label {
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+}
+
+.modal-box .campo input,
+.modal-box .campo select,
+.modal-box .campo textarea {
+  padding: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.modal-box .ingredientes-container {
+  max-height: 110px;
+  padding: 10px;
+  gap: 8px;
+}
+
+.modal-box .ingrediente-tag {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+.modal-box .btn-salvar {
+  padding: 0.7rem;
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+.modal-acoes {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.modal-acoes .btn-salvar,
+.modal-acoes .btn-filtrar-cinza {
+  width: auto;
+  flex: 1;
+  padding: 0.7rem;
+  font-size: 0.9rem;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 768px) {
+  #sidebar {
+    transform: translateX(-100%);
+  }
+
   main {
-    margin-left: 260px;
+    margin-left: 0;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 768px) {
-  main {
-    margin-left: 0;
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
     padding: 1rem;
   }
 
-  #filtros {
-    flex-direction: column;
-  }
-
-  .filtro {
-    min-width: 100%;
+  header h1 {
+    font-size: 1.6rem;
   }
 }
