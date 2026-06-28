@@ -1,61 +1,50 @@
 <?php
-$servername = "localhost";
-$database = "pizzaria"; 
-$username = "root";
-$password = "";
-$sql = "mysql:host=$servername;dbname=$database;";
-$dsn_Options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-try { 
-  $my_Db_Connection = new PDO($sql, $username, $password, $dsn_Options);
-  echo "Connected successfully";
+header('Content-Type: application/json; charset=utf-8');
+
+$servername = 'localhost';
+$database = 'pizzaria';
+$username = 'root';
+$password = '';
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$database;charset=utf8", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $error) {
-  echo 'Connection error: ' . $error->getMessage();
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Erro de conexão: ' . $error->getMessage()]);
+    exit;
 }
 
-<<<<<<< Updated upstream
-$nom = 'PEDIDO-' + rand(1000000,9999999);
-$nomc = $_POST['nomc']; 
-$itn = $_POST['itn'];
-$obs = $_POST['obs']; 
-$pag = $_POST['pag']; 
+$input = file_get_contents('php://input');
+$data = json_decode($input, true) ?: [];
 
-$my_Insert_Statement = $my_Db_Connection->prepare("INSERT INTO pedido (NomePedido, NomeCliente, Observacoes, Pagamento, Itens) VALUES (:nom, :nomc, :obs, :pag :itn)");
+$nomePedido = 'PEDIDO-' . substr(md5(uniqid((string) rand(), true)), 0, 12);
+$nomeCliente = isset($data['nomeCliente']) ? trim($data['nomeCliente']) : '';
+$observacoes = isset($data['observacoes']) ? trim($data['observacoes']) : '';
+$pagamento = isset($data['formaPagamento']) ? trim($data['formaPagamento']) : '';
+$itens = isset($data['itens']) ? trim($data['itens']) : '';
+$valor = isset($data['total']) ? floatval($data['total']) : 0;
 
-$my_Insert_Statement->bindParam(':nomc', $nom);
-=======
-$e = rand(1000000,9999999);
-$nom = 'PEDIDO-' . $e;
-$nomc = $_GET['nomeCliente']; 
-$val = $_GET['total']; 
-$itn = $_GET['itens'];
-$obs = $_GET['observacoes']; 
-$pag = $_GET['formaPagamento']; 
+$stmt = $conn->prepare("INSERT INTO pedido (NomePedido, NomeCliente, Observacoes, Pagamento, Itens, Valor) VALUES (:nomePedido, :nomeCliente, :observacoes, :pagamento, :itens, :valor)");
+$stmt->execute([
+    ':nomePedido' => $nomePedido,
+    ':nomeCliente' => $nomeCliente,
+    ':observacoes' => $observacoes,
+    ':pagamento' => $pagamento,
+    ':itens' => $itens,
+    ':valor' => $valor
+]);
 
-echo "nomc: " . $nomc . "<br>";
-echo "nom: " . $nom . "<br>";
-echo "itn: " . $itn . "<br>";
-echo "obs: " . $obs . "<br>";
-echo "pag: " . $pag . "<br>";
+$pedidoId = $conn->lastInsertId();
 
-$my_Insert_Statement = $my_Db_Connection->prepare("INSERT INTO pedido (NomePedido, NomeCliente, Observacoes, Pagamento, Itens, Valor) VALUES (:nom, :nomc, :obs, :pag, :itn, :val)");
+$vendaStmt = $conn->prepare("INSERT INTO venda (IdPedido, Valor, Status, DataPedido, Pagamento) VALUES (:idPedido, :valor, :status, :dataPedido, :pagamento)");
+$vendaStmt->execute([
+    ':idPedido' => $pedidoId,
+    ':valor' => $valor,
+    ':status' => 'Processando',
+    ':dataPedido' => date('Y-m-d'),
+    ':pagamento' => $pagamento
+]);
 
-$my_Insert_Statement->bindParam(':nomc', $nomc);
->>>>>>> Stashed changes
-$my_Insert_Statement->bindParam(':nom', $nom);
-$my_Insert_Statement->bindParam(':obs', $obs);
-$my_Insert_Statement->bindParam(':itn', $itn);
-$my_Insert_Statement->bindParam(':pag', $pag);
-<<<<<<< Updated upstream
-
-if ($my_Insert_Statement->execute()) {
-  echo "Sabor inserido com sucesso!!";
-=======
-$my_Insert_Statement->bindParam(':val', $val);
-
-if ($my_Insert_Statement->execute()) {
-  echo "<h1>Pedido Enviado com sucesso!!</h1>";
->>>>>>> Stashed changes
-} else {
-  echo "Deu RUIM!!!";
-}
+echo json_encode(['success' => true, 'pedidoId' => (int) $pedidoId]);
 ?>
