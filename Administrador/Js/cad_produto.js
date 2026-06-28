@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const dados = new FormData(form);
   
       try {
-        const resposta = await fetch("./php/cad_produto.php", {
+        const resposta = await fetch("/Engenharia-de-Software-II/Administrador/php/salvar_produto.php", {
           method: "POST",
           body: dados,
         });
