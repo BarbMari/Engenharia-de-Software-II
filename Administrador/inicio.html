@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link
+      rel="icon"
+      href="../assets/LogoNanoSaboresCortada.png"
+      type="image/png"
+    />
+    <title>Administração - NanoSabores</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <h1>NanoSabores</h1>
+        <img src="../assets/icon.png" alt="Logo do NanoSabores" />
+      </div>
+
+      <a id="user" href="./login.html">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          color="#2c5530"
+        >
+          <path
+            d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
+          />
+        </svg>
+      </a>
+    </header>
+
+    <div id="sidebar">
+      <div class="container-sidebar">
+        <ul>
+          <li class="categoria">Home</li>
+          <li><a href="./index.html" class="active">Início</a></li>
+
+          <li class="categoria">Cadastros</li>
+          <li><a href="./cad_funcionario.html">Funcionários</a></li>
+          <li><a href="./cad_produto.html">Produtos</a></li>
+          <li><a href="./cad_sabores.html">Sabores de Pizza</a></li>
+
+          <li class="categoria">Relatórios</li>
+          <li><a href="./rel_funcionario.html">Funcionários</a></li>
+          <li><a href="./rel_produto.html">Estoque</a></li>
+          <li><a href="./rel_pedido.html">Pedidos</a></li>
+          <li><a href="./rel_venda.html">Vendas</a></li>
+          <li><a href="./rel_sabores.html">Sabores Cadastrados</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <main>
+      <div id="containerMain">
+        <h2>Bem-vindo(a) ao Painel!</h2>
+        <p class="subtitulo">Acesso rápido</p>
+
+        <div class="cards">
+          <div class="card">
+            <img src="../assets/LogoNanoSaboresCortada.png" />
+            <h3>Sistema de Pedidos</h3>
+            <p>Página para clientes</p>
+            <a href="../Cliente/index.html" class="btn-card">Acessar</a>
+          </div>
+
+          <div class="card">
+            <img src="../assets/pizzaiolo1.jpg" />
+            <h3>Cadastro Funcionários</h3>
+            <p>Gerencie pizzaiolos e equipe</p>
+            <a href="./cad_funcionario.html" class="btn-card">Acessar</a>
+          </div>
+
+          <div class="card">
+            <img src="../assets/insumospizza.jpg" />
+            <h3>Cadastro Produtos</h3>
+            <p>Insumos e bebidas</p>
+            <a href="./cad_produto.html" class="btn-card">Acessar</a>
+          </div>
+
+          <div class="card">
+            <img src="../assets/estoque.jpg" />
+            <h3>Relatório Produtos</h3>
+            <p>Estoque completo</p>
+            <a href="./rel_produto.html" class="btn-card">Acessar</a>
+          </div>
+
+          <div class="card">
+            <img src="../assets/relatórios1.jpg" />
+            <h3>Relatório Vendas</h3>
+            <p>Acompanhe faturamento</p>
+            <a href="./rel_venda.html" class="btn-card">Acessar</a>
+          </div>
+
+          <div class="card">
+            <img src="../assets/relatórios3.jpg" />
+            <h3>Relatório Pedidos</h3>
+            <p>Controle entregas</p>
+            <a href="./rel_pedido.html" class="btn-card">Acessar</a>
+          </div>
+
+          <div class="card">
+            <img src="../assets/funcionarios.jpg" />
+            <h3>Relatório Funcionários</h3>
+            <p>Relatórios da equipe</p>
+            <a href="./rel_funcionario.html" class="btn-card">Acessar</a>
+          </div>
+
+          <div class="card">
+            <img src="../assets/Produtos.jpg" />
+            <h3>Cadastrar Sabores</h3>
+            <p>Adicionar Novo Sabor</p>
+            <a href="./cad_sabores.html" class="btn-card">Acessar</a>
+          </div>
+
+          <div class="card">
+            <img src="../assets/menu.jpg" />
+            <h3>Sabores Cadastrados</h3>
+            <p>Consultar Sabores</p>
+            <a href="./rel_sabores.html" class="btn-card">Acessar</a>
+          </div>
+        </div>
+      </div>
+      <!-- ------------------------------------------------------------ -->
+
+      <div class="painel">
+        <h2>Dashboard de Administração</h2>
+
+        <!-- Filtrar por data inicial e final -->
+        <form id="formPeriodo"></form>
+          <div>
+              <label for="datainicio">Data inicial</label>
+              <input type="date" id="datainicio" placeholder="dd/mm/aaaa">
+          </div>
+          <div>
+              <label for="ultimadata">Data Final</label>
+              <input type="date" id="ultimadata" placeholder="dd/mm/aaaa">
+          </div>
+
+          <div>
+            <label for="intervalo">Intervalo</label>
+            <input type="number" id="intervalo" value="20" min="1">
+          </div>
+
+          <button type="button" id="botaoData">Filtrar</button>
+        </form>
+
+        <p id="pErro"></p>
+
+        <!-- Informações do dashboard --> 
+
+        <div id="dadosContainer">
+          <p id="lucro-total">Lucro: </p>
+          <p id="pedidos-relizados">Pedidos</p>
+        </div>
+
+          <div id="media-container">
+            <p id="media_he">Média HE</p>
+            <p id="media_hi_he">Média HI-HE</p>
+          </div>
+          <br>
+          <br>
+          <div id="chartDadosHe"></div>
+          <br>
+          <div id="chartMediaDiaria"></div>
+
+      </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../Administrador/Js/grafico.js"></script>
+
+  </body>
+</html>
