@@ -15,10 +15,9 @@
   <body>
     <header>
       <div class="header-left">
-        <h1>NanoSabores</h1>
         <img src="../assets/icon.png" alt="Logo do NanoSabores" />
+        <h1>NanoSabores</h1>
       </div>
-
       <a id="user" href="./login.html">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -71,10 +70,14 @@
               <select name="categoria" required>
                 <option value="">Escolha...</option>
                 <option value="Mercearia">Mercearia</option>
-                <option value="Frios e Laticínios">Frios e Laticínios</option>
+                <option value="Laticínios">Laticínios</option>
                 <option value="Hortifruti">Hortifruti</option>
                 <option value="Bebidas">Bebidas</option>
-                <option value="Embalagens e Descartáveis">Embalagens e Descartáveis</option>
+                <option value="Carnes e Proteínas">Carnes e Proteínas</option>
+                <option value="Doces">Doces</option>
+                <option value="Embalagens e Descartáveis">
+                  Embalagens e Descartáveis
+                </option>
               </select>
             </div>
           </div>
@@ -130,7 +133,7 @@
             </div>
 
             <div class="campo total-campo">
-              <label>Custo Total (CUn × Un ) R$:</label>
+              <label>Custo Total (CUn × Un) R$:</label>
               <input
                 type="number"
                 id="custoTotal"
@@ -145,6 +148,7 @@
         </form>
       </div>
     </main>
+
     <script src="./Js/cad_produto.js"></script>
   </body>
 </html>

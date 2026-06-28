@@ -1,231 +1,95 @@
-  <!doctype html>
-  <html lang="pt-br">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="./css/gestao.css" />
-      <link rel="icon" href="../assets/reallogofinal.png" type="image/png" />
-      <title>Relatório de Sabores</title>
-    </head>
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/gestao.css" />
+    <link rel="icon" href="../assets/reallogofinal.png" type="image/png" />
+    <title>Relatório de Sabores</title>
+  </head>
 
-    <body>
-      <header>
-        <div class="header-left">
-          <h1>NanoSabores</h1>
-          <img src="../assets/icon.png" alt="Logo do NanoSabores" />
-        </div>
-
-        <a id="user" href="./login.html">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            color="#2c5530"
-          >
-            <path
-              d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
-            />
-          </svg>
-        </a>
-      </header>
-
-      <div id="sidebar">
-        <div class="container-sidebar">
-          <ul>
-            <li class="categoria">Home</li>
-            <li><a href="./index.html">Início</a></li>
-
-            <li class="categoria">Cadastros</li>
-            <li><a href="./cad_funcionario.html">Funcionários</a></li>
-            <li><a href="./cad_produto.html">Produtos</a></li>
-            <li><a href="./cad_sabores.html">Sabores de Pizza</a></li>
-
-            <li class="categoria">Relatórios</li>
-            <li><a href="./rel_funcionario.html">Funcionários</a></li>
-            <li><a href="./rel_produto.html">Estoque</a></li>
-            <li><a href="./rel_pedido.html">Pedidos</a></li>
-            <li><a href="./rel_venda.html">Vendas</a></li>
-            <li>
-              <a href="./rel_sabores.html" class="active">Sabores Cadastrados</a>
-            </li>
-          </ul>
-        </div>
+  <body>
+    <header>
+      <div class="header-left">
+        <h1>NanoSabores</h1>
+        <img src="../assets/icon.png" alt="Logo do NanoSabores" />
       </div>
 
-      <main>
-        <div id="containerMain">
-          <h2>Relatório de Sabores</h2>
-          <p class="subtitulo">Sabores de pizza cadastrados no sistema</p>
+      <a id="user" href="./login.html">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          color="#2c5530"
+        >
+          <path
+            d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
+          />
+        </svg>
+      </a>
+    </header>
 
-          <!-- FILTROS -->
-          <form id="formVenda">
-            <div class="row">
-              <div class="campo">
-                <label>Nome do Sabor</label>
-                <input type="text" id="fNome" placeholder="Buscar sabor..." />
-              </div>
+    <div id="sidebar">
+      <div class="container-sidebar">
+        <ul>
+          <li class="categoria">Home</li>
+          <li><a href="./index.html">Início</a></li>
 
-              <div class="campo">
-                <label>Tipo de Pizza</label>
-                <select id="fTipo">
-                  <option value="">Todas</option>
-                  <option value="Salgada">Salgada</option>
-                  <option value="Vegetariana">Vegetariana</option>
-                  <option value="Doce">Doce</option>
-                </select>
-              </div>
-            </div>
+          <li class="categoria">Cadastros</li>
+          <li><a href="./cad_funcionario.html">Funcionários</a></li>
+          <li><a href="./cad_produto.html">Produtos</a></li>
+          <li><a href="./cad_sabores.html">Sabores de Pizza</a></li>
 
-            <div class="row">
-              <div class="campo">
-                <label>Tipo de Molho</label>
-                <select id="fMolho">
-                  <option value="">Todos</option>
-                  <option value="Tomate">Tomate</option>
-                  <option value="Pesto">Pesto</option>
-                </select>
-              </div>
+          <li class="categoria">Relatórios</li>
+          <li><a href="./rel_funcionario.html">Funcionários</a></li>
+          <li><a href="./rel_produto.html">Estoque</a></li>
+          <li><a href="./rel_pedido.html">Pedidos</a></li>
+          <li><a href="./rel_venda.html">Vendas</a></li>
+          <li>
+            <a href="./rel_sabores.html" class="active">Sabores Cadastrados</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-              <div class="campo">
-                <label>Tipo de Queijo</label>
-                <select id="fQueijo">
-                  <option value="">Todos</option>
-                  <option value="Mussarela">Mussarela</option>
-                  <option value="Cheddar">Cheddar</option>
-                  <option value="Parmesão">Parmesão</option>
-                  <option value="Provolone">Provolone</option>
-                  <option value="Gouda">Gouda</option>
-                  <option value="5 Queijos">5 Queijos</option>
-                </select>
-              </div>
-            </div>
+    <main>
+      <div id="containerMain">
+        <h2>Relatório de Sabores</h2>
+        <p class="subtitulo">Sabores de pizza cadastrados no sistema</p>
 
-            <div class="row">
-              <div class="campo full">
-                <label>Ingredientes</label>
-                <input
-                  type="text"
-                  id="fBuscarIngrediente"
-                  placeholder="Pesquisar ingrediente..."
-                />
-                <div id="fIngredientesContainer" class="ingredientes-container">
-                  <div class="ingrediente-tag">Azeitona</div>
-                  <div class="ingrediente-tag">Alho</div>
-                  <div class="ingrediente-tag">Atum</div>
-                  <div class="ingrediente-tag">Bacon</div>
-                  <div class="ingrediente-tag">Batata Palha</div>
-                  <div class="ingrediente-tag">Calabresa</div>
-                  <div class="ingrediente-tag">Catupiry</div>
-                  <div class="ingrediente-tag">Cebola</div>
-                  <div class="ingrediente-tag">Cogumelos</div>
-                  <div class="ingrediente-tag">Filé Mignon</div>
-                  <div class="ingrediente-tag">Frango Desfiado</div>
-                  <div class="ingrediente-tag">Manjericão</div>
-                  <div class="ingrediente-tag">Milho</div>
-                  <div class="ingrediente-tag">Orégano</div>
-                  <div class="ingrediente-tag">Ovo</div>
-                  <div class="ingrediente-tag">Palmito</div>
-                  <div class="ingrediente-tag">Pepperoni</div>
-                  <div class="ingrediente-tag">Pimentão</div>
-                  <div class="ingrediente-tag">Presunto</div>
-                  <div class="ingrediente-tag">Rúcula</div>
-                  <div class="ingrediente-tag">Tomate</div>
-                </div>
-                <small>Clique nos ingredientes para filtrar por eles.</small>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="campo">
-                <label>Preço mínimo</label>
-                <input type="number" id="fPrecoMin" step="0.5" placeholder="R$ 0,00" />
-              </div>
-
-              <div class="campo">
-                <label>Preço máximo</label>
-                <input type="number" id="fPrecoMax" step="0.5" placeholder="R$ 999,00" />
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="campo full">
-                <button type="button" class="btn-salvar" id="btnFiltrar">
-                  Filtrar
-                </button>
-              </div>
-            </div>
-          </form>
-
-          <!-- TABELA -->
-          <div class="tabela-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Sabor</th>
-                  <th>Tipo</th>
-                  <th>Molho</th>
-                  <th>Queijo</th>
-                  <th>Ingredientes</th>
-                  <th>Preço</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody id="tabelaCorpo">
-                <!-- preenchido via JS -->
-              </tbody>
-            </table>
-
-            <div class="total">
-              Total de Sabores Cadastrados: <strong id="totalSabores">0</strong>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <!-- MODAL DE EDIÇÃO -->
-      <div id="modalEditar" class="modal-overlay" style="display:none;">
-        <div class="modal-box">
-          <h2>Editar Sabor</h2>
-
-          <input type="hidden" id="editId" />
-
-          <div class="row">
-            <div class="campo full">
-              <label>Nome do Sabor</label>
-              <input type="text" id="editNome" />
-            </div>
-          </div>
-
+        <!-- FILTROS -->
+        <form id="formVenda">
           <div class="row">
             <div class="campo">
-              <label>Tipo</label>
-              <select id="editTipo">
+              <label>Nome do Sabor</label>
+              <input type="text" id="fNome" placeholder="Buscar sabor..." />
+            </div>
+
+            <div class="campo">
+              <label>Tipo de Pizza</label>
+              <select id="fTipo">
+                <option value="">Todas</option>
                 <option value="Salgada">Salgada</option>
                 <option value="Vegetariana">Vegetariana</option>
                 <option value="Doce">Doce</option>
               </select>
             </div>
-
-            <div class="campo">
-              <label>Preço</label>
-              <input type="number" id="editValor" step="0.5" />
-            </div>
           </div>
 
           <div class="row">
             <div class="campo">
-              <label>Molho</label>
-              <select id="editMolho">
-                <option value="">Nenhum</option>
+              <label>Tipo de Molho</label>
+              <select id="fMolho">
+                <option value="">Todos</option>
                 <option value="Tomate">Tomate</option>
                 <option value="Pesto">Pesto</option>
               </select>
             </div>
 
             <div class="campo">
-              <label>Queijo</label>
-              <select id="editQueijo">
-                <option value="">Nenhum</option>
+              <label>Tipo de Queijo</label>
+              <select id="fQueijo">
+                <option value="">Todos</option>
                 <option value="Mussarela">Mussarela</option>
                 <option value="Cheddar">Cheddar</option>
                 <option value="Parmesão">Parmesão</option>
@@ -241,10 +105,10 @@
               <label>Ingredientes</label>
               <input
                 type="text"
-                id="editBuscarIngrediente"
-                placeholder="Pesquisar..."
+                id="fBuscarIngrediente"
+                placeholder="Pesquisar ingrediente..."
               />
-              <div id="editIngredientesContainer" class="ingredientes-container">
+              <div id="fIngredientesContainer" class="ingredientes-container">
                 <div class="ingrediente-tag">Azeitona</div>
                 <div class="ingrediente-tag">Alho</div>
                 <div class="ingrediente-tag">Atum</div>
@@ -267,22 +131,172 @@
                 <div class="ingrediente-tag">Rúcula</div>
                 <div class="ingrediente-tag">Tomate</div>
               </div>
+              <small>Clique nos ingredientes para filtrar por eles.</small>
             </div>
           </div>
 
           <div class="row">
-            <div class="campo full modal-acoes">
-              <button type="button" class="btn-salvar" id="btnSalvarEdicao">
-                Salvar
-              </button>
-              <button type="button" class="btn-filtrar-cinza" id="btnCancelarEdicao">
-                Cancelar
+            <div class="campo">
+              <label>Preço mínimo</label>
+              <input
+                type="number"
+                id="fPrecoMin"
+                step="0.5"
+                placeholder="R$ 0,00"
+              />
+            </div>
+
+            <div class="campo">
+              <label>Preço máximo</label>
+              <input
+                type="number"
+                id="fPrecoMax"
+                step="0.5"
+                placeholder="R$ 999,00"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo full">
+              <button type="button" class="btn-salvar" id="btnFiltrar">
+                Filtrar
               </button>
             </div>
           </div>
+        </form>
+
+        <!-- TABELA -->
+        <div class="tabela-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Sabor</th>
+                <th>Tipo</th>
+                <th>Molho</th>
+                <th>Queijo</th>
+                <th>Ingredientes</th>
+                <th>Preço</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaCorpo">
+              <!-- preenchido via JS -->
+            </tbody>
+          </table>
+
+          <div class="total">
+            Total de Sabores Cadastrados: <strong id="totalSabores">0</strong>
+          </div>
         </div>
       </div>
+    </main>
 
-      <script src="./Js/rel_sabores.js"></script>
-    </body>
-  </html>
+    <!-- MODAL DE EDIÇÃO -->
+    <div id="modalEditar" class="modal-overlay" style="display: none">
+      <div class="modal-box">
+        <h2>Editar Sabor</h2>
+
+        <input type="hidden" id="editId" />
+
+        <div class="row">
+          <div class="campo full">
+            <label>Nome do Sabor</label>
+            <input type="text" id="editNome" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="campo">
+            <label>Tipo</label>
+            <select id="editTipo">
+              <option value="Salgada">Salgada</option>
+              <option value="Vegetariana">Vegetariana</option>
+              <option value="Doce">Doce</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label>Preço</label>
+            <input type="number" id="editValor" step="0.5" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="campo">
+            <label>Molho</label>
+            <select id="editMolho">
+              <option value="">Nenhum</option>
+              <option value="Tomate">Tomate</option>
+              <option value="Pesto">Pesto</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label>Queijo</label>
+            <select id="editQueijo">
+              <option value="">Nenhum</option>
+              <option value="Mussarela">Mussarela</option>
+              <option value="Cheddar">Cheddar</option>
+              <option value="Parmesão">Parmesão</option>
+              <option value="Provolone">Provolone</option>
+              <option value="Gouda">Gouda</option>
+              <option value="5 Queijos">5 Queijos</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="campo full">
+            <label>Ingredientes</label>
+            <input
+              type="text"
+              id="editBuscarIngrediente"
+              placeholder="Pesquisar..."
+            />
+            <div id="editIngredientesContainer" class="ingredientes-container">
+              <div class="ingrediente-tag">Azeitona</div>
+              <div class="ingrediente-tag">Alho</div>
+              <div class="ingrediente-tag">Atum</div>
+              <div class="ingrediente-tag">Bacon</div>
+              <div class="ingrediente-tag">Batata Palha</div>
+              <div class="ingrediente-tag">Calabresa</div>
+              <div class="ingrediente-tag">Catupiry</div>
+              <div class="ingrediente-tag">Cebola</div>
+              <div class="ingrediente-tag">Cogumelos</div>
+              <div class="ingrediente-tag">Filé Mignon</div>
+              <div class="ingrediente-tag">Frango Desfiado</div>
+              <div class="ingrediente-tag">Manjericão</div>
+              <div class="ingrediente-tag">Milho</div>
+              <div class="ingrediente-tag">Orégano</div>
+              <div class="ingrediente-tag">Ovo</div>
+              <div class="ingrediente-tag">Palmito</div>
+              <div class="ingrediente-tag">Pepperoni</div>
+              <div class="ingrediente-tag">Pimentão</div>
+              <div class="ingrediente-tag">Presunto</div>
+              <div class="ingrediente-tag">Rúcula</div>
+              <div class="ingrediente-tag">Tomate</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="campo full modal-acoes">
+            <button type="button" class="btn-salvar" id="btnSalvarEdicao">
+              Salvar
+            </button>
+            <button
+              type="button"
+              class="btn-filtrar-cinza"
+              id="btnCancelarEdicao"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./Js/rel_sabores.js"></script>
+  </body>
+</html>

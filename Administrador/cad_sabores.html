@@ -1,296 +1,255 @@
 <!doctype html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/gestao.css" />
+    <link
+      rel="icon"
+      href="../assets/LogoNanoSaboresCortada.png"
+      type="image/png"
+    />
+    <title>Cadastro de Sabores</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <body>
+    <header>
+      <div class="header-left">
+        <img src="../assets/icon.png" alt="Logo do NanoSabores" />
+        <h1>NanoSabores</h1>
+      </div>
+      <a id="user" href="./login.html">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          color="#2c5530"
+        >
+          <path
+            d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
+          />
+        </svg>
+      </a>
+    </header>
 
-  <link rel="stylesheet" href="./css/sabores.css" />
-  <link rel="icon" href="../assets/LogoNanoSaboresCortada.png" type="image/png" />
+    <div id="sidebar">
+      <div class="container-sidebar">
+        <ul>
+          <li class="categoria">Home</li>
+          <li><a href="./index.html">Início</a></li>
 
-  <title>Cadastro de Sabores</title>
+          <li class="categoria">Cadastros</li>
+          <li><a href="./cad_funcionario.html">Funcionários</a></li>
+          <li><a href="./cad_produto.html">Produtos</a></li>
+          <li>
+            <a href="./cad_sabores.html" class="active">Sabores de Pizza</a>
+          </li>
 
-</head>
-
-<body>
-
-  <!-- HEADER -->
-  <header>
-    <div class="header-left">
-      <h1>NanoSabores</h1>
-      <img src="../assets/icon.png" alt="Logo" />
+          <li class="categoria">Relatórios</li>
+          <li><a href="./rel_funcionario.html">Funcionários</a></li>
+          <li><a href="./rel_produto.html">Estoque</a></li>
+          <li><a href="./rel_pedido.html">Pedidos</a></li>
+          <li><a href="./rel_venda.html">Vendas</a></li>
+          <li><a href="./rel_sabores.html">Sabores Cadastrados</a></li>
+        </ul>
+      </div>
     </div>
 
-    <a id="user" href="./login.html">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" color="#2c5530">
-        <path
-          d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
-        />
-      </svg>
-    </a>
-  </header>
+    <main>
+      <div id="containerMain">
+        <h2>Nova Pizza</h2>
+        <p class="subtitulo">Crie um novo sabor!</p>
 
-  <!-- SIDEBAR -->
-  <div id="sidebar">
-    <div class="container-sidebar">
-      <ul>
-        <li class="categoria">Home</li>
-        <li><a href="./index.html">Início</a></li>
-
-        <li class="categoria">Cadastros</li>
-        <li><a href="./cad_funcionario.html">Funcionários</a></li>
-        <li><a href="./cad_produto.html">Produtos</a></li>
-        <li>
-          <a href="./cad_sabores.html" class="active">
-            Sabores de Pizza
-          </a>
-        </li>
-
-        <li class="categoria">Relatórios</li>
-        <li><a href="./rel_funcionario.html">Funcionários</a></li>
-        <li><a href="./rel_produto.html">Estoque</a></li>
-        <li><a href="./rel_pedido.html">Pedidos</a></li>
-        <li><a href="./rel_venda.html">Vendas</a></li>
-        <li><a href="./rel_sabores.html">Sabores Cadastrados</a></li>
-      </ul>
-    </div>
-  </div>
-
- 
-  <main>
-    <div id="containerMain">
-
-      <h2>Nova Pizza</h2>
-      <p class="subtitulo">Crie um novo sabor!</p>
-
-      <form id="formVenda" action="./php/cad_sabores.php" method="post">
-
-        <!-- NOME -->
-        <div class="row">
-          <div class="campo full">
-            <label>Nome do Sabor:</label>
-            <input type="text" name="nom" required />
-          </div>
-        </div>
-
-        <!-- TIPO DE PIZZA -->
-        <div class="row">
-          <div class="campo full">
-            <label>Pizza</label>
-            <select id="tipoPizza" name="fla">
-              <option value="">Selecione o tipo</option>
-              <option value="Salgada">Salgada</option>
-              <option value="Vegetariana">Vegetariana</option>
-              <option value="Doce">Doce</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- TIPO DE MOLHO E QUEIJO -->
-        <div class="row">
-          <div class="campo">
-            <label>Tipo de molho</label>
-            <select id="molho">
-              <option value="">Nenhum</option>
-              <option value="Tomate">Tomate</option>
-              <option value="Pesto">Pesto</option>
-            </select>
-          </div>
-
-          <div class="campo">
-            <label>Tipo de queijo</label>
-            <select id="queijo">
-              <option value="">Nenhum</option>
-              <option value="Mussarela">Mussarela</option>
-              <option value="Cheddar">Cheddar</option>
-              <option value="Parmesão">Parmesão</option>
-              <option value="Provolone">Provolone</option>
-              <option value="Gouda">Gouda</option>
-              <option value="5 Queijos">5 Queijos</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- INGREDIENTES -->
-        <div class="row">
-          <div class="campo full">
-
-            <label>Ingredientes:</label>
-
-            <input
-              type="text"
-              id="buscarIngrediente"
-              placeholder="Pesquisar ingrediente..."
-            />
-
-            <div id="ingredientesContainer" class="ingredientes-container">
-
-              <div class="ingrediente-tag">Azeitona</div>
-              <div class="ingrediente-tag">Alho</div>
-              <div class="ingrediente-tag">Atum</div>
-              <div class="ingrediente-tag">Bacon</div>
-              <div class="ingrediente-tag">Batata Palha</div>
-              <div class="ingrediente-tag">Calabresa</div>
-              <div class="ingrediente-tag">Catupiry</div>
-              <div class="ingrediente-tag">Cebola</div>
-              <div class="ingrediente-tag">Cogumelos</div>
-              <div class="ingrediente-tag">Filé Mignon</div>
-              <div class="ingrediente-tag">Frango Desfiado</div>
-              <div class="ingrediente-tag">Manjericão</div>
-              <div class="ingrediente-tag">Milho</div>
-              <div class="ingrediente-tag">Orégano</div>
-              <div class="ingrediente-tag">Ovo</div>
-              <div class="ingrediente-tag">Palmito</div>
-              <div class="ingrediente-tag">Pepperoni</div>
-              <div class="ingrediente-tag">Pimentão</div>
-              <div class="ingrediente-tag">Presunto</div>
-              <div class="ingrediente-tag">Rúcula</div>
-              <div class="ingrediente-tag">Tomate</div>
-
+        <form id="formVenda" action="./php/cad_sabores.php" method="post">
+          <div class="row">
+            <div class="campo full">
+              <label>Nome do Sabor:</label>
+              <input type="text" name="nom" required />
             </div>
-
-            <small>
-              Clique nos ingredientes para selecionar ou remover.
-            </small>
-
           </div>
-        </div>
 
-        <!-- PREÇO -->
-        <div class="row">
-          <div class="campo full">
-            <label>Definir Preço</label>
-
-            <input
-              type="number"
-              id="valorTotal"
-              step="0.5"
-              placeholder="R$ 45.00"
-              name="val"
-            />
+          <div class="row">
+            <div class="campo full">
+              <label>Pizza</label>
+              <select id="tipoPizza" name="fla">
+                <option value="">Selecione o tipo</option>
+                <option value="Salgada">Salgada</option>
+                <option value="Vegetariana">Vegetariana</option>
+                <option value="Doce">Doce</option>
+              </select>
+            </div>
           </div>
-        </div>
 
-        <!-- IMAGEM -->
-        <div class="row">
-          <div class="campo full">
-            <label>Imagem</label>
-
-            <input
-              type="text"
-              id="valorTotal"
-              placeholder="Cole aqui o URL da sua imagem!"
-              name="img"
-            />
+          <div class="row">
+            <div class="campo">
+              <label>Tipo de molho</label>
+              <select id="molho">
+                <option value="">Nenhum</option>
+                <option value="Tomate">Tomate</option>
+                <option value="Pesto">Pesto</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label>Tipo de queijo</label>
+              <select id="queijo">
+                <option value="">Nenhum</option>
+                <option value="Mussarela">Mussarela</option>
+                <option value="Cheddar">Cheddar</option>
+                <option value="Parmesão">Parmesão</option>
+                <option value="Provolone">Provolone</option>
+                <option value="Gouda">Gouda</option>
+                <option value="5 Queijos">5 Queijos</option>
+              </select>
+            </div>
           </div>
-        </div>
 
-        <!-- RESUMO -->
-        <div class="row">
-          <div class="campo full">
-            <label>Resumo do Sabor</label>
-
-            <textarea name="res"
-              id="resumoSabor"
-              rows="10"
-              placeholder="Exemplo:
-
-                Nome do sabor: Strogonoff de Frango
-                Tipo da pizza: Salgada
-                Molho: Tomate
-                Queijo: Mussarela
-                Ingredientes: Frango Desfiado, Batata Palha
-                Valor: R$ 45,00"
-              name="res"
-            ></textarea>
-
+          <div class="row">
+            <div class="campo full">
+              <label>Ingredientes:</label>
+              <input
+                type="text"
+                id="buscarIngrediente"
+                placeholder="Pesquisar ingrediente..."
+              />
+              <div id="ingredientesContainer" class="ingredientes-container">
+                <span style="color: #999; font-size: 0.9rem"
+                  >Carregando ingredientes do estoque...</span
+                >
+              </div>
+              <small
+                >Clique nos ingredientes para selecionar ou remover. Apenas
+                itens em estoque são exibidos.</small
+              >
+            </div>
           </div>
-        </div>
 
-        <input type="hidden" name="ing" id="ing">
-
-        <!-- BOTÃO -->
-        <div class="row">
-          <div class="campo full">
-            <input class="btn-salvar" type="submit">
-              Salvar Sabor
-            </input>
+          <div class="row">
+            <div class="campo full">
+              <label>Definir Preço</label>
+              <input
+                type="number"
+                id="valorTotal"
+                step="0.5"
+                placeholder="R$ 45.00"
+                name="val"
+              />
+            </div>
           </div>
-        </div>
 
-      </form>
-    </div>
-  </main>
+          <div class="row">
+            <div class="campo full">
+              <label>Imagem</label>
+              <input
+                type="text"
+                placeholder="Cole aqui o URL da sua imagem!"
+                name="img"
+              />
+            </div>
+          </div>
 
-  <!-- SCRIPT -->
-  <script>
-    const ingredientesSelecionados = [];
-    const ingredientes = "";
+          <div class="row">
+            <div class="campo full">
+              <label>Resumo do Sabor</label>
+              <textarea
+                name="res"
+                id="resumoSabor"
+                rows="10"
+                placeholder="Exemplo:
 
-    document.querySelectorAll(".ingrediente-tag")
-      .forEach(tag => {
+Nome do sabor: Strogonoff de Frango
+Tipo da pizza: Salgada
+Molho: Tomate
+Queijo: Mussarela
+Ingredientes: Frango Desfiado, Batata Palha
+Valor: R$ 45,00"
+              ></textarea>
+            </div>
+          </div>
 
-        tag.addEventListener("click", () => {
+          <input type="hidden" name="ing" id="ing" />
 
-          tag.classList.toggle("selecionado");
+          <div class="row">
+            <div class="campo full">
+              <button type="submit" class="btn-salvar">Salvar Sabor</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
 
-          const ingrediente = tag.textContent;
+    <script>
+      const ingredientesSelecionados = [];
+      const container = document.getElementById("ingredientesContainer");
+      const busca = document.getElementById("buscarIngrediente");
 
-          if (ingredientesSelecionados.includes(ingrediente)) {
+      // Carrega ingredientes do estoque via PHP
+      async function carregarIngredientes() {
+        try {
+          const res = await fetch("./php/get_ingredientes.php");
+          const data = await res.json();
 
-            const index =
-              ingredientesSelecionados.indexOf(ingrediente);
+          container.innerHTML = "";
 
-            ingredientesSelecionados.splice(index, 1);
-
-          } else {
-
-            ingredientesSelecionados.push(ingrediente);
+          if (!data.sucesso || data.produtos.length === 0) {
+            container.innerHTML =
+              '<span style="color:#999; font-size:0.9rem;">Nenhum produto no estoque.</span>';
+            return;
           }
 
-          updateIng();
-        });
+          data.produtos.forEach((p) => {
+            const tag = document.createElement("div");
+            tag.className = "ingrediente-tag";
+            tag.textContent = p.Nome;
+            tag.dataset.nome = p.Nome;
 
-      });
+            tag.addEventListener("click", () => {
+              tag.classList.toggle("selecionado");
+              const nome = p.Nome;
+              const idx = ingredientesSelecionados.indexOf(nome);
+              if (idx >= 0) {
+                ingredientesSelecionados.splice(idx, 1);
+              } else {
+                ingredientesSelecionados.push(nome);
+              }
+              updateIng();
+            });
 
-    document.getElementById("buscarIngrediente")
-      .addEventListener("keyup", function () {
-
-        const filtro = this.value.toLowerCase();
-
-        document.querySelectorAll(".ingrediente-tag")
-          .forEach(tag => {
-
-            const texto = tag.textContent.toLowerCase();
-
-            tag.style.display =
-              texto.includes(filtro) ? "block" : "none";
+            container.appendChild(tag);
           });
+        } catch (err) {
+          container.innerHTML =
+            '<span style="color:#b33a3a; font-size:0.9rem;">Erro ao carregar ingredientes.</span>';
+          console.error(err);
+        }
+      }
 
+      // Filtra tags pelo campo de busca
+      busca.addEventListener("keyup", function () {
+        const filtro = this.value.toLowerCase();
+        container.querySelectorAll(".ingrediente-tag").forEach((tag) => {
+          tag.style.display = tag.textContent.toLowerCase().includes(filtro)
+            ? ""
+            : "none";
+        });
       });
 
-      document.getElementById("queijo").addEventListener("input", function(event) {
-        updateIng();
-      });
-
-      document.getElementById("molho").addEventListener("input", function(event) {
-        updateIng();
-      });
+      // Atualiza campo hidden com queijo + molho + ingredientes selecionados
+      document.getElementById("queijo").addEventListener("input", updateIng);
+      document.getElementById("molho").addEventListener("input", updateIng);
 
       function updateIng() {
-        let ingredientes = "";
-        ingredientes += document.getElementById("queijo").value;
-        ingredientes += ", " + document.getElementById("molho").value;
+        const queijo = document.getElementById("queijo").value;
+        const molho = document.getElementById("molho").value;
 
-        for (let i = 0; i < ingredientesSelecionados.length; i++) {
-          ingredientes += ", " + ingredientesSelecionados[i];
-        }
+        const partes = [];
+        if (queijo) partes.push(queijo);
+        if (molho) partes.push(molho);
+        partes.push(...ingredientesSelecionados);
 
-        document.getElementById("ing").value = ingredientes;
-
-        console.log("Ingredientes Atuais: \n\n" + ingredientes);
+        document.getElementById("ing").value = partes.join(", ");
       }
-  </script>
 
-</body>
+      carregarIngredientes();
+    </script>
+  </body>
 </html>
