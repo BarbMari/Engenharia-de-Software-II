@@ -91,11 +91,11 @@
           <div class="row">
             <div class="campo">
               <label>Cargo:</label>
-              <select>
+              <select id="cargo">
                 <option>Aprendiz</option>
                 <option>Gerente</option>
                 <option>Caixa</option>
-                <option>Administração</option>
+                <option>Administrador</option>
                 <option>Pizzaiolo</option>
                 <option>Faxineiro</option>
                 <option>Motoboy</option>
@@ -114,12 +114,32 @@
               />
             </div>
           </div>
-
+          <div class="row" >
+            <div class="campo">
+              <label>Usuario</label>
+              <input 
+                type="text" 
+                id="usuario" 
+                required 
+              />
+            </div>
+            <div class="campo">
+            <label for="pwd">Senha</label>
+            <input 
+              type="password" 
+              id="senha" 
+              placeholder="••••••••" 
+              autocomplete="current-password" 
+              required
+            />
+          </div>
+          </div>
           <button type="submit" id="btnSalvar">Finalizar Cadastro</button>
         </form>
       </div>
     </main>
 
     <script src="./Js/cad_funcionario.js"></script>
+    <script src="./Js/auth.js"></script>
   </body>
 </html>

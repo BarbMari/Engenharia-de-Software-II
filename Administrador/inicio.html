@@ -18,7 +18,7 @@
         <img src="../assets/icon.png" alt="Logo do NanoSabores" />
       </div>
 
-      <a id="user" href="./login.html">
+      <a id="user" href="./index.html">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -36,7 +36,7 @@
       <div class="container-sidebar">
         <ul>
           <li class="categoria">Home</li>
-          <li><a href="./index.html" class="active">Início</a></li>
+          <li><a href="./inicio.html" class="active">Início</a></li>
 
           <li class="categoria">Cadastros</li>
           <li><a href="./cad_funcionario.html">Funcionários</a></li>
@@ -173,5 +173,71 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../Administrador/Js/grafico.js"></script>
 
+  
+    <script>
+      // ======= Proteção de rota =======
+      (function() {
+        const papel = sessionStorage.getItem('nsPapel');
+        const nome  = sessionStorage.getItem('nsNome');
+
+        // Sem login -> volta para o login
+        if (!papel) {
+          window.location.href = './index.html';
+          return;
+        }
+
+        // Cozinheiro não acessa o painel
+        if (papel === 'cozinheiro') {
+          window.location.href = '../Cozinha/cozinha.html';
+          return;
+        }
+
+        // Mostra nome do usuário logado
+        const userEl = document.getElementById('user');
+        if (userEl) userEl.title = nome || '';
+
+        // Funcionário: esconde itens exclusivos do admin
+        if (papel === 'funcionario') {
+          // Esconde: Funcionários (cadastro e relatório), Vendas, Dashboard
+          const adminOnly = [
+            'cad_funcionario.html',
+            'rel_funcionario.html',
+            'rel_venda.html',
+          ];
+
+          // Esconde links do sidebar
+          adminOnly.forEach(page => {
+            document.querySelectorAll(`a[href*="${page}"]`).forEach(el => {
+              const li = el.closest('li');
+              if (li) li.style.display = 'none';
+            });
+          });
+
+          // Esconde cards do painel de acesso rápido
+          adminOnly.forEach(page => {
+            document.querySelectorAll(`a.btn-card[href*="${page}"]`).forEach(el => {
+              const card = el.closest('.card');
+              if (card) card.style.display = 'none';
+            });
+          });
+
+          // Esconde o dashboard inteiro (só admin vê gráficos)
+          const painel = document.querySelector('.painel');
+          if (painel) painel.style.display = 'none';
+        }
+
+        // Botão de logout no ícone de usuário
+        const userBtn = document.getElementById('user');
+        if (userBtn) {
+          userBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (confirm('Deseja sair?')) {
+              sessionStorage.clear();
+              window.location.href = './index.html';
+            }
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

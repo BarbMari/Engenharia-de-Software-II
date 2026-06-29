@@ -5,55 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/login.css" />
     <link rel="icon" href="../assets/reallogofinal.png" type="image/png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     <title>Login — NanoSabores</title>
+    <style>
+      .erro-msg {
+        color: #c0392b;
+        font-size: 0.88rem;
+        text-align: center;
+        margin-top: 0.8rem;
+        min-height: 1.2rem;
+      }
+      .btn-login:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+    </style>
   </head>
-
   <body>
     <main class="login-page">
       <section class="login-card">
         <div class="login-brand">
-          <img
-            src="../assets/LogoNanoSaboresCortada.png"
-            alt="Logo NanoSabores"
-          />
+          <img src="../assets/LogoNanoSaboresCortada.png" alt="Logo NanoSabores" />
           <span>NanoSabores</span>
         </div>
 
         <h1>Bem-vindo de volta</h1>
         <p class="login-sub">Acesse o painel da pizzaria</p>
 
-        <form action="">
-          <div class="campo">
-            <label for="user">Usuário</label>
-            <input
-              type="text"
-              id="user"
-              name="user"
-              placeholder="Digite seu usuário"
-              autocomplete="username"
-            />
-          </div>
+        <div class="campo">
+          <label for="user">Usuário</label>
+          <input type="text" id="user" placeholder="Digite seu usuário" autocomplete="username" />
+        </div>
 
-          <div class="campo">
-            <label for="pwd">Senha</label>
-            <input
-              type="password"
-              id="pwd"
-              name="password"
-              placeholder="••••••••"
-              autocomplete="current-password"
-            />
-          </div>
+        <div class="campo">
+          <label for="pwd">Senha</label>
+          <input type="password" id="pwd" placeholder="••••••••" autocomplete="current-password" />
+        </div>
 
-          <!-- usar <button type="submit"> quando implementar o backend -->
-          <a class="btn-login" href="./inicio.html">Entrar</a>
-          <a class="btn-voltar" href="./inicio.html">← Voltar</a>
-        </form>
+        <p class="erro-msg" id="erroMsg"></p>
+
+        <button class="btn-login" id="btnLogin">Entrar</button>
+        <a class="btn-voltar" href="../Cliente/index.html">← Voltar</a>
       </section>
     </main>
+
+    <script>
+      const btnLogin = document.getElementById('btnLogin');
+      const erroMsg  = document.getElementById('erroMsg');
+
+      // Permite usar Enter no campo senha
+      document.getElementById('pwd').addEventListener('keydown', e => {
+        if (e.key === 'Enter') btnLogin.click();
+      });
+
+      btnLogin.addEventListener('click', async () => {
+        const login = document.getElementById('user').value.trim();
+        const senha = document.getElementById('pwd').value.trim();
+        erroMsg.textContent = '';
+
+        if (!login || !senha) {
+          erroMsg.textContent = 'Preencha usuário e senha.';
+          return;
+        }
+
+        btnLogin.disabled = true;
+        btnLogin.textContent = 'Entrando...';
+
+        try {
+          const resp = await fetch('./php/login.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ login, senha })
+          });
+
+          const data = await resp.json();
+
+          if (!data.success) {
+            erroMsg.textContent = data.message || 'Erro ao fazer login.';
+            return;
+          }
+
+          // Salva sessão no sessionStorage
+          sessionStorage.setItem('nsPapel', data.papel);   // 'admin' , 'funcionario' ,'cozinheiro'
+          sessionStorage.setItem('nsNome',  data.nome);
+          sessionStorage.setItem('nsCargo', data.cargo);
+
+          // Redireciona conforme papel
+          if (data.papel === 'cozinheiro') {
+            window.location.href = '../Cozinha/cozinha.html';
+          } else {
+            window.location.href = './inicio.html';
+          }
+
+        } catch (err) {
+          erroMsg.textContent = 'Erro de conexão com o servidor.';
+          console.error(err);
+        } finally {
+          btnLogin.disabled = false;
+          btnLogin.textContent = 'Entrar';
+        }
+      });
+    </script>
   </body>
 </html>

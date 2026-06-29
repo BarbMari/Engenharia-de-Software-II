@@ -17,6 +17,8 @@ async function carregarParaEdicao(id) {
     document.getElementById('telefone').value = func.Telefone;
     document.getElementById('cpf').value      = func.CPF;
     document.querySelector('select').value    = func.Cargo;
+    document.querySelector('usuario').value   = func.Usuario;
+    document.querySelector('senha').value     = func.Senha
     btnSalvar.textContent = 'Salvar Alterações';
 }
 
@@ -28,7 +30,9 @@ form.addEventListener('submit', async (e) => {
         Email:        document.getElementById('email').value,
         Telefone:     document.getElementById('telefone').value,
         CPF:          document.getElementById('cpf').value,
-        Cargo:        document.querySelector('select').value,
+        Cargo:        document.getElementById('cargo').value,
+        Usuario:      document.getElementById('usuario').value,
+        Senha:        document.getElementById('senha').value,
     };
 
     if (idAtual.value) {

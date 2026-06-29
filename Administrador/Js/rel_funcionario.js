@@ -4,13 +4,9 @@ const PHP_URL = '/Engenharia-de-Software-II/Administrador/php/rel_funcionario.ph
 const CAD_URL = '/Engenharia-de-Software-II/Administrador/php/cad_funcionario.php';
 
 const pesosHierarquia = {
-    'Gerente': 1,
-    'Administração': 2,
-    'Caixa': 3,
-    'Pizzaiolo': 4,
-    'Motoboy': 5,
-    'Faxineiro': 6,
-    'Aprendiz': 7
+    'Gerente': 1, 'Administrador': 2, 'Administração': 2,
+    'Caixa': 3, 'Pizzaiolo': 4, 'Motoboy': 5,
+    'Faxineiro': 6, 'Aprendiz': 7, 'Cozinha': 8
 };
 
 carregarFuncionarios();
@@ -23,7 +19,7 @@ async function carregarFuncionarios() {
     const cpf   = document.getElementById('fCpf').value;
     const cargo = document.getElementById('fCargo').value;
 
-    const params = new URLSearchParams({ nome, email, cpf, cargo });
+    const params = new URLSearchParams({ nome, email, cpf, cargo, });
 
     tbody.innerHTML = '<tr><td colspan="7">Carregando...</td></tr>';
 
@@ -39,13 +35,14 @@ async function carregarFuncionarios() {
             return;
         }
 
+        const ordemId    = document.getElementById('ordemId').value;
         const ordemCargo = document.getElementById('ordemCargo').value;
 
-        lista.sort((a, b) => {
-            const pesoA = pesosHierarquia[a.Cargo] || 99;
-            const pesoB = pesosHierarquia[b.Cargo] || 99;
-            return ordemCargo === 'desc' ? pesoB - pesoA : pesoA - pesoB;
-        });
+        if (ordemId === 'asc')  lista.sort((a, b) => a.id - b.id);
+        if (ordemId === 'desc') lista.sort((a, b) => b.id - a.id);
+
+        if (ordemCargo === 'asc')  lista.sort((a, b) => (pesosHierarquia[a.Cargo] || 99) - (pesosHierarquia[b.Cargo] || 99));
+        if (ordemCargo === 'desc') lista.sort((a, b) => (pesosHierarquia[b.Cargo] || 99) - (pesosHierarquia[a.Cargo] || 99));
 
         lista.forEach((f, index) => {
             const tr = document.createElement('tr');
@@ -103,15 +100,17 @@ function abrirModal(f) {
     document.getElementById('editTelefone').value = f.Telefone;
     document.getElementById('editCargo').value    = f.Cargo;
     document.getElementById('editCpf').value      = f.CPF;
+    document.getElementById('editUsuario').value  = f.Usuario;
+    document.getElementById('editSenha').value    = f.Senha;
     modal.style.display = 'flex';
 }
 
 document.getElementById('btnCancelarEdicao').addEventListener('click', () => modal.style.display = 'none');
 modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
 
-// =================================================================
-// FUNÇÃO DE SALVAR CORRIGIDA: Usa JSON para alinhar com o PHP
-// =================================================================
+// ===================================================
+// FUNÇÃO DE SALVAR CORRIGIDA
+// ================================================
 document.getElementById('btnSalvarEdicao').addEventListener('click', async () => {
     const payload = {
         id: document.getElementById('editId').value,
@@ -119,7 +118,9 @@ document.getElementById('btnSalvarEdicao').addEventListener('click', async () =>
         Email: document.getElementById('editEmail').value,
         Telefone: document.getElementById('editTelefone').value,
         Cargo: document.getElementById('editCargo').value,
-        CPF: document.getElementById('editCpf').value
+        CPF: document.getElementById('editCpf').value,
+        Usuario: document.getElementById('editUsuario').value,
+        Senha: document.getElementById('editSenha').value
     };
 
     try {
