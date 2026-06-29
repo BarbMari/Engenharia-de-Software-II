@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/06/2026 às 01:46
+-- Tempo de geração: 29/06/2026 às 04:05
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -34,7 +34,7 @@ CREATE TABLE `funcionario` (
   `CPF` varchar(11) NOT NULL,
   `Telefone` varchar(15) NOT NULL,
   `Cargo` varchar(50) NOT NULL,
-  `Login` varchar(50) NOT NULL DEFAULT '',
+  `Usuario` varchar(50) NOT NULL DEFAULT '',
   `Senha` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -42,9 +42,12 @@ CREATE TABLE `funcionario` (
 -- Despejando dados para a tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`id`, `NomeCompleto`, `Email`, `CPF`, `Telefone`, `Cargo`, `Login`, `Senha`) VALUES
-(1, 'Admin', 'admin@gmail.com', '1234567890', '40028922', 'Administrador', 'heitor', 'admin123'),
-(2, 'Cozinheiro', 'cozinheiro@gmail.com', '12345678902', '40039070237', 'Cozinha', 'fulano', 'func123');
+INSERT INTO `funcionario` (`id`, `NomeCompleto`, `Email`, `CPF`, `Telefone`, `Cargo`, `Usuario`, `Senha`) VALUES
+(8, 'Anthony Testa Hentges', 'anthony@gmail.com', '86497295835', '7549428604', 'Gerente', 'anthony', 'anthony123'),
+(9, 'Administrador Geral', 'admin@gmail.com', '83658462109', '8564730764', 'Administrador', 'admin', 'admin123'),
+(10, 'Thiago Polesello', 'thiago@gmail.com', '87364784792', '9374568212', 'Gerente', 'thiago', 'admin123'),
+(11, 'Marcos da Silva', 'marcos@gmail.com', '65826574930', '3657483975', 'Pizzaiolo', 'marcos', 'marcos123'),
+(12, 'Juliana Pereira', 'juliana@gmail.com', '75926485739', '4820935287', 'Caixa', 'juliana', 'juliana123');
 
 -- --------------------------------------------------------
 
@@ -138,7 +141,8 @@ INSERT INTO `pedido` (`id`, `NomePedido`, `NomeCliente`, `Observacoes`, `Pagamen
 (6, 'PEDIDO-6aacbbe9055f', 'alex', '', 'pix', 'Pizza Margherita', 39.9, 'Concluido'),
 (7, 'PEDIDO-4fe5cba674a0', 'Junior', 'Sem azeitona', 'credito', 'pizza goxtosa hmm 2, pizza goxtosa hmm 3', 8002, 'Concluido'),
 (9, 'PEDIDO-7f241825aa03', 'Mônica', 'Sem palmito', 'debito', 'pizza goxtosa hmm 3', 0.5, 'Concluido'),
-(10, 'PEDIDO-e38171fddd35', 'Luan', '', 'aVista', 'pizza goxtosa hmm', 8001.5, 'Concluido');
+(10, 'PEDIDO-e38171fddd35', 'Luan', '', 'aVista', 'pizza goxtosa hmm', 8001.5, 'Concluido'),
+(11, 'PEDIDO-5e885e568c5c', 'Manoel', '', 'pix', 'Pizza Margherita,', 39.9, 'Concluido');
 
 -- --------------------------------------------------------
 
@@ -157,6 +161,13 @@ CREATE TABLE `produtoestoque` (
   `DataEntrega` date NOT NULL,
   `DataValidade` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `produtoestoque`
+--
+
+INSERT INTO `produtoestoque` (`id`, `Nome`, `Categoria`, `Quantidade`, `Unidade`, `CustoUn`, `DataEntrega`, `DataValidade`) VALUES
+(1, 'Calabresa', 'Carnes e Proteínas', 10, 'KG', 8.9, '2026-06-28', '2026-09-27');
 
 -- --------------------------------------------------------
 
@@ -184,7 +195,8 @@ INSERT INTO `venda` (`id`, `IdPedido`, `Valor`, `Status`, `DataPedido`, `Pagamen
 (4, 0, 39.9, 'Processando', '2026-06-28', 'pix'),
 (5, 0, 8002, 'Processando', '2026-06-28', 'credito'),
 (6, 9, 0.5, 'Processando', '2026-06-28', 'debito'),
-(7, 10, 8001.5, 'Processando', '2026-06-28', 'aVista');
+(7, 10, 8001.5, 'Processando', '2026-06-28', 'aVista'),
+(8, 11, 39.9, 'Processando', '2026-06-29', 'pix');
 
 --
 -- Índices para tabelas despejadas
@@ -196,7 +208,7 @@ INSERT INTO `venda` (`id`, `IdPedido`, `Valor`, `Status`, `DataPedido`, `Pagamen
 ALTER TABLE `funcionario`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
-  ADD UNIQUE KEY `login_unique` (`Login`);
+  ADD UNIQUE KEY `login_unique` (`Usuario`);
 
 --
 -- Índices de tabela `item`
@@ -234,7 +246,7 @@ ALTER TABLE `venda`
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `item`
@@ -246,19 +258,19 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT de tabela `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `produtoestoque`
 --
 ALTER TABLE `produtoestoque`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `venda`
 --
 ALTER TABLE `venda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
