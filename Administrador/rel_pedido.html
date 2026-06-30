@@ -11,7 +11,6 @@
     />
     <title>Relatório de Pedidos</title>
   </head>
-  <body>
     <header>
       <div class="header-left">
         <h1>NanoSabores</h1>
@@ -54,101 +53,166 @@
 
     <main>
       <div id="containerMain">
-        <h2>Relatório de Pedidos:</h2>
-        <p class="subtitulo">Pedidos dos Clientes</p>
+        <h2>Relatório de Pedidos</h2>
+        <p class="subtitulo">Pedidos em ação</p>
 
+        <!-- FILTROS -->
         <div id="filtros">
-          <h2 class="form-title">Filtros</h2>
-
-          <div class="row">
-            <div class="filtro">
-              <label>Data Inicio</label>
-              <input type="datetime-local" />
-            </div>
-            <div class="filtro">
-              <label>Data Fim</label>
-              <input type="datetime-local" />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="filtro">
-              <label>Nome Cliente</label>
+          <div class="row-full">
+            <div class="campo">
+              <label>Nome Pedido</label>
               <input
                 type="text"
-                placeholder="__________________________________________________________"
+                id="fNPedido"
+                placeholder="PEDIDO-____"
               />
             </div>
           </div>
-
-          <div class="acoes">
-            <button class="btn-filtrar">Enviar</button>
+          <div class="row-full">
+            <div class="campo">
+              <label>Nome Cliente</label>
+                <input
+                  type="text"
+                  id="fNCliente"
+                  placeholder="Fulano"
+                />
+            </div>
           </div>
 
+          <div class="row">
+            <div class="campo">
+              <label>Pagamento</label>
+              <select id="fPagamento">
+                <option value="">Todos</option>
+                <option value="aVista">A Vista</option>
+                <option value="PIX">PIX</option>
+                <option value="cretido">Crédito</option>
+                <option value="debito">Débito</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label>Status</label>
+              <select id="fStatus">
+                <option value="">Todos</option>
+                <option value="Concluido">Concluido</option>
+                <option value="Preparando">Preparando</option>
+                <option value="Servindo">Pronto para servir</option>
+                <option value="Entrega">Em entrega</option>
+                <option value="Pagamento">Aguardando pagamento</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="campo full">
+              <button type="button" class="btn-salvar" id="btnFiltrar">
+                Filtrar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TABELA -->
+        <div class="tabela-container">
           <table>
             <thead>
               <tr>
-                <th>ID venda</th>
-                <th>Pedido</th>
+                <th>Nome Pedido</th>
+                <th>Nome Cliente</th>
+                <th>Valor</th>
                 <th>Itens</th>
-                <th>Cliente</th>
+                <th>Observações</th>
+                <th>Pagamento</th>
+                <th>Status</th>
+                <th>Ações</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tabelaProdutos">
               <tr>
-                <td>1</td>
-                <td>Combo Pizza Familia</td>
-                <td>
-                  <ul>
-                    <li>
-                      2x Pizzas Grandes
-                      <ul>
-                        <li>Queijo, Queijo, Peperoni</li>
-                        <li>Frango, Milho, Portuguesa</li>
-                      </ul>
-                    </li>
-                    <li>1x Refri 2L (Coca-Cola Zero)</li>
-                  </ul>
-                </td>
-                <td>Roseli Müller Carvalho</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Pedido Customizado</td>
-                <td>
-                  <ul>
-                    <li>1x Pizza Grande (Frango, Milho, Portuguesa)</li>
-                    <li>1x Refri 1.5L (Guaraná Kwait)</li>
-                  </ul>
-                </td>
-                <td>Paulo Perreira Pinto Peixoto</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Pizza Simples + Refrigerante</td>
-                <td>
-                  <ul>
-                    <li>1x Pizza Média (Milho, Calabresa)</li>
-                    <li>1x Refri 600ml (Fanta Uva)</li>
-                  </ul>
-                </td>
-                <td>James Hetfield</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Pizza Simples</td>
-                <td>
-                  <ul>
-                    <li>1x Pizza Média (California, Frutas Vermelhas)</li>
-                  </ul>
-                </td>
-                <td>xXMiguelito_Matador2005Xx</td>
+                <td colspan="10">Carregando...</td>
               </tr>
             </tbody>
           </table>
+
+          <div class="total">
+            Total Estoque: <strong id="totalEstoque">R$ 0,00</strong>
+          </div>
         </div>
       </div>
     </main>
+
+    <!-- MODAL DE EDIÇÃO -->
+    <div id="modalEditar" class="modal-overlay" style="display: none">
+      <div class="modal-box">
+        <h2>Editar Pedido</h2>
+        <input type="hidden" id="editId" />
+        <div class="row">
+          <div class="campo">
+            <label>Nome Pedido</label>
+            <input type="text" id="editNomeP" />
+          </div>
+          <div class="campo">
+            <label>Nome Cliente</label>
+            <input type="text" id="editNomeC" />
+          </div>
+          <div class="row">
+            <div class="campo">
+              <label>Pagamento</label>
+              <select id="editPagamento">
+                <option value="">Todos</option>
+                <option value="aVista">A Vista</option>
+                <option value="PIX">PIX</option>
+                <option value="cretido">Crédito</option>
+                <option value="debito">Débito</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label>Valor</label>
+              <input type="number" id="editQuantidade" step="0.01" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="campo full">
+              <label>Observações</label>
+              <input type="text" id="editObs"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="campo full">
+              <label>Itens</label>
+              <input type="text" id="editItens"/>
+            </div>
+          </div>
+          <div class="campo">
+            <label>Status</label>
+              <select id="editStatus">
+                  <option value="">Todos</option>
+                  <option value="Concluido">Concluido</option>
+                  <option value="Preparando">Preparando</option>
+                  <option value="Servindo">Pronto para servir</option>
+                  <option value="Entrega">Em entrega</option>
+                  <option value="Pagamento">Aguardando pagamento</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="campo full modal-acoes">
+              <button type="button" class="btn-salvar" id="btnSalvarEdicao">
+                Salvar
+              </button>
+              <button
+              type="button"
+              class="btn-filtrar-cinza"
+              id="btnCancelarEdicao"
+              >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./Js/rel_pedido.js"></script>
     <script src="./Js/auth.js"></script>
   </body>
 </html>
