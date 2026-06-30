@@ -1,26 +1,25 @@
 const tbody = document.getElementById('tabelaProdutos');
-const ACOES_URL = './php/buscar_pedidos.php';
+const ACOES_URL = './php/buscar_vendas.php';
 
-let produtosCache = [];
+let vendasCache = [];
 
 // Carrega todos ao abrir a página
-carregarProdutos();
+carregarvendas();
 
 // Botão filtrar
-document.getElementById('btnFiltrar').addEventListener('click', carregarProdutos);
+document.getElementById('btnFiltrar').addEventListener('click', carregarvendas);
 
-async function carregarProdutos() {
-    const nomeP         = document.getElementById('fNPedido').value;
-    const nomeC         = document.getElementById('fNCliente').value;
-    const pagamento    = document.getElementById('fPagamento').value;
-    const status       = document.getElementById('fStatus').value;
+async function carregarvendas() {
+    const stauts         = document.getElementById('fStatus').value;
+    const dataInicio    = document.getElementById('fDataI').value;
+    const dataFim      = document.getElementById('fDataF').value;
 
-    const params = new URLSearchParams({nomeP, nomeC, pagamento, status});
+    const params = new URLSearchParams({status, dataInicio, dataFim});
 
     tbody.innerHTML = '<tr><td colspan="10">Carregando...</td></tr>';
 
     try {
-        const res  = await fetch(`./php/buscar_pedidos.php?${params}`);
+        const res  = await fetch(`./php/buscar_vendas.php?${params}`);
         const json = await res.json();
 
         tbody.innerHTML = '';
@@ -30,24 +29,22 @@ async function carregarProdutos() {
             return;
         }
 
-        pedidosCache = json.pedidos;
+        vendasCache = json.vendas;
 
-        if (pedidosCache.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="10" class="sem-resultados">Nenhum produto encontrado.</td></tr>';
+        if (vendasCache.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="10" class="sem-resultados">Nenhuma venda encontrado.</td></tr>';
             document.getElementById('totalEstoque').textContent = 'R$ 0,00';
             return;
         }
 
-        pedidosCache.forEach((p) => {
+        vendasCache.forEach((p) => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><strong>${p.NomePedido}</strong></td>
-                <td>${p.NomeCliente}</td>
+                <td>${p.id}</td>
                 <td>${formatarMoeda(p.Valor)}</td>
-                <td>${p.Itens}</td>
-                <td>${p.Observacoes}</td>
+                <td><strong>${p.Status}</strong></td>
+                <td>${formatarData(p.DataPedido)}</td>
                 <td>${p.Pagamento}</td>
-                <td>${p.Status}</td>
                 <td class="acoes-tabela">
                     <button class="btn-editar" data-id="${p.id}" title="Editar">✏️</button>
                     <button class="btn-excluir" data-id="${p.id}" title="Excluir">🗑️</button>
@@ -55,10 +52,11 @@ async function carregarProdutos() {
             `;
 
             tr.querySelector('.btn-editar').addEventListener('click', () => abrirModalEdicao(p));
-            tr.querySelector('.btn-excluir').addEventListener('click', () => excluirProduto(p.id, p.NomePedido));
+            tr.querySelector('.btn-excluir').addEventListener('click', () => excluirvenda(p.id, p.Nome));
 
             tbody.appendChild(tr);
         });
+
 
     } catch (erro) {
         tbody.innerHTML = '<tr><td colspan="10" class="sem-resultados">Erro de conexão com o servidor.</td></tr>';
@@ -88,8 +86,8 @@ function badgeStatus(status) {
 /* =========================
    EXCLUIR
 ========================= */
-function excluirProduto(id, nome) {
-    if (!confirm(`Deseja realmente excluir o produto "${nome}"?`)) return;
+function excluirvenda(id, nome) {
+    if (!confirm(`Deseja realmente excluir a venda "${nome}"?`)) return;
 
     const formData = new FormData();
     formData.append('action', 'delete');
@@ -99,13 +97,13 @@ function excluirProduto(id, nome) {
         .then((resp) => resp.json())
         .then((data) => {
             if (data.sucesso) {
-                carregarProdutos();
+                carregarvendas();
             } else {
                 alert('Erro ao excluir: ' + (data.mensagem || data.erro || 'tente novamente.'));
                 console.error('Resposta completa:', data);
             }
         })
-        .catch((err) => console.error('Erro ao excluir produto:', err));
+        .catch((err) => console.error('Erro ao excluir venda:', err));
 }
 
 /* =========================
@@ -113,15 +111,12 @@ function excluirProduto(id, nome) {
 ========================= */
 const modalEditar = document.getElementById('modalEditar');
 
-function abrirModalEdicao(produto) {
-    document.getElementById('editId').value = produto.id;
-    document.getElementById('editNomeP').value = produto.NomePedido;
-    document.getElementById('editNomeC').value = produto.NomeCliente;
-    document.getElementById('editPagamento').value = produto.Pagamento;
-    document.getElementById('editQuantidade').value = produto.Valor;
-    document.getElementById('editObs').value = produto.Observacoes;
-    document.getElementById('editItens').value = produto.Itens;
-    document.getElementById('editStatus').value = produto.Status;
+function abrirModalEdicao(venda) {
+    document.getElementById('editId').value = venda.id;
+    document.getElementById('editStatus').value = venda.Status;
+    document.getElementById('editPagamento').value = venda.Pagamento;
+    document.getElementById('editValor').value = venda.Valor;
+    document.getElementById('editData').value = venda.DataPedido;
 
     modalEditar.style.display = 'flex';
 }
@@ -134,20 +129,17 @@ document.getElementById('btnSalvarEdicao').addEventListener('click', () => {
     const formData = new FormData();
     formData.append('action', 'update');
     formData.append('id', document.getElementById('editId').value);
-    formData.append('nomeP', document.getElementById('editNomeP').value);
-    formData.append('nomeC', document.getElementById('editNomeC').value);
-    formData.append('pagamento', document.getElementById('editPagamento').value);
-    formData.append('valor', document.getElementById('editQuantidade').value);
-    formData.append('obs', document.getElementById('editObs').value);
-    formData.append('itens', document.getElementById('editItens').value);
     formData.append('status', document.getElementById('editStatus').value);
+    formData.append('data', document.getElementById('editData').value);
+    formData.append('valor', document.getElementById('editValor').value);
+    formData.append('pagamento', document.getElementById('editPagamento').value);
 
     fetch(ACOES_URL, { method: 'POST', body: formData })
         .then((resp) => resp.json())
         .then((data) => {
             if (data.sucesso) {
                 modalEditar.style.display = 'none';
-                carregarProdutos();
+                carregarvendas();
             } else {
                 alert('Erro ao salvar: ' + (data.mensagem || data.erro || 'tente novamente.'));
                 console.error('Resposta completa:', data);
