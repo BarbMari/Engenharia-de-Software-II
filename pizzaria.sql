@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/06/2026 às 04:05
+-- Tempo de geração: 30/06/2026 às 08:56
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -47,7 +47,8 @@ INSERT INTO `funcionario` (`id`, `NomeCompleto`, `Email`, `CPF`, `Telefone`, `Ca
 (9, 'Administrador Geral', 'admin@gmail.com', '83658462109', '8564730764', 'Administrador', 'admin', 'admin123'),
 (10, 'Thiago Polesello', 'thiago@gmail.com', '87364784792', '9374568212', 'Gerente', 'thiago', 'admin123'),
 (11, 'Marcos da Silva', 'marcos@gmail.com', '65826574930', '3657483975', 'Pizzaiolo', 'marcos', 'marcos123'),
-(12, 'Juliana Pereira', 'juliana@gmail.com', '75926485739', '4820935287', 'Caixa', 'juliana', 'juliana123');
+(12, 'Juliana Pereira', 'juliana@gmail.com', '75926485739', '4820935287', 'Caixa', 'juliana', 'juliana123'),
+(13, 'Heitor Rauber Scussiato', 'scussiatoh@gmail.com', '11816028908', '49988587906', 'Administrador', 'heitor', 'pamonha');
 
 -- --------------------------------------------------------
 
@@ -133,12 +134,9 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`id`, `NomePedido`, `NomeCliente`, `Observacoes`, `Pagamento`, `Itens`, `Valor`, `Status`) VALUES
-(1, 'PEDIDO-6a359f8f103d7', '68764', '4', 'PIX', 'Pizza 1, Pizza 2, Pizza 3', 50.5, 'Concluido'),
-(2, 'PEDIDO-6679119', 'TEste', 'Memes, tipos de carinhas são', 'pix', 'pizza goxtosa hmm 2, pizza goxtosa hmm 3', 8002, 'Concluido'),
-(3, 'PEDIDO-9394744', '', '', 'pix', 'Pizza Margherita, Pizza Calabresa', 0, 'Concluido'),
+(1, 'PEDIDO-6a359f8f103d7', 'Heitorzin da Quebrada', '4', 'PIX', 'Pizza 1, Pizza 2, Pizza 3', 50.5, 'Preparando'),
 (4, 'PEDIDO-d56e625e81d0', 'ALex', 'Sem azeitona', 'aVista', 'Pizza Margherita, pizza goxtosa hmm 3', 40.4, 'Concluido'),
 (5, 'PEDIDO-0c03f3c55251', 'alex', '', 'credito', 'Pizza Margherita', 39.9, 'Concluido'),
-(6, 'PEDIDO-6aacbbe9055f', 'alex', '', 'pix', 'Pizza Margherita', 39.9, 'Concluido'),
 (7, 'PEDIDO-4fe5cba674a0', 'Junior', 'Sem azeitona', 'credito', 'pizza goxtosa hmm 2, pizza goxtosa hmm 3', 8002, 'Concluido'),
 (9, 'PEDIDO-7f241825aa03', 'Mônica', 'Sem palmito', 'debito', 'pizza goxtosa hmm 3', 0.5, 'Concluido'),
 (10, 'PEDIDO-e38171fddd35', 'Luan', '', 'aVista', 'pizza goxtosa hmm', 8001.5, 'Concluido'),
@@ -167,7 +165,7 @@ CREATE TABLE `produtoestoque` (
 --
 
 INSERT INTO `produtoestoque` (`id`, `Nome`, `Categoria`, `Quantidade`, `Unidade`, `CustoUn`, `DataEntrega`, `DataValidade`) VALUES
-(1, 'Calabresa', 'Carnes e Proteínas', 10, 'KG', 8.9, '2026-06-28', '2026-09-27');
+(1, 'Calabresa', 'Carnes e Proteínas', 10, 'KG', 8, '2026-06-28', '2026-09-27');
 
 -- --------------------------------------------------------
 
@@ -191,9 +189,8 @@ CREATE TABLE `venda` (
 INSERT INTO `venda` (`id`, `IdPedido`, `Valor`, `Status`, `DataPedido`, `Pagamento`) VALUES
 (1, 1, 292.3, 'Processando', '2026-06-19', 'credito'),
 (2, 0, 40.4, 'Processando', '2026-06-28', 'aVista'),
-(3, 0, 39.9, 'Processando', '2026-06-28', 'credito'),
 (4, 0, 39.9, 'Processando', '2026-06-28', 'pix'),
-(5, 0, 8002, 'Processando', '2026-06-28', 'credito'),
+(5, 0, 8008.5, 'Concluido', '2026-04-01', 'aVista'),
 (6, 9, 0.5, 'Processando', '2026-06-28', 'debito'),
 (7, 10, 8001.5, 'Processando', '2026-06-28', 'aVista'),
 (8, 11, 39.9, 'Processando', '2026-06-29', 'pix');
@@ -246,7 +243,7 @@ ALTER TABLE `venda`
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `item`
