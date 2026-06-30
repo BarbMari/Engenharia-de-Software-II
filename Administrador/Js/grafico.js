@@ -1,18 +1,22 @@
-/* ✦── Gráficos ─────────────────────── */
-let chartDadosHe = null;
-let chartMediaDiaria = null;
-let he_media_geral = document.getElementById("media_he");
-let media_he_hi = document.getElementById("media_hi_he");
+/* ✦── Gráfico ─────────────────────────────────────────────────── */
+let chartReceita = null;
 
-/* ✦── Formulário ─────────────────────── */
+/* ✦── Dados ─────────────────────────────────────────────── */
+let receita_total = document.getElementById("receita_total");
+let maior_venda = document.getElementById("maior_venda");
+let menor_venda = document.getElementById("menor_venda");
+let media_receita = document.getElementById("media_receita");
+let quantidadePedidos = document.getElementById("quantidade_pedidos");
+
+/* ✦── Form ──────────────────────────────────────────────── */
 let botaoData = document.getElementById("botaoData");
 let datainicio = document.getElementById("datainicio");
 let ultimadata = document.getElementById("ultimadata");
 let intervalo = document.getElementById("intervalo");
 
-/* ✦── Erro ─────────────────────── */
-let paragrafoErroGrafico = document.getElementById("pErro");
 
+/* ✦── Erro ────────────────────────────────────────── */
+let paragrafoErroGrafico = document.getElementById("pErro");
 
 
 function formatarData(dataISO) {
@@ -20,166 +24,263 @@ function formatarData(dataISO) {
     return `${dia}/${mes}/${ano}`;
 }
 
+
+
 function chamarBackend(event) {
+
     event.preventDefault();
 
     let valordatainicio = datainicio.value;
     let valorultimadata = ultimadata.value;
-    let valorintervalo = intervalo.value || 20;
 
-    /* ✦── Validações ─────────────────────── */
+    /* ✦── Validações ─────────────────────────────────────────── */
+
     if (!valordatainicio || !valorultimadata) {
+
         paragrafoErroGrafico.innerText = "Preencha as duas datas.";
         return;
+
     }
 
     if (valordatainicio > valorultimadata) {
-        paragrafoErroGrafico.innerText = "A data final deve ser maior do que a data inicial.";
+
+        paragrafoErroGrafico.innerText =
+            "A data final deve ser maior do que a data inicial.";
+
         return;
+
     }
 
     paragrafoErroGrafico.innerText = "";
 
-    let url = `http://localhost/2025_2_arthur_moro_prog4/site_mabel_2/dashboards/dashboards_mabel/mabel_he/mabel_he.php?datainicio=${valordatainicio}&ultimadata=${valorultimadata}&intervalo=${valorintervalo}`;
+    let url =
+        `http://localhost/Engenharia-de-Software-II/Administrador/php/grafico.php?datainicio=${valordatainicio}&ultimadata=${valorultimadata}`;
 
-    console.log("URL chamada:", url);
-    
+    console.log(url);
+
     fetch(url)
         .then(response => {
-            console.log("Resposta bruta:", response);
+            console.log(response);
             return response.json();
+
         })
+
         .then(data => {
-            console.log("JSON recebido:", data);
 
-            /* ✦── Gráfico com os dados da umidade externa ─────────────────────── */
+            console.log(data);
 
-            if (data.dados_he && data.dados_he.length > 0) {
-                const labelsHE = data.dados_he.map(item => formatarData(item.datainclusao) + ' ' + item.horainclusao);
-                const mediaHe = data.dados_he.map(item => item.he);
+            if (data.receita_diaria && data.receita_diaria.length > 0) {
 
-                const optionsHE = {
+                const labels = data.receita_diaria.map(item =>
+                    formatarData(item.DataPedido)
+                );
+
+                const valores = data.receita_diaria.map(item =>
+                    Number(item.receita)
+                );
+
+                /* ✦── Gráfico ───────────────────────────── */
+
+                const options = {
+
                     chart: {
-                        type: 'area',
+
+                        type: "area",
                         height: 350
+
                     },
 
-                    colors: ['#576D4B'], 
+                    colors: ["#C0392B"],
 
-                    series: [{
-                        name: 'Umidade Externa',
-                        data: mediaHe
-                    }],
+                    series: [
+
+                        {
+
+                            name: "Receita Diária",
+
+                            data: valores
+
+                        }
+
+                    ],
 
                     xaxis: {
-                        categories: labelsHE
+
+                        categories: labels
+
                     },
+
                     yaxis: {
+
                         labels: {
+
                             formatter: function (value) {
-                            return value.toFixed(2)+"%";
+
+                                return "R$ " + value.toFixed(2);
+
                             }
+
                         }
+
                     },
-                    title: {
-                        text: "Registros da Umidade Externa da Colmeia",
-                        align: 'center',
-                        floating: false,
-                        style: {
-                            fontFamily: "'Playfair Display', serif",
-                            fontSize: '35px',
-                            fontWeight: 'bold',
-                            color: '#576D4B'
+
+                    tooltip: {
+
+                        y: {
+
+                            formatter: function(value){
+
+                                return "R$ " + value.toFixed(2);
+
+                            }
+
                         }
-                    }
-                };
 
-                if (chartDadosHe) {
-                    chartDadosHe.destroy();
-                }
-
-                chartDadosHe = new ApexCharts(document.querySelector("#chartDadosHe"), optionsHE);
-                chartDadosHe.render();
-
-
-                /* ✦── Gráfico da média diária da umidade externa ─────────────────────── */
-
-                const labelsMediaDiaria = data.media_diaria.map(item => formatarData(item.datainclusao));
-                const mediaDiaria = data.media_diaria.map(item => item.media_diaria);
-
-                const optionsMediaDiaria = {
-                    chart: {
-                        type: 'bar',
-                        height: 300
                     },
-                    
-                    colors: ['#576D4B'],
 
                     dataLabels: {
+
                         enabled: false
+
                     },
 
-                    series: [{
-                        name: 'Média Diária',
-                        data: mediaDiaria
-                    }],
-                    xaxis: {
-                        categories: labelsMediaDiaria
-                    },
-                    yaxis: {
-                        labels: {
-                        formatter: function (value) {
-                            return value.toFixed(2)+"%";
-                            }
-                        }
+                    stroke: {
+
+                        curve: "smooth"
+
                     },
 
                     title: {
-                        text: "Média Diária da Umidade Externa",
-                        align: 'center',
+
+                        text: "Ganhos diários da NanoSabores",
+
+                        align: "center",
+
                         floating: false,
+
                         style: {
+
                             fontFamily: "'Playfair Display', serif",
-                            fontSize: '35px',
-                            fontWeight: 'bold',
-                            color: '#576D4B'
+
+                            fontSize: "35px",
+
+                            fontWeight: "bold",
+
+                            color: "#C0392B"
+
                         }
+
                     }
+
                 };
 
-                if (chartMediaDiaria) {
-                    chartMediaDiaria.destroy();
+                if (chartReceita) {
+
+                    chartReceita.destroy();
+
                 }
 
-                chartMediaDiaria = new ApexCharts(document.querySelector("#chartMediaDiaria"), optionsMediaDiaria);
-                chartMediaDiaria.render();
+                chartReceita = new ApexCharts(
+
+                    document.querySelector("#chartReceita"),
+
+                    options
+
+                );
+
+                chartReceita.render();
 
 
-                /* ✦── Média Geral da Umidade Externa ─────────────────────── */
-                if (data.media_geral && data.media_geral.he_media !== null) {
-                    he_media_geral.innerText = `Média Geral HE: ${Number(data.media_geral.he_media).toFixed(2)}°C`;
+                if (data.receita_total.valor != null) {
+
+                    receita_total.innerText =
+                        `Receita Total: R$ ${Number(data.receita_total.valor).toFixed(2)}`;
+
                 }
+
                 else {
-                    he_media_geral.innerText = "Média Geral HE: sem dados";
+
+                    receita_total.innerText =
+                        "Receita Total: sem dados";
+
                 }
 
-                /* ✦── Diferença entre Umidade Interna e Externa ─────────────────────── */
-                if (data.diferenca_hi_he && data.diferenca_hi_he.hi_he_media !== null) {
-                    media_he_hi.innerText = `Diferença Média HI-HE: ${Number(data.diferenca_hi_he.hi_he_media).toFixed(2)}°C`;
+
+                if (data.maior_venda.valor != null) {
+
+                    maior_venda.innerText =
+                        `Maior Venda: R$ ${Number(data.maior_venda.valor).toFixed(2)}`;
+
                 }
+
                 else {
-                    media_he_hi.innerText = "Diferença Média HI-HE: sem dados";
+
+                    maior_venda.innerText =
+                        "Maior Venda: sem dados";
+
                 }
 
+                if (data.menor_venda.valor != null) {
 
-            } else {
-                console.log("Nenhum dado encontrado.");
-                paragrafoErroGrafico.innerText = "Nenhum dado encontrado."
+                    menor_venda.innerText =
+                        `Menor Venda: R$ ${Number(data.menor_venda.valor).toFixed(2)}`;
+
+                }
+
+                else {
+
+                    menor_venda.innerText =
+                        "Menor Venda: sem dados";
+
+                }
+
+                if (data.media_receita.valor != null) {
+
+                    media_receita.innerText =
+                        `Receita Média Diária: R$ ${Number(data.media_receita.valor).toFixed(2)}`;
+
+                }
+
+                else {
+
+                    media_receita.innerText =
+                        "Receita Média Diária: sem dados";
+
+                }
+                
+                if (data.quantidade_pedidos && data.quantidade_pedidos.valor !== null) {
+                    quantidadePedidos.innerText =`Quantidade de Pedidos: ${data.quantidade_pedidos.valor}`;
+            
+                }
+                
+                else {
+
+                    quantidadePedidos.innerText = "Quantidade de Pedidos: sem dados";
+                
+                }
+
             }
+
+            else {
+
+                paragrafoErroGrafico.innerText =
+                    "Nenhum dado encontrado.";
+
+            }
+
         })
+
         .catch(error => {
-            console.error('Erro ao obter dados:', error);
+
+            console.error(error);
+
+            paragrafoErroGrafico.innerText =
+                "Erro ao consultar o servidor.";
+
         });
+
 }
+
+/* ✦────────────────────────────────────────────────────────────── */
 
 botaoData.addEventListener("click", chamarBackend);
